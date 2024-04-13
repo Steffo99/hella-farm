@@ -2,14 +2,14 @@ extends Node2D
 class_name Collectable
 
 
-@export var tag: StringName
-
-
 signal collected(tag: StringName)
 
 
+@export var tag: StringName
+
+
 func _on_mouse_area_mouse_entered() -> void:
-	collected.emit()
+	collected.emit(tag)
 
 func _on_collected(t: StringName) -> void:
 	Log.p(self, "Collected: %s" % t)
