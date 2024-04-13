@@ -58,7 +58,6 @@ func _process(delta):
 
 func _physics_process(delta):
 	gravity_scale = 0
-	print(linear_velocity.length())
 	if state == State.STATE_THROWN and linear_velocity.length() < 300:
 		linear_velocity = Vector2.ZERO
 		state = State.STATE_WALK

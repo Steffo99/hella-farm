@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://uoxwjpmgg27a"]
+
+[ext_resource type="Script" path="res://entities/gold.gd" id="1_lbls1"]
+[ext_resource type="Texture2D" uid="uid://d3o13ebmcux2d" path="res://media/nugget.png" id="2_d322a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bjgas"]
+radius = 16.4012
+
+[node name="Gold" type="Node2D"]
+script = ExtResource("1_lbls1")
+
+[node name="Nugget" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("2_d322a")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bjgas")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
