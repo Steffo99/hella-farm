@@ -8,7 +8,10 @@ radius = 16.4012
 [node name="Collectable" type="Node2D"]
 script = ExtResource("1_p0pc3")
 
-[node name="CollectArea" type="Area2D" parent="."]
+[node name="MouseArea" type="Area2D" parent="."]
 
-[node name="Shape" type="CollisionShape2D" parent="CollectArea"]
+[node name="Shape" type="CollisionShape2D" parent="MouseArea"]
 shape = SubResource("CircleShape2D_su28r")
+
+[connection signal="collected" from="." to="." method="_on_collected"]
+[connection signal="mouse_entered" from="MouseArea" to="." method="_on_mouse_area_mouse_entered"]
