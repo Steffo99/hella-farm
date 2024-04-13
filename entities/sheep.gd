@@ -9,6 +9,7 @@ enum State {STATE_IDLE, STATE_WALK, STATE_PICKED, STATE_RUN, STATE_THROWN}
 var state: State = State.STATE_IDLE
 var walk_dir: Vector2 = Vector2.ZERO
 var last_dir: int = 1
+var last_mouse_pos: Vector2 = Vector2.ZERO
 
 
 @export var min_run_dist = 200
@@ -28,7 +29,7 @@ func _ready():
 	rand_walk_timer.one_shot = true;
 	rand_walk_timer.connect("timeout", _on_timer_timeout)
 	init_timer()
-	
+
 func init_timer():
 	if state == State.STATE_IDLE:
 		var rand_time = max(0, rng.randfn(4, 1.5))
@@ -39,15 +40,13 @@ func init_timer():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	gravity_scale = 0
+	# Update state
 	var curr_mpos = get_viewport().get_mouse_position()
+	last_mouse_pos = curr_mpos
 	
 	if state == State.STATE_PICKED and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		pick_down()
-	if state == State.STATE_THROWN and linear_velocity.length() < 1:
-		state = State.STATE_WALK
-		init_timer()
-	
+
 	var mouse_dis = position.distance_to(curr_mpos)
 	if (state == State.STATE_IDLE or state == State.STATE_WALK) and mouse_dis < min_run_dist:
 		# Run away from mouse
@@ -56,26 +55,34 @@ func _process(delta):
 	elif state == State.STATE_RUN and mouse_dis > max_run_dist:
 		state = State.STATE_IDLE
 		init_timer()
+
+func _physics_process(delta):
+	gravity_scale = 0
+	print(linear_velocity.length())
+	if state == State.STATE_THROWN and linear_velocity.length() < 300:
+		linear_velocity = Vector2.ZERO
+		state = State.STATE_WALK
+		init_timer()
 	
 	var force = Vector2.ZERO
-	
+
 	if state == State.STATE_WALK:
 		force = walk_speed * walk_dir
 	elif state == State.STATE_RUN:
-		var run_dir = -position.direction_to(curr_mpos)
+		var run_dir = -position.direction_to(last_mouse_pos)
 		force = run_speed * run_dir
 	elif state == State.STATE_PICKED:
-		var dest_position = initial_self_position +  (curr_mpos - initial_mouse_position)
+		var dest_position = initial_self_position +  (last_mouse_pos - initial_mouse_position)
 		apply_central_force(50 * (dest_position - position) * dest_position.distance_to(position) * delta)
 	else:
 		pass
-	
+
 	if force.length_squared() > 0.001:
 		apply_central_force(force)
 		last_dir = sign(force.dot(Vector2.LEFT))
-	
+
 	scale.x = last_dir
-		
+
 	if state == State.STATE_PICKED:
 		linear_damp = drag_damp
 	elif state == State.STATE_THROWN:
@@ -90,7 +97,7 @@ func _on_input_event(viewport, event, shape_idx):
 		var is_picked_up = event.pressed
 		initial_mouse_position = event.position
 		initial_self_position = position
-		
+
 		if not was_picked_up and is_picked_up:
 			state = State.STATE_PICKED
 			rand_walk_timer.stop()
@@ -100,7 +107,7 @@ func _on_input_event(viewport, event, shape_idx):
 func pick_down():
 	state = State.STATE_THROWN
 	init_timer()
-	
+
 
 func _on_timer_timeout():
 	if state == State.STATE_IDLE:
@@ -109,5 +116,5 @@ func _on_timer_timeout():
 	elif state == State.STATE_WALK:
 		state = State.STATE_IDLE
 	init_timer()
-	
-	
+
+

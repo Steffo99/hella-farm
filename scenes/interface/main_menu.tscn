@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://3yqvhxeq03rk"]
+[gd_scene load_steps=3 format=3 uid="uid://3yqvhxeq03rk"]
 
 [ext_resource type="Script" path="res://scenes/interface/main_menu.gd" id="1_jkswn"]
+[ext_resource type="PackedScene" uid="uid://bc2bm8lbol18w" path="res://entities/sheep.tscn" id="2_vjm0p"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -67,6 +68,12 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Options"
+
+[node name="Sheep" parent="." instance=ExtResource("2_vjm0p")]
+position = Vector2(413, 181)
+
+[node name="Sheep2" parent="." instance=ExtResource("2_vjm0p")]
+position = Vector2(950, 662)
 
 [connection signal="pressed" from="Panel/Layout/Buttons/Layout/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Panel/Layout/Buttons/Layout/Options" to="." method="_on_options_pressed"]
