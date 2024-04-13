@@ -1,0 +1,16 @@
+{
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"**/*.tscn": true,
+		"**/*.godot": true,
+		"**/*.import": true,
+		".vscode": true,
+		".build": true,
+		".editorconfig": true,
+	}
+}
