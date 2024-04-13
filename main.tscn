@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://b38wkla8e7rmo"]
+[gd_scene load_steps=3 format=3 uid="uid://b38wkla8e7rmo"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_jyg3q"]
+[ext_resource type="PackedScene" uid="uid://bkm7id1wdwywg" path="res://scenes/interface/safe_margin_container.tscn" id="2_ah6n8"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jyg3q")
+
+[node name="PrimaryCanvas" type="CanvasLayer" parent="."]
+
+[node name="SafeMarginContainer" parent="PrimaryCanvas" instance=ExtResource("2_ah6n8")]
+min_margin_left = 16
+min_margin_right = 16
+min_margin_top = 16
+min_margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="PrimaryCanvas/SafeMarginContainer"]
+layout_mode = 2
