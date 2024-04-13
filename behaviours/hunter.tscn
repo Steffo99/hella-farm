@@ -14,5 +14,7 @@ script = ExtResource("1_3bmd5")
 shape = SubResource("CircleShape2D_kxb8e")
 debug_color = Color(1, 0, 0, 0.419608)
 
+[connection signal="tracked" from="." to="." method="_on_tracked"]
+[connection signal="untracked" from="." to="." method="_on_untracked"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
