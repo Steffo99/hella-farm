@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bvrxvrjlo5130"]
+[gd_scene load_steps=2 format=3 uid="uid://bvrxvrjlo5130"]
+
+[ext_resource type="Script" path="res://behaviours/move_towards_mouse.gd" id="1_nbja1"]
 
 [node name="MoveTowardsMouse" type="Node2D"]
+script = ExtResource("1_nbja1")
