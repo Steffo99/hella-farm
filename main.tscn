@@ -5,6 +5,7 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jyg3q")
+starting_stage = 1
 
 [node name="PrimaryCanvas" type="CanvasLayer" parent="."]
 
@@ -13,6 +14,3 @@ min_margin_left = 16
 min_margin_right = 16
 min_margin_top = 16
 min_margin_bottom = 16
-
-[node name="Panel" type="Panel" parent="PrimaryCanvas/SafeMarginContainer"]
-layout_mode = 2
