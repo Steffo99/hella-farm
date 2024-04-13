@@ -2,6 +2,7 @@ extends Node
 class_name Main
 
 
+@onready var tree: SceneTree = get_tree()
 @onready var container: Control = $"PrimaryCanvas/SafeMarginContainer"
 
 
@@ -9,6 +10,8 @@ class_name Main
 enum Stage {
 	NONE = 0,
 	MENU = 1,
+	OPTIONS = 2,
+	GAME = 3,
 }
 
 ## The [Stage] the game is currently in.
@@ -50,9 +53,17 @@ func destroy_menu() -> void:
 ## Build the main menu.
 func build_menu() -> void:
 	scene_menu = SCENE_MENU.instantiate()
+	scene_menu.selected_play.connect(_on_menu_selected_play)
+	scene_menu.selected_options.connect(_on_menu_selected_options)
 	container.add_child(scene_menu)
 
 
 
 func _ready() -> void:
 	current_stage = starting_stage
+
+func _on_menu_selected_play() -> void:
+	current_stage = Stage.GAME
+
+func _on_menu_selected_options() -> void:
+	current_stage = Stage.OPTIONS
