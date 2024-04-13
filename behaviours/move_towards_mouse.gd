@@ -8,7 +8,6 @@ signal move(movement: Vector2)
 @export_range(-5, 5, 1) var speed := 1.0
 
 @onready var viewport: Viewport = get_viewport()
-@onready var target = get_parent()
 
 
 func get_relative_mouse_position():
