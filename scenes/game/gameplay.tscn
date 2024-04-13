@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1na52ogrisd1"]
+
+[ext_resource type="Script" path="res://scenes/interface/main_menu.gd" id="1_yshb5"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yshb5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Layout" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="MarginContainer" parent="Panel/Layout"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="RichTextLabel" parent="Panel/Layout/Title"]
+layout_mode = 2
+size_flags_vertical = 6
+bbcode_enabled = true
+text = "[center][font_size=144px]Playasauto[/font_size]
+[font_size=64px]Il casello del destino[/font_size]
+
+[font_size=32px]Un gioco del Garasautomobileclub Italia[/font_size][/center]"
+fit_content = true
+
+[node name="Buttons" type="MarginContainer" parent="Panel/Layout"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Layout" type="HBoxContainer" parent="Panel/Layout/Buttons"]
+layout_mode = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="Panel/Layout/Buttons/Layout"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Play"
+
+[node name="Options" type="Button" parent="Panel/Layout/Buttons/Layout"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Options"
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[connection signal="pressed" from="Panel/Layout/Buttons/Layout/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Panel/Layout/Buttons/Layout/Options" to="." method="_on_options_pressed"]

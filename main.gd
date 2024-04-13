@@ -34,6 +34,8 @@ var current_stage: Stage:
 		match current_stage:
 			Stage.MENU:
 				build_menu()
+			Stage.GAME:
+				build_game()
 
 ## The [Stage] that [field current_stage] should be set to upon starting the game.
 @export var starting_stage: Stage
@@ -41,9 +43,11 @@ var current_stage: Stage:
 
 ## The main menu scene.
 const SCENE_MENU: PackedScene = preload("res://scenes/interface/main_menu.tscn")
+const SCENE_GAME: PackedScene = preload("res://scenes/game/game.tscn")
 
 ## The main menu node.
 var scene_menu: MainMenu = null
+var scene_game: MainGame = null
 
 ## Destroy the main menu.
 func destroy_menu() -> void:
@@ -58,6 +62,11 @@ func build_menu() -> void:
 	container.add_child(scene_menu)
 
 
+## Build the main menu.
+func build_game() -> void:
+	scene_game = SCENE_GAME.instantiate()
+	scene_game.selected_exit.connect(_on_game_selected_exit)
+	container.add_child(scene_game)
 
 func _ready() -> void:
 	current_stage = starting_stage
@@ -67,3 +76,6 @@ func _on_menu_selected_play() -> void:
 
 func _on_menu_selected_options() -> void:
 	current_stage = Stage.OPTIONS
+
+func _on_game_selected_exit() -> void:
+	current_stage = Stage.MENU

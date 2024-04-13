@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxj5aud02f40j"]
+
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_tau5t"]
+[ext_resource type="PackedScene" uid="uid://bc2bm8lbol18w" path="res://entities/sheep.tscn" id="2_8268g"]
+
+[sub_resource type="TileSet" id="TileSet_g2dkm"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_tau5t")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_g2dkm")
+format = 2
+
+[node name="Sheep" parent="." instance=ExtResource("2_8268g")]
+position = Vector2(637, 318)
+run_speed = 600
