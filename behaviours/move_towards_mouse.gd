@@ -3,17 +3,19 @@ class_name MoveTowardsMouse
 
 
 signal move(movement: Vector2)
+signal detached
 signal captured
 
 
 @export_range(-500, 500, 1) var speed: float = 100.0
+@export var can_detach: bool = false
 
 @onready var game := MainGame.get_ancestor(self)
 
 
-enum State { STILL, CAPTURED }
+enum State { DETACHED, CAPTURED }
 
-var state: State = State.STILL
+var state: State = State.DETACHED
 
 
 func get_relative_mouse_position():
@@ -32,3 +34,8 @@ func _physics_process(delta: float) -> void:
 func _on_capture_area_mouse_entered() -> void:
 	state = State.CAPTURED
 	captured.emit()
+
+func _on_capture_area_mouse_exited() -> void:
+	if can_detach:
+		state = State.DETACHED
+		detached.emit()

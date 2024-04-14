@@ -9,3 +9,4 @@ script = ExtResource("1_nbja1")
 [node name="CaptureArea" parent="." instance=ExtResource("2_qru2e")]
 
 [connection signal="mouse_entered" from="CaptureArea" to="." method="_on_capture_area_mouse_entered"]
+[connection signal="mouse_exited" from="CaptureArea" to="." method="_on_capture_area_mouse_exited"]
