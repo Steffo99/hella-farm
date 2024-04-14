@@ -61,7 +61,6 @@ func build_menu() -> void:
 	scene_menu.selected_options.connect(_on_menu_selected_options)
 	container.add_child(scene_menu)
 
-
 ## Build the main menu.
 func build_game() -> void:
 	scene_game = SCENE_GAME.instantiate()
