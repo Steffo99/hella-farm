@@ -7,10 +7,11 @@ signal detached
 signal captured
 
 
-@export_range(-500, 500, 1) var speed: float = 100.0
+@export var speed: float = 100.0
 @export var can_detach: bool = false
 
 @onready var game := MainGame.get_ancestor(self)
+@onready var capture_area: HoverDetector = $"CaptureArea"
 
 
 enum State { DETACHED, CAPTURED }
