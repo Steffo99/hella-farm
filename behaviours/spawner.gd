@@ -16,3 +16,4 @@ func spawn():
 func _ready():
 	if parent == null:
 		parent = MainGame.get_ancestor(self).get_node("SpawnedEntities")
+
