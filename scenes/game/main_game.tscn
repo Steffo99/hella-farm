@@ -1,13 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=13 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/main_game.gd" id="1_wiglu"]
+[ext_resource type="PackedScene" uid="uid://cyrg770fsetyu" path="res://behaviours/spawner.tscn" id="2_bx37o"]
 [ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
 [ext_resource type="PackedScene" uid="uid://brvbtvt4em32" path="res://behaviours/counter.tscn" id="3_p6jw3"]
+[ext_resource type="PackedScene" uid="uid://eqb3vfbvjefp" path="res://entities/cloud.tscn" id="3_whlmm"]
 [ext_resource type="PackedScene" uid="uid://7j1b55t8tafg" path="res://scenes/game/cursor_magnet.tscn" id="3_xbolm"]
 [ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="4_eu7q4"]
 [ext_resource type="PackedScene" uid="uid://bc2bm8lbol18w" path="res://entities/sheep.tscn" id="5_63bwb"]
+[ext_resource type="Texture2D" uid="uid://dyvkvmw7wxwe5" path="res://icon.svg" id="9_8kxq4"]
 
 [sub_resource type="TileSet" id="TileSet_g2dkm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1lg5"]
+size = Vector2(1280, 720)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3du4x"]
+radius = 29.14
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_wiglu")
@@ -15,6 +24,16 @@ script = ExtResource("1_wiglu")
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_g2dkm")
 format = 2
+
+[node name="CloudSpawner" parent="." instance=ExtResource("2_bx37o")]
+position = Vector2(41.795, -60.05)
+scene = ExtResource("3_whlmm")
+
+[node name="PlayArea" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="PlayArea"]
+shape = SubResource("RectangleShape2D_p1lg5")
+debug_color = Color(1, 1, 1, 0)
 
 [node name="GameCamera" parent="." instance=ExtResource("2_db5xs")]
 
@@ -55,7 +74,23 @@ position = Vector2(456, -7)
 [node name="Sheep" parent="." instance=ExtResource("5_63bwb")]
 position = Vector2(-135, -134)
 
-[node name="Sheep2" parent="." instance=ExtResource("5_63bwb")]
-position = Vector2(-462, -77)
-
 [node name="SpawnedEntities" type="Node2D" parent="."]
+
+[node name="Cloud" parent="." instance=ExtResource("3_whlmm")]
+position = Vector2(-3, -112)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(590, 317)
+scale = Vector2(11.285, 11.285)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+scale = Vector2(0.03, 0.029)
+texture = ExtResource("9_8kxq4")
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+scale = Vector2(0.0886132, 0.0886132)
+shape = SubResource("CircleShape2D_3du4x")
+
+[connection signal="mouse_entered" from="Node2D/Area2D" to="CloudSpawner" method="spawn"]
