@@ -10,7 +10,7 @@
 
 ## 🎮 Controls
 
-### <!-- TODO: Schema controlli -->
+### Mouse
 
 <!--
 
