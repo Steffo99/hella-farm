@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=6 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="PackedScene" uid="uid://bvrxvrjlo5130" path="res://behaviours/move_towards_mouse.tscn" id="2_tfd2i"]
+[ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="3_8ku7r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
 radius = 16.0
@@ -22,5 +23,7 @@ texture = SubResource("PlaceholderTexture2D_08frh")
 scale = Vector2(30, 30)
 speed = -20.0
 can_detach = true
+
+[node name="Draggable" parent="." instance=ExtResource("3_8ku7r")]
 
 [connection signal="move" from="MoveTowardsMouse" to="." method="_on_move"]
