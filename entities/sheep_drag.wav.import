@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://buxgivpkh8dyl"
-path="res://.godot/imported/place.wav-6f3a5aef81053f3b0b94fbbb722a0c32.sample"
+uid="uid://bmfscpnugaejk"
+path="res://.godot/imported/sheep_drag.wav-43fcf0f822dd8bb239b2bd20f832762a.sample"
 
 [deps]
 
-source_file="res://temp/place.wav"
-dest_files=["res://.godot/imported/place.wav-6f3a5aef81053f3b0b94fbbb722a0c32.sample"]
+source_file="res://entities/sheep_drag.wav"
+dest_files=["res://.godot/imported/sheep_drag.wav-43fcf0f822dd8bb239b2bd20f832762a.sample"]
 
 [params]
 
