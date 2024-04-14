@@ -7,18 +7,25 @@ signal scared
 signal calmed
 
 
-@export_range(1, 500, 1) var speed: float = 200.0
-@export_range(0.1, 5, 0.1) var scare_secs: float = 1.0
+@export_range(1, 500, 1) var speed: float = 300.0
+@export_range(0.1, 5, 0.1) var scare_secs: float = 0.2
 @export var directions: Array[Vector2] = []
 
 @onready var calm_timer: Timer = $"CalmTimer"
-@onready var scare_area: HoverDetector = $"HoverDetector"
+@onready var scare_area: HoverDetector = $"ScareArea"
 
 
 enum State { CALM, SCARED }
 
-var state: State = State.CALM
+var state := State.CALM
+var direction := Vector2.ZERO
 
+
+func recheck():
+	if scare_area.mouse_inside:
+		scare()
+	else:
+		calm()
 
 func calm():
 	state = State.CALM
@@ -26,6 +33,10 @@ func calm():
 
 func scare():
 	state = State.SCARED
+	# Pick a direction
+	var idx := Random.rng.randi_range(0, len(directions) - 1)
+	direction = directions[idx]
+	# Start the timeout for calming down
 	calm_timer.start(scare_secs)
 	scared.emit()
 
@@ -38,16 +49,11 @@ func _physics_process(delta: float) -> void:
 	match state:
 		State.SCARED:
 			if len(directions) > 0:
-				var idx := Random.rng.randi_range(0, len(directions) - 1)
-				var direction: Vector2 = directions[idx]
 				var movement: Vector2 = direction * delta * speed
 				move.emit(movement)
 
 func _on_calm_timer_timeout() -> void:
-	if scare_area.mouse_inside:
-		scare()
-	else:
-		calm()
+	recheck()
 
 func _on_hover_detector_mouse_entered() -> void:
 	scare()

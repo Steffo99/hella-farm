@@ -9,6 +9,7 @@ script = ExtResource("1_ftcf8")
 [node name="ScareArea" parent="." instance=ExtResource("2_cuaq0")]
 
 [node name="CalmTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="calmed" from="." to="." method="_on_calmed"]
 [connection signal="move" from="." to="." method="_on_move"]
