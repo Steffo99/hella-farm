@@ -86,7 +86,6 @@ func _on_game_selected_exit() -> void:
 	current_stage = Stage.MENU
 
 func _input(event: InputEvent) -> void:
-	Log.p(self, "Received input event: %s" % event)
 	if event is InputEventKey:
 		if event.is_action(&"ui_home"):
 			current_stage = Stage.MENU
