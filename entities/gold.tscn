@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://uoxwjpmgg27a"]
+[gd_scene load_steps=5 format=3 uid="uid://uoxwjpmgg27a"]
 
 [ext_resource type="Script" path="res://entities/gold.gd" id="1_lbls1"]
 [ext_resource type="PackedScene" uid="uid://bvrxvrjlo5130" path="res://behaviours/move_towards_mouse.tscn" id="2_lso1v"]
+[ext_resource type="PackedScene" uid="uid://dj72yshd25ucx" path="res://behaviours/collectable.tscn" id="3_q0bno"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1f58t"]
 
@@ -13,5 +14,12 @@ scale = Vector2(12, 12)
 texture = SubResource("PlaceholderTexture2D_1f58t")
 
 [node name="MoveTowardsMouse" parent="." instance=ExtResource("2_lso1v")]
+scale = Vector2(5, 5)
+speed = 333.0
+
+[node name="Collectable" parent="." instance=ExtResource("3_q0bno")]
+scale = Vector2(0.87, 0.87)
+tag = &"Gold"
 
 [connection signal="move" from="MoveTowardsMouse" to="." method="_on_move"]
+[connection signal="collected" from="Collectable" to="." method="_on_collected"]
