@@ -5,7 +5,7 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jyg3q")
-starting_stage = 1
+starting_stage = 3
 
 [node name="PrimaryCanvas" type="CanvasLayer" parent="."]
 

@@ -71,8 +71,7 @@ func destroy_game() -> void:
 ## Build the [MainGame].
 func build_game() -> void:
 	scene_game = SCENE_GAME.instantiate()
-	scene_game.selected_exit.connect(_on_game_selected_exit)
-	container.add_child(scene_game)
+	add_child(scene_game)
 
 func _ready() -> void:
 	current_stage = starting_stage
@@ -85,3 +84,9 @@ func _on_menu_selected_options() -> void:
 
 func _on_game_selected_exit() -> void:
 	current_stage = Stage.MENU
+
+func _input(event: InputEvent) -> void:
+	Log.p(self, "Received input event: %s" % event)
+	if event is InputEventKey:
+		if event.is_action(&"ui_home"):
+			current_stage = Stage.MENU
