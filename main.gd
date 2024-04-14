@@ -42,8 +42,8 @@ var current_stage: Stage:
 
 
 ## The main menu scene.
-const SCENE_MENU: PackedScene = preload("res://scenes/interface/main_menu.tscn")
-const SCENE_GAME: PackedScene = preload("res://scenes/game/game.tscn")
+const SCENE_MENU: PackedScene = preload("res://scenes/menu/main_menu.tscn")
+const SCENE_GAME: PackedScene = preload("res://scenes/game/main_game.tscn")
 
 ## The main menu node.
 var scene_menu: MainMenu = null
