@@ -12,7 +12,7 @@ signal calmed
 @export var directions: Array[Vector2] = []
 
 @onready var calm_timer: Timer = $"CalmTimer"
-@onready var hover_detector: HoverDetector = $"HoverDetector"
+@onready var scare_area: HoverDetector = $"HoverDetector"
 
 
 enum State { CALM, SCARED }
@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 				move.emit(movement)
 
 func _on_calm_timer_timeout() -> void:
-	if hover_detector.mouse_inside:
+	if scare_area.mouse_inside:
 		scare()
 	else:
 		calm()
