@@ -28,6 +28,8 @@ var current_stage: Stage:
 		match current_stage:
 			Stage.MENU:
 				destroy_menu()
+			Stage.GAME:
+				destroy_game()
 		# Update the current stage
 		current_stage = value
 		# Build the next scenes
@@ -49,19 +51,24 @@ const SCENE_GAME: PackedScene = preload("res://scenes/game/main_game.tscn")
 var scene_menu: MainMenu = null
 var scene_game: MainGame = null
 
-## Destroy the main menu.
+## Destroy the [MainMenu].
 func destroy_menu() -> void:
 	scene_menu.queue_free()
 	scene_menu = null
 
-## Build the main menu.
+## Build the [MainMenu].
 func build_menu() -> void:
 	scene_menu = SCENE_MENU.instantiate()
 	scene_menu.selected_play.connect(_on_menu_selected_play)
 	scene_menu.selected_options.connect(_on_menu_selected_options)
 	container.add_child(scene_menu)
 
-## Build the main menu.
+## Destroy the [MainGame].
+func destroy_game() -> void:
+	scene_game.queue_free()
+	scene_game = null
+
+## Build the [MainGame].
 func build_game() -> void:
 	scene_game = SCENE_GAME.instantiate()
 	scene_game.selected_exit.connect(_on_game_selected_exit)
