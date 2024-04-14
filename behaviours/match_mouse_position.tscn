@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbidjjvi0ia6i"]
-
-[ext_resource type="Script" path="res://behaviours/match_mouse_position.gd" id="1_1h6oc"]
-
-[node name="MatchMousePosition" type="Node"]
-script = ExtResource("1_1h6oc")
