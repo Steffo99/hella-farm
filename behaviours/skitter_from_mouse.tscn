@@ -1,24 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1wqgyakaultt"]
 
 [ext_resource type="Script" path="res://behaviours/skitter_from_mouse.gd" id="1_ftcf8"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2d7x6"]
-radius = 30.0
+[ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/hover_detector.tscn" id="2_cuaq0"]
 
 [node name="SkitterFromMouse" type="Node2D"]
 script = ExtResource("1_ftcf8")
 
-[node name="ScareArea" type="Area2D" parent="."]
-
-[node name="Shape" type="CollisionShape2D" parent="ScareArea"]
-shape = SubResource("CircleShape2D_2d7x6")
-debug_color = Color(0.72549, 0.47451, 0, 0.419608)
+[node name="HoverDetector" parent="." instance=ExtResource("2_cuaq0")]
 
 [node name="CalmTimer" type="Timer" parent="."]
 
 [connection signal="calmed" from="." to="." method="_on_calmed"]
 [connection signal="move" from="." to="." method="_on_move"]
 [connection signal="scared" from="." to="." method="_on_scared"]
-[connection signal="mouse_entered" from="ScareArea" to="." method="_on_scare_area_mouse_entered"]
-[connection signal="mouse_exited" from="ScareArea" to="." method="_on_scare_area_mouse_exited"]
+[connection signal="mouse_entered" from="HoverDetector" to="." method="_on_hover_detector_mouse_entered"]
 [connection signal="timeout" from="CalmTimer" to="." method="_on_calm_timer_timeout"]
