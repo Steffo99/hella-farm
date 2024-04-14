@@ -14,3 +14,6 @@ This project uses the following external assets:
 | `./temp/place.wav` | https://freesound.org/people/Planman/sounds/208111/ | CC0 |
 | `./temp/gore.wav` | https://freesound.org/people/MinecraftGamerLR/sounds/728695/ | Attribution 4 |
 | `./temp/bones.wav` | https://freesound.org/people/cliftonmcarlson/sounds/392883/ | CC0 |
+| `./temp/metallic_whistle.wav` | https://freesound.org/people/furbyguy/sounds/365643/| Attribution 4|
+| `./temp/upgradeselect.wav` | https://freesound.org/people/TechspiredMinds/sounds/729216/| Attribution 4|
+| `./temp/upgrade.wav` | https://freesound.org/people/colorsCrimsonTears/sounds/607409/ | CC0 |
