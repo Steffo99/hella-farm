@@ -10,6 +10,8 @@ radius = 16.0
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_08frh"]
 
 [node name="Sheep" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 14
 script = ExtResource("1_4dmll")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
