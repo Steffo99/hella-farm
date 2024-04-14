@@ -13,7 +13,6 @@ func drag():
 	being_dragged = true
 	dragged.emit()
 
-
 func drop():
 	being_dragged = false
 	dropped.emit()
