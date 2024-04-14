@@ -9,6 +9,7 @@ static func get_ancestor(start: Node) -> MainGame:
 		if current is MainGame:
 			return current
 		current = current.get_parent()
+	Log.w(self, "MainGame ancestor not found.")
 	return null
 
 
