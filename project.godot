@@ -21,6 +21,11 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/initial_position_type=3
 
+[physics]
+
+common/physics_ticks_per_second=100
+common/max_physics_steps_per_frame=15
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
