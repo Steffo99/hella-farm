@@ -1,22 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=3 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_c2hn8"]
-[ext_resource type="Texture2D" uid="uid://cbljqvt053eka" path="res://entities/sheep.png" id="1_rhwit"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycfcx"]
-size = Vector2(120, 92)
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_08frh"]
 
 [node name="Sheep" type="RigidBody2D"]
 input_pickable = true
 linear_damp = 20.0
 script = ExtResource("1_c2hn8")
 
-[node name="Sheep" type="Sprite2D" parent="."]
-position = Vector2(3, -3)
-texture = ExtResource("1_rhwit")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, -3)
-shape = SubResource("RectangleShape2D_ycfcx")
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(32, 32)
+texture = SubResource("PlaceholderTexture2D_08frh")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
