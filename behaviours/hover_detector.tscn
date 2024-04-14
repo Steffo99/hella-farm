@@ -6,6 +6,7 @@
 radius = 8.0
 
 [node name="HoverDetector" type="Area2D"]
+monitorable = false
 script = ExtResource("1_51m5p")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
