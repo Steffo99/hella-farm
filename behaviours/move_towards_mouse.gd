@@ -11,7 +11,6 @@ signal captured
 @export var can_detach: bool = false
 
 @onready var game := MainGame.get_ancestor(self)
-@onready var capture_area: HoverDetector = $"CaptureArea"
 
 
 enum State { DETACHED, CAPTURED }
