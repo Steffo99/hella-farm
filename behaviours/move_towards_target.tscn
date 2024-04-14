@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7b4v6h7a3dy6"]
+[gd_scene load_steps=3 format=3 uid="uid://kceb2v2dm0qn"]
 
 [ext_resource type="Script" path="res://behaviours/move_towards_target.gd" id="1_703gy"]
 [ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/hover_detector.tscn" id="2_nq6qb"]
@@ -7,6 +7,7 @@
 script = ExtResource("1_703gy")
 
 [node name="CaptureArea" parent="." instance=ExtResource("2_nq6qb")]
+collision_mask = 24
 
 [connection signal="mouse_entered" from="CaptureArea" to="." method="_on_capture_area_mouse_entered"]
 [connection signal="mouse_exited" from="CaptureArea" to="." method="_on_capture_area_mouse_exited"]
