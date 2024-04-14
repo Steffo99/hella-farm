@@ -66,3 +66,5 @@ position = Vector2(-135, -134)
 
 [node name="Sheep2" parent="." instance=ExtResource("5_63bwb")]
 position = Vector2(-462, -77)
+
+[node name="SpawnedEntities" type="Node2D" parent="."]
