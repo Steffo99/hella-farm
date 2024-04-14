@@ -7,8 +7,8 @@ signal scared
 signal calmed
 
 
-@export_range(1, 5, 1) var speed := 2.0
-@export_range(1, 5, 1) var scare_secs := 1.0
+@export_range(1, 500, 1) var speed: float = 200.0
+@export_range(0.1, 5, 0.1) var scare_secs: float = 1.0
 @export var directions: Array[Vector2] = []
 
 @onready var calm_timer: Timer = $"CalmTimer"
