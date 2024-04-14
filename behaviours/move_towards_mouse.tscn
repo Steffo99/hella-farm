@@ -5,8 +5,7 @@
 
 [node name="MoveTowardsMouse" type="Node2D"]
 script = ExtResource("1_nbja1")
-speed = null
 
 [node name="CaptureArea" parent="." instance=ExtResource("2_qru2e")]
 
-[connection signal="mouse_entered" from="CaptureArea" to="." method="_on_trigger_area_mouse_entered"]
+[connection signal="mouse_entered" from="CaptureArea" to="." method="_on_capture_area_mouse_entered"]
