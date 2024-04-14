@@ -27,8 +27,10 @@ func get_relative_mouse_position():
 func _physics_process(delta: float) -> void:
 	match state:
 		State.CAPTURED:
-			var direction: Vector2 = position.direction_to(get_relative_mouse_position())
-			var movement: Vector2 = direction * delta * speed
+			var relative_mouse_position: Vector2 = get_relative_mouse_position()
+			var direction: Vector2 = position.direction_to(relative_mouse_position)
+			var actual_speed: float = min(delta * speed, relative_mouse_position.length())  # Don't overshoot.
+			var movement: Vector2 = direction * actual_speed
 			move.emit(movement)
 
 func _on_capture_area_mouse_entered() -> void:

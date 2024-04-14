@@ -25,5 +25,7 @@ speed = -20.0
 can_detach = true
 
 [node name="Draggable" parent="." instance=ExtResource("3_8ku7r")]
+scale = Vector2(2, 2)
 
 [connection signal="move" from="MoveTowardsMouse" to="." method="_on_move"]
+[connection signal="move" from="Draggable" to="." method="_on_drag_move"]
