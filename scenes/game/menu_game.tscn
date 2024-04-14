@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=6 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/menu_game.gd" id="1_x18yb"]
 [ext_resource type="PackedScene" uid="uid://brvbtvt4em32" path="res://behaviours/counter.tscn" id="2_7flt7"]
+[ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_ci6f2"]
 
 [sub_resource type="TileSet" id="TileSet_g2dkm"]
 
@@ -21,7 +22,6 @@ format = 2
 shape = SubResource("RectangleShape2D_p1lg5")
 debug_color = Color(1, 1, 1, 0)
 
-[node name="Camera" type="Camera2D" parent="."]
-editor_draw_screen = false
+[node name="GameCamera" parent="." instance=ExtResource("2_ci6f2")]
 
 [node name="GoldCounter" parent="." instance=ExtResource("2_7flt7")]
