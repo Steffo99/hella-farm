@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=8 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/main_game.gd" id="1_wiglu"]
 [ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
 [ext_resource type="PackedScene" uid="uid://brvbtvt4em32" path="res://behaviours/counter.tscn" id="3_p6jw3"]
 [ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="4_eu7q4"]
+[ext_resource type="PackedScene" uid="uid://bc2bm8lbol18w" path="res://entities/sheep.tscn" id="5_63bwb"]
 
 [sub_resource type="TileSet" id="TileSet_g2dkm"]
 
@@ -56,3 +57,9 @@ position = Vector2(379, -58)
 
 [node name="Gold10" parent="." instance=ExtResource("4_eu7q4")]
 position = Vector2(456, -7)
+
+[node name="Sheep" parent="." instance=ExtResource("5_63bwb")]
+position = Vector2(-135, -134)
+
+[node name="Sheep2" parent="." instance=ExtResource("5_63bwb")]
+position = Vector2(-462, -77)
