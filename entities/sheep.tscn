@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_c2hn8"]
-[ext_resource type="Texture2D" uid="uid://cbljqvt053eka" path="res://media/sheep.png" id="1_rhwit"]
+[ext_resource type="Texture2D" uid="uid://cbljqvt053eka" path="res://entities/sheep.png" id="1_rhwit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycfcx"]
 size = Vector2(120, 92)
