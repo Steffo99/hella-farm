@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=8 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/main_game.gd" id="1_wiglu"]
 [ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
@@ -9,21 +9,12 @@
 
 [sub_resource type="TileSet" id="TileSet_g2dkm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1lg5"]
-size = Vector2(1280, 720)
-
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_wiglu")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_g2dkm")
 format = 2
-
-[node name="PlayArea" type="Area2D" parent="."]
-
-[node name="Shape" type="CollisionShape2D" parent="PlayArea"]
-shape = SubResource("RectangleShape2D_p1lg5")
-debug_color = Color(1, 1, 1, 0)
 
 [node name="GameCamera" parent="." instance=ExtResource("2_db5xs")]
 
