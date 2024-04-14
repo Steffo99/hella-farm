@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbg5kgwxusvxf"]
+
+[ext_resource type="Script" path="res://behaviours/hover_detector.gd" id="1_51m5p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ktsow"]
+radius = 8.0
+
+[node name="HoverDetector" type="Area2D"]
+script = ExtResource("1_51m5p")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ktsow")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
