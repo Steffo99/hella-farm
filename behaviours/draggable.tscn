@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dijcjahkddudv"]
+[gd_scene load_steps=3 format=3 uid="uid://dijcjahkddudv"]
 
 [ext_resource type="Script" path="res://behaviours/draggable.gd" id="1_hdedq"]
 
-[node name="Draggable" type="Node"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_vkph8"]
+radius = 8.0
+
+[node name="Draggable" type="Area2D"]
 script = ExtResource("1_hdedq")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vkph8")
+debug_color = Color(1, 1, 1, 0)
