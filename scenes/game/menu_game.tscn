@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxj5aud02f40j"]
 
-[ext_resource type="Script" path="res://scenes/game/menu_game.gd" id="1_vrqkh"]
+[ext_resource type="Script" path="res://scenes/game/menu_game.gd" id="1_x18yb"]
 [ext_resource type="PackedScene" uid="uid://brvbtvt4em32" path="res://behaviours/counter.tscn" id="2_7flt7"]
 
 [sub_resource type="TileSet" id="TileSet_g2dkm"]
@@ -9,7 +9,7 @@
 size = Vector2(1280, 720)
 
 [node name="MainGame" type="Node2D"]
-script = ExtResource("1_vrqkh")
+script = ExtResource("1_x18yb")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_g2dkm")

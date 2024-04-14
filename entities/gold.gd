@@ -1,18 +1,7 @@
 extends Node2D
-
-## Emitted when the player hoveres the nugget
-signal hovered
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+class_name Gold
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_area_2d_mouse_entered():
-	hovered.emit()
-	print("Hovered")
+func _on_move(movement: Vector2) -> void:
+	Log.p(self, "%s" % movement)
+	position += movement
