@@ -29,3 +29,30 @@ debug_color = Color(1, 1, 1, 0)
 
 [node name="Gold" parent="." instance=ExtResource("4_eu7q4")]
 position = Vector2(94, 70)
+
+[node name="Gold2" parent="." instance=ExtResource("4_eu7q4")]
+position = Vector2(239, 96)
+
+[node name="Gold3" parent="." instance=ExtResource("4_eu7q4")]
+position = Vector2(171, 199)
+
+[node name="Gold4" parent="." instance=ExtResource("4_eu7q4")]
+position = Vector2(352, 196)
+
+[node name="Gold5" parent="." instance=ExtResource("4_eu7q4")]
+position = Vector2(377, 96)
+
+[node name="Gold6" parent="." instance=ExtResource("4_eu7q4")]
+position = Vector2(434, 188)
+
+[node name="Gold7" parent="." instance=ExtResource("4_eu7q4")]
+position = Vector2(502, 104)
+
+[node name="Gold8" parent="." instance=ExtResource("4_eu7q4")]
+position = Vector2(249, -51)
+
+[node name="Gold9" parent="." instance=ExtResource("4_eu7q4")]
+position = Vector2(379, -58)
+
+[node name="Gold10" parent="." instance=ExtResource("4_eu7q4")]
+position = Vector2(456, -7)
