@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=9 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="PackedScene" uid="uid://bvrxvrjlo5130" path="res://behaviours/move_towards_mouse.tscn" id="2_tfd2i"]
 [ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="3_8ku7r"]
 [ext_resource type="AudioStream" uid="uid://buxgivpkh8dyl" path="res://entities/drop.wav" id="4_nxjnl"]
 [ext_resource type="AudioStream" uid="uid://bmfscpnugaejk" path="res://entities/sheep_drag.wav" id="4_oalqu"]
+[ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="6_3odsh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
 radius = 16.0
@@ -38,6 +39,9 @@ stream = ExtResource("4_oalqu")
 [node name="DropSound" type="AudioStreamPlayer2D" parent="Draggable"]
 scale = Vector2(0.5, 0.5)
 stream = ExtResource("4_nxjnl")
+
+[node name="Edible" parent="." instance=ExtResource("6_3odsh")]
+tag = &"Sheep"
 
 [connection signal="move" from="MoveTowardsMouse" to="." method="_on_move"]
 [connection signal="dragged" from="Draggable" to="." method="_on_draggable_dragged"]

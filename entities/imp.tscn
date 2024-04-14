@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://4d3ksr3171x4"]
+
+[ext_resource type="Script" path="res://entities/imp.gd" id="1_dixpc"]
+[ext_resource type="PackedScene" uid="uid://dxmodn8mbvw0i" path="res://behaviours/hunt_target.tscn" id="3_6bq0i"]
+[ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="3_4528r"]
+[ext_resource type="PackedScene" uid="uid://kceb2v2dm0qn" path="res://behaviours/move_towards_target.tscn" id="4_ofu70"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
+radius = 16.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_08frh"]
+
+[node name="Imp" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 14
+script = ExtResource("1_dixpc")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_c5tcn")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(32, 32)
+texture = SubResource("PlaceholderTexture2D_08frh")
+
+[node name="Draggable" parent="." instance=ExtResource("3_4528r")]
+scale = Vector2(2, 2)
+
+[node name="DragSound" type="AudioStreamPlayer2D" parent="Draggable"]
+scale = Vector2(0.5, 0.5)
+
+[node name="DropSound" type="AudioStreamPlayer2D" parent="Draggable"]
+scale = Vector2(0.5, 0.5)
+
+[node name="HuntTarget" parent="." instance=ExtResource("3_6bq0i")]
+tag = &"Sheep"
+
+[node name="MoveTowardsTarget" parent="." instance=ExtResource("4_ofu70")]
+
+[connection signal="dragged" from="Draggable" to="." method="_on_draggable_dragged"]
+[connection signal="dropped" from="Draggable" to="." method="_on_draggable_dropped"]
+[connection signal="move" from="Draggable" to="." method="_on_drag_move"]
