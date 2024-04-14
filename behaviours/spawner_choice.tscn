@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cokdfsk6rgeup"]
+
+[ext_resource type="Script" path="res://behaviours/spawner_choice.gd" id="1_jkwdb"]
+
+[node name="SpawnerChoice" type="Node"]
+script = ExtResource("1_jkwdb")
