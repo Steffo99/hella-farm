@@ -6,7 +6,7 @@ signal move(movement: Vector2)
 signal captured
 
 
-@export_range(-500, 500, 1) var speed := 100.0
+@export_range(-500, 500, 1) var speed: float = 100.0
 
 @onready var viewport: Viewport = get_viewport()
 
