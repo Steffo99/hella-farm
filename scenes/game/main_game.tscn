@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxj5aud02f40j"]
 
-[ext_resource type="Script" path="res://scenes/game/menu_game.gd" id="1_x18yb"]
-[ext_resource type="PackedScene" uid="uid://brvbtvt4em32" path="res://behaviours/counter.tscn" id="2_7flt7"]
-[ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_ci6f2"]
+[ext_resource type="Script" path="res://scenes/game/menu_game.gd" id="1_y3554"]
+[ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
+[ext_resource type="PackedScene" uid="uid://brvbtvt4em32" path="res://behaviours/counter.tscn" id="3_p6jw3"]
 
 [sub_resource type="TileSet" id="TileSet_g2dkm"]
 
@@ -10,7 +10,7 @@
 size = Vector2(1280, 720)
 
 [node name="MainGame" type="Node2D"]
-script = ExtResource("1_x18yb")
+script = ExtResource("1_y3554")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_g2dkm")
@@ -22,6 +22,6 @@ format = 2
 shape = SubResource("RectangleShape2D_p1lg5")
 debug_color = Color(1, 1, 1, 0)
 
-[node name="GameCamera" parent="." instance=ExtResource("2_ci6f2")]
+[node name="GameCamera" parent="." instance=ExtResource("2_db5xs")]
 
-[node name="GoldCounter" parent="." instance=ExtResource("2_7flt7")]
+[node name="GoldCounter" parent="." instance=ExtResource("3_p6jw3")]
