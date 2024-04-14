@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://dijcjahkddudv"]
+[gd_scene load_steps=2 format=3 uid="uid://dijcjahkddudv"]
+
+[ext_resource type="Script" path="res://behaviours/pickable.gd" id="1_ymn8e"]
 
 [node name="Pickable" type="Node"]
+script = ExtResource("1_ymn8e")
