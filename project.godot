@@ -41,6 +41,7 @@ main_menu={
 2d_physics/layer_4="Entities (grounded)"
 2d_physics/layer_5="Entities (air)"
 2d_physics/layer_6="Pickups"
+2d_physics/layer_7="System"
 
 [physics]
 
