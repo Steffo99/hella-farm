@@ -15,6 +15,6 @@ debug_color = Color(1, 1, 1, 0)
 
 [node name="MatchMousePosition" parent="." instance=ExtResource("2_gi6xd")]
 scale = Vector2(10000, 10000)
-speed = 100000.0
+speed = 3600.0
 
 [connection signal="move" from="MatchMousePosition" to="." method="_on_move"]
