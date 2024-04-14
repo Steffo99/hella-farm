@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	match state:
 		State.SCARED:
 			if len(directions) > 0:
-				var idx := Random.rng.randi_range(0, len(directions))
+				var idx := Random.rng.randi_range(0, len(directions) - 1)
 				var direction: Vector2 = directions[idx]
 				var movement: Vector2 = direction * delta * speed
 				move.emit(movement)
