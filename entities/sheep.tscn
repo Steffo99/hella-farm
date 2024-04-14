@@ -1,16 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=4 format=3 uid="uid://bc2bm8lbol18w"]
 
-[ext_resource type="Script" path="res://entities/sheep.gd" id="1_c2hn8"]
+[ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
+[ext_resource type="PackedScene" uid="uid://bvrxvrjlo5130" path="res://behaviours/move_towards_mouse.tscn" id="2_tfd2i"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_08frh"]
 
-[node name="Sheep" type="RigidBody2D"]
-input_pickable = true
-linear_damp = 20.0
-script = ExtResource("1_c2hn8")
+[node name="Sheep" type="CharacterBody2D"]
+script = ExtResource("1_4dmll")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(32, 32)
 texture = SubResource("PlaceholderTexture2D_08frh")
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
+[node name="MoveTowardsMouse" parent="." instance=ExtResource("2_tfd2i")]
+scale = Vector2(30, 30)
+speed = -20.0
+can_detach = true
+
+[connection signal="move" from="MoveTowardsMouse" to="." method="_on_move"]
