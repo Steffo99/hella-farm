@@ -13,7 +13,7 @@ signal captured
 
 enum State { STILL, CAPTURED }
 
-var state: State = State.CAPTURED
+var state: State = State.STILL
 
 
 func get_relative_mouse_position():
