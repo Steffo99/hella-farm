@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b38wkla8e7rmo"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_jyg3q"]
-[ext_resource type="Material" uid="uid://dpumcyplql08q" path="res://postprocess.material" id="2_3o1ux"]
 [ext_resource type="PackedScene" uid="uid://bkm7id1wdwywg" path="res://scenes/menu/safe_margin_container.tscn" id="2_ah6n8"]
+[ext_resource type="PackedScene" uid="uid://dyodbq3yrbi87" path="res://postprocessing/postprocessing_rect.tscn" id="2_shp84"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jyg3q")
@@ -10,15 +10,7 @@ starting_stage = 3
 
 [node name="PostprocessingCanvas" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="PostprocessingCanvas"]
-texture_filter = 1
-material = ExtResource("2_3o1ux")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+[node name="PostprocessingRect" parent="PostprocessingCanvas" instance=ExtResource("2_shp84")]
 
 [node name="InterfaceCanvas" type="CanvasLayer" parent="."]
 

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyodbq3yrbi87"]
+
+[ext_resource type="Material" uid="uid://dpumcyplql08q" path="res://postprocessing/postprocess.material" id="1_sswlf"]
+[ext_resource type="Script" path="res://postprocessing/postprocessing_rect.gd" id="2_om0qv"]
+
+[node name="PostprocessingRect" type="ColorRect"]
+texture_filter = 1
+material = ExtResource("1_sswlf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_om0qv")
