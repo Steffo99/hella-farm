@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxmodn8mbvw0i"]
 
 [ext_resource type="Script" path="res://behaviours/hunt_target.gd" id="1_1ex7u"]
-[ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/hunter.tscn" id="2_vjdtc"]
+[ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/edible_tracker.tscn" id="2_vjdtc"]
 
 [node name="HuntTarget" type="Node2D"]
 script = ExtResource("1_1ex7u")
