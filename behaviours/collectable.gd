@@ -1,15 +1,17 @@
-extends Node2D
+extends Area2D
 class_name Collectable
+
+## Emits [signal collected] when the mouse enters the given [CollisionShape2D].
 
 
 signal collected
 
+@export var qty: int = 1
+@export var tag: StringName = &""
 
-@export var tag: StringName
 
-
-func _on_mouse_area_mouse_entered() -> void:
+func _on_mouse_entered() -> void:
 	collected.emit(tag)
 
-func _on_collected(t: StringName) -> void:
-	Log.p(self, "Collected: %s" % t)
+func _on_collected() -> void:
+	Log.p(self, "Collected: %sx %s" % [qty, tag])
