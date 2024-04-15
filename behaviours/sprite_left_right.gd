@@ -9,5 +9,5 @@ class_name SpriteLeftRight
 func handle_move(movement: Vector2):
 	if movement.x > 0:
 		texture = right_texture
-	else:
+	elif movement.x < 0:
 		texture = left_texture
