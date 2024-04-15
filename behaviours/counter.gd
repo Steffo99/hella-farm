@@ -1,3 +1,4 @@
+@icon("res://behaviours/counter.svg")
 extends Node
 class_name Counter
 
