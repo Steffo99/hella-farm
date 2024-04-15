@@ -1,3 +1,4 @@
+@icon("res://behaviours/edible.svg")
 extends Node
 class_name Edible
 
