@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfitiajuuvdko"]
+
+[ext_resource type="Script" path="res://behaviours/eat_target.gd" id="1_tlnlt"]
+[ext_resource type="PackedScene" uid="uid://dxmodn8mbvw0i" path="res://behaviours/hunt_target.tscn" id="2_c8wdv"]
+[ext_resource type="PackedScene" uid="uid://jg7qkbswgqjc" path="res://behaviours/eater.tscn" id="3_ir2yh"]
+[ext_resource type="PackedScene" uid="uid://kceb2v2dm0qn" path="res://behaviours/move_towards_target.tscn" id="4_1qc2q"]
+
+[node name="EatTarget" type="Node2D"]
+script = ExtResource("1_tlnlt")
+
+[node name="HuntTarget" parent="." instance=ExtResource("2_c8wdv")]
+tag = &""
+give_up_secs = 5.0
+
+[node name="Eater" parent="." instance=ExtResource("3_ir2yh")]
+
+[node name="MoveTowardsTarget" parent="." instance=ExtResource("4_1qc2q")]
+
+[connection signal="target_abandoned" from="HuntTarget" to="." method="_on_target_abandoned"]
+[connection signal="target_selected" from="HuntTarget" to="." method="_on_target_selected"]
+[connection signal="eaten" from="Eater" to="." method="_on_eater_eaten"]
+[connection signal="move" from="MoveTowardsTarget" to="." method="_on_move_towards_target_move"]
