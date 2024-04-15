@@ -14,3 +14,6 @@ signal eaten
 
 func eat():
 	eaten.emit()
+
+func _on_eaten() -> void:
+	Log.p(self, "Got eaten.")

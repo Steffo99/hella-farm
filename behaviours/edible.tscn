@@ -4,3 +4,5 @@
 
 [node name="Edible" type="Node"]
 script = ExtResource("1_l6vtr")
+
+[connection signal="eaten" from="." to="." method="_on_eaten"]
