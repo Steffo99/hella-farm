@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://eqg6snsgn1kh"]
+
+[ext_resource type="AudioStream" uid="uid://cogtamt27rox2" path="res://players/gold_pickup.ogg" id="1_rpx7k"]
+
+[node name="GoldPickupPlayer" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_rpx7k")
+autoplay = true
+
+[connection signal="finished" from="." to="." method="queue_free"]

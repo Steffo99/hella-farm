@@ -21,3 +21,4 @@ This project uses the following external assets:
 | `./temp/squelch.wav` | https://freesound.org/people/primeval_polypod/sounds/159389/ | Attribution 3 |
 | `./temp/arcade_cancel.flac` | https://freesound.org/people/plasterbrain/sounds/464912/ | CC0 |
 | `./temp/cancel.wav` | https://freesound.org/people/Kagateni/sounds/571510/ | CC0 |
+| `./entities/coin.ogg` | https://freesound.org/people/forrisday/sounds/214509/ | Attribution 4 |
