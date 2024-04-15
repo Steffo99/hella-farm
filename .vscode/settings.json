@@ -12,5 +12,6 @@
 		".vscode": true,
 		".build": true,
 		".editorconfig": true,
+		"behaviours/*.svg": true,
 	}
 }
