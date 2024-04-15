@@ -27,7 +27,7 @@ func _ready():
 	rand_walk_timer.one_shot = true;
 	rand_walk_timer.connect("timeout", _on_timer_timeout)
 
-	state_holder.on_changed.connect(init_timer)
+	state_holder.on_changed.connect(init_timer.unbind(2))
 	init_timer()
 
 func _physics_process(delta: float) -> void:
