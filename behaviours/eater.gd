@@ -1,3 +1,4 @@
+@icon("res://behaviours/eater.svg")
 extends Area2D
 class_name Eater
 
