@@ -2,7 +2,7 @@ extends Node2D
 class_name Collectable
 
 
-signal collected(tag: StringName)
+signal collected
 
 
 @export var tag: StringName
