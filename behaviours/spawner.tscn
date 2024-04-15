@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyrg770fsetyu"]
+[gd_scene load_steps=2 format=3 uid="uid://tx1qi6ahlxjp"]
 
 [ext_resource type="Script" path="res://behaviours/spawner.gd" id="1_b4uk0"]
 
