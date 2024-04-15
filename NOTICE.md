@@ -21,3 +21,6 @@ This project uses the following external assets:
 | `./temp/squelch.wav` | https://freesound.org/people/primeval_polypod/sounds/159389/ | Attribution 3 |
 | `./temp/arcade_cancel.flac` | https://freesound.org/people/plasterbrain/sounds/464912/ | CC0 |
 | `./temp/cancel.wav` | https://freesound.org/people/Kagateni/sounds/571510/ | CC0 |
+| `./temp/monster_bite.wav` | https://freesound.org/people/OGsoundFX/sounds/423010/ | Attribution 4 |
+| `./temp/tank.wav` | https://freesound.org/people/JarredGibb/sounds/217273/ | CC0 |
+| `./temp/demon_dying.wav` | https://freesound.org/people/THE_bizniss/sounds/37823/ | Attribution 3 |
