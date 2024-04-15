@@ -43,6 +43,14 @@ tag = &"Sheep"
 [node name="SkullSpawner" parent="." instance=ExtResource("4_d8lgm")]
 scene = ExtResource("5_yrfoq")
 
+[node name="Spawner" parent="." instance=ExtResource("4_d8lgm")]
+scene = ExtResource("5_yrfoq")
+
+[node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 0.8
+autostart = true
+
 [connection signal="move" from="Draggable" to="." method="_on_draggable_move"]
 [connection signal="eaten" from="EatTarget" to="." method="_on_eat_target_eaten"]
 [connection signal="move" from="EatTarget" to="." method="_on_move"]
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="spawn"]
