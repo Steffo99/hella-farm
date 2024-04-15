@@ -30,10 +30,8 @@ func _on_target_selected(body: Node2D) -> void:
 func _on_target_abandoned(_body: Node2D) -> void:
 	move_towards.target = null
 
-
 func _on_eater_eaten(edible):
 	eaten.emit(edible)
-
 
 func _on_move_towards_target_move(movement):
 	move.emit(movement)

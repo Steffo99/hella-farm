@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfitiajuuvdko"]
+[gd_scene load_steps=5 format=3 uid="uid://b7bdlh5akhi8s"]
 
 [ext_resource type="Script" path="res://behaviours/eat_target.gd" id="1_tlnlt"]
 [ext_resource type="PackedScene" uid="uid://dxmodn8mbvw0i" path="res://behaviours/hunt_target.tscn" id="2_c8wdv"]
@@ -9,10 +9,11 @@
 script = ExtResource("1_tlnlt")
 
 [node name="HuntTarget" parent="." instance=ExtResource("2_c8wdv")]
-tag = &""
+scale = Vector2(16, 16)
 give_up_secs = 5.0
 
 [node name="Eater" parent="." instance=ExtResource("3_ir2yh")]
+scale = Vector2(2.5, 2.5)
 
 [node name="MoveTowardsTarget" parent="." instance=ExtResource("4_1qc2q")]
 
