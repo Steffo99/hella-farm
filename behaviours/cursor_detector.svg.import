@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://6wpumqhdov4r"
-path="res://.godot/imported/hover_detector.svg-3bfd5bde28e59dd82344da683ff70f2d.ctex"
+path="res://.godot/imported/cursor_detector.svg-15ede4c1c6083de1d2f8a8ceb4ab532a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://behaviours/hover_detector.svg"
-dest_files=["res://.godot/imported/hover_detector.svg-3bfd5bde28e59dd82344da683ff70f2d.ctex"]
+source_file="res://behaviours/cursor_detector.svg"
+dest_files=["res://.godot/imported/cursor_detector.svg-15ede4c1c6083de1d2f8a8ceb4ab532a.ctex"]
 
 [params]
 
