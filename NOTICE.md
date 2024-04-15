@@ -25,3 +25,4 @@ This project uses the following external assets:
 | `./temp/tank.wav` | https://freesound.org/people/JarredGibb/sounds/217273/ | CC0 |
 | `./temp/demon_dying.wav` | https://freesound.org/people/THE_bizniss/sounds/37823/ | Attribution 3 |
 | `./entities/coin.ogg` | https://freesound.org/people/forrisday/sounds/214509/ | Attribution 4 |
+| `./behaviours/*.svg` | https://fontawesome.com/ | CC-BY 4.0 |

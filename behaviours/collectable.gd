@@ -1,3 +1,4 @@
+@icon("res://behaviours/collectable.svg")
 extends Area2D
 class_name Collectable
 
