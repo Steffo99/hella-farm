@@ -5,8 +5,8 @@ This project uses the following external assets:
 | File | URL | License |
 |------|-------|-----|
 | `./icon.svg` | Godot icon | MIT license |
-| `./temp/tollbell.mp3` | https://freesound.org/people/sdroliasnick/sounds/731270/| CC0 |
-| `./temp/sheep.wav` | https://freesound.org/people/michaelperfect/sounds/710298/| CC0 |
+| `./temp/tollbell.mp3` | https://freesound.org/people/sdroliasnick/sounds/731270/ | CC0 |
+| `./entities/sheep_drag.wav` | https://freesound.org/people/michaelperfect/sounds/710298/ | CC0 |
 | `./temp/click&pop.wav` | https://freesound.org/people/GammaGool/sounds/730488/ | CC0 |
 | `./temp/pop.wav` | https://freesound.org/people/NovaSoundTechnology/sounds/727104/ | CC0 |
 | `./temp/mouth_pop.wav` | https://freesound.org/people/igaopuromalte/sounds/725453/ | Attribution 4 |
@@ -24,3 +24,4 @@ This project uses the following external assets:
 | `./temp/monster_bite.wav` | https://freesound.org/people/OGsoundFX/sounds/423010/ | Attribution 4 |
 | `./temp/tank.wav` | https://freesound.org/people/JarredGibb/sounds/217273/ | CC0 |
 | `./temp/demon_dying.wav` | https://freesound.org/people/THE_bizniss/sounds/37823/ | Attribution 3 |
+| `./entities/coin.ogg` | https://freesound.org/people/forrisday/sounds/214509/ | Attribution 4 |

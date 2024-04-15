@@ -3,7 +3,7 @@ class_name Main
 
 
 @onready var tree: SceneTree = get_tree()
-@onready var container: Control = $"PrimaryCanvas/SafeMarginContainer"
+@onready var ui_container: Control = $"InterfaceCanvas/SafeMarginContainer"
 
 
 ## The possible states the game can be in.
@@ -61,7 +61,7 @@ func build_menu() -> void:
 	scene_menu = SCENE_MENU.instantiate()
 	scene_menu.selected_play.connect(_on_menu_selected_play)
 	scene_menu.selected_options.connect(_on_menu_selected_options)
-	container.add_child(scene_menu)
+	ui_container.add_child(scene_menu)
 
 ## Destroy the [MainGame].
 func destroy_game() -> void:

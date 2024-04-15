@@ -1,25 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://uoxwjpmgg27a"]
+[gd_scene load_steps=7 format=3 uid="uid://uoxwjpmgg27a"]
 
 [ext_resource type="Script" path="res://entities/gold.gd" id="1_lbls1"]
 [ext_resource type="PackedScene" uid="uid://bvrxvrjlo5130" path="res://behaviours/move_towards_mouse.tscn" id="2_lso1v"]
+[ext_resource type="Texture2D" uid="uid://bfl0tkg85cvb8" path="res://entities/gold.png" id="2_tt3v6"]
 [ext_resource type="PackedScene" uid="uid://dj72yshd25ucx" path="res://behaviours/collectable.tscn" id="3_q0bno"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1f58t"]
+[ext_resource type="PackedScene" uid="uid://dv7ea2y0l46e" path="res://behaviours/spawner_free.tscn" id="5_pbaso"]
+[ext_resource type="PackedScene" uid="uid://eqg6snsgn1kh" path="res://players/gold_pickup_player.tscn" id="6_eoeje"]
 
 [node name="Gold" type="Node2D"]
 script = ExtResource("1_lbls1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(12, 12)
-texture = SubResource("PlaceholderTexture2D_1f58t")
+scale = Vector2(2, 2)
+texture = ExtResource("2_tt3v6")
 
 [node name="MoveTowardsMouse" parent="." instance=ExtResource("2_lso1v")]
-scale = Vector2(5, 5)
-speed = 333.0
+scale = Vector2(8, 8)
+speed = 555.0
 
 [node name="Collectable" parent="." instance=ExtResource("3_q0bno")]
-scale = Vector2(0.87, 0.87)
+scale = Vector2(0.6, 0.6)
 tag = &"Gold"
+
+[node name="SpawnerFree" parent="." instance=ExtResource("5_pbaso")]
+scene = ExtResource("6_eoeje")
 
 [connection signal="move" from="MoveTowardsMouse" to="." method="_on_move"]
 [connection signal="collected" from="Collectable" to="." method="_on_collected"]
