@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/cloud.gd" id="1_8jsek"]
 [ext_resource type="PackedScene" uid="uid://bc2bm8lbol18w" path="res://entities/sheep.tscn" id="3_naxi5"]
-[ext_resource type="PackedScene" uid="uid://cyrg770fsetyu" path="res://behaviours/spawner.tscn" id="4_0cics"]
+[ext_resource type="PackedScene" path="res://behaviours/spawner.tscn" id="4_0cics"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_08frh"]
 
@@ -110,6 +110,7 @@ _data = {
 script = ExtResource("1_8jsek")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(1.90735e-06, -9.53674e-07)
 scale = Vector2(64.4688, 51.1875)
 texture = SubResource("PlaceholderTexture2D_08frh")
