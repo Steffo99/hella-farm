@@ -11,7 +11,7 @@ func spawn():
 	entity.global_scale = global_scale
 	entity.global_position = global_position
 	entity.global_rotation = global_rotation
-	parent.add_child(entity)
+	parent.add_child.call_deferred(entity)  # Not sure why this is needed.
 
 func _ready():
 	if parent == null:
