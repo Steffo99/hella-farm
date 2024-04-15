@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=13 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://buxgivpkh8dyl" path="res://entities/drop.wav" id="4_nxjnl"]
 [ext_resource type="AudioStream" uid="uid://bmfscpnugaejk" path="res://entities/sheep_drag.wav" id="4_oalqu"]
 [ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="6_3odsh"]
+[ext_resource type="PackedScene" uid="uid://dqlhv4j3b62hd" path="res://behaviours/random_walk.tscn" id="6_ekxsq"]
+[ext_resource type="PackedScene" uid="uid://d31h5lcitnlsd" path="res://behaviours/state_holder.tscn" id="10_mm8v8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
 radius = 8.0
@@ -28,13 +30,23 @@ right_texture = ExtResource("4_5qoof")
 scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_c5tcn")
 
-[node name="MoveTowardsMouse" parent="." instance=ExtResource("2_tfd2i")]
+[node name="MoveTowardsMouse" parent="." node_paths=PackedStringArray("state_holder") instance=ExtResource("2_tfd2i")]
 scale = Vector2(30, 30)
 speed = -30.0
 can_detach = true
+state_holder = NodePath("../StateHolder")
+state_name = &"scared"
 
-[node name="Draggable" parent="." instance=ExtResource("3_8ku7r")]
+[node name="RandomWalk" parent="." instance=ExtResource("6_ekxsq")]
+speed = 10.0
+wait_time_mean = 4.0
+wait_time_dev = 1.5
+wander_time_mean = 5.0
+wander_time_dev = 1.0
+
+[node name="Draggable" parent="." node_paths=PackedStringArray("state_holder") instance=ExtResource("3_8ku7r")]
 scale = Vector2(3, 3)
+state_holder = NodePath("../StateHolder")
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="Draggable"]
 scale = Vector2(0.5, 0.5)
@@ -47,7 +59,10 @@ stream = ExtResource("4_nxjnl")
 [node name="Edible" parent="." instance=ExtResource("6_3odsh")]
 tag = &"Sheep"
 
+[node name="StateHolder" parent="." instance=ExtResource("10_mm8v8")]
+
 [connection signal="move" from="MoveTowardsMouse" to="." method="_on_move"]
+[connection signal="move" from="RandomWalk" to="." method="_on_move"]
 [connection signal="dragged" from="Draggable" to="." method="_on_draggable_dragged"]
 [connection signal="dropped" from="Draggable" to="." method="_on_draggable_dropped"]
-[connection signal="move" from="Draggable" to="." method="_on_drag_move"]
+[connection signal="move" from="Draggable" to="." method="_on_move"]

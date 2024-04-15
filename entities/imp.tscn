@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4d3ksr3171x4"]
+[gd_scene load_steps=11 format=3 uid="uid://4d3ksr3171x4"]
 
 [ext_resource type="Script" path="res://entities/imp.gd" id="1_dixpc"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_eqcdi"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b7bdlh5akhi8s" path="res://behaviours/eat_target.tscn" id="3_iybf3"]
 [ext_resource type="Texture2D" uid="uid://crhwsob76ieya" path="res://entities/imp_left.png" id="3_qda0k"]
 [ext_resource type="Texture2D" uid="uid://bubehid53q8h1" path="res://entities/imp_right.png" id="4_0sckn"]
-[ext_resource type="PackedScene" path="res://behaviours/spawner.tscn" id="4_d8lgm"]
+[ext_resource type="PackedScene" uid="uid://cyrg770fsetyu" path="res://behaviours/spawner.tscn" id="4_d8lgm"]
 [ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="5_yrfoq"]
+[ext_resource type="PackedScene" uid="uid://d31h5lcitnlsd" path="res://behaviours/state_holder.tscn" id="9_myo4m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ide4n"]
 radius = 8.0
@@ -27,8 +28,9 @@ right_texture = ExtResource("4_0sckn")
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_ide4n")
 
-[node name="Draggable" parent="." instance=ExtResource("3_4528r")]
+[node name="Draggable" parent="." node_paths=PackedStringArray("state_holder") instance=ExtResource("3_4528r")]
 scale = Vector2(4, 4)
+state_holder = NodePath("../StateHolder")
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="Draggable"]
 scale = Vector2(0.5, 0.5)
@@ -36,13 +38,16 @@ scale = Vector2(0.5, 0.5)
 [node name="DropSound" type="AudioStreamPlayer2D" parent="Draggable"]
 scale = Vector2(0.5, 0.5)
 
-[node name="EatTarget" parent="." instance=ExtResource("3_iybf3")]
+[node name="EatTarget" parent="." node_paths=PackedStringArray("state_holder") instance=ExtResource("3_iybf3")]
 scale = Vector2(2, 2)
 tag = &"Sheep"
+state_holder = NodePath("../StateHolder")
 
 [node name="SkullSpawner" parent="." instance=ExtResource("4_d8lgm")]
 scene = ExtResource("5_yrfoq")
 
-[connection signal="move" from="Draggable" to="." method="_on_draggable_move"]
+[node name="StateHolder" parent="." instance=ExtResource("9_myo4m")]
+
+[connection signal="move" from="Draggable" to="." method="_on_move"]
 [connection signal="eaten" from="EatTarget" to="." method="_on_eat_target_eaten"]
 [connection signal="move" from="EatTarget" to="." method="_on_move"]

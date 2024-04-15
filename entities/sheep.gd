@@ -9,14 +9,8 @@ class_name Sheep
 
 
 func _on_move(movement: Vector2) -> void:
-	if not draggable.being_dragged:
-		move_and_collide(movement)
-		sprite.handle_move(movement)
-
-func _on_drag_move(movement: Vector2) -> void:
-	if draggable.being_dragged:
-		move_and_collide(movement)
-		sprite.handle_move(movement)
+	move_and_collide(movement)
+	sprite.handle_move(movement)
 
 func _on_draggable_dragged() -> void:
 	drag_sound.play()

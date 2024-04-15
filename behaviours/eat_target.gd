@@ -16,19 +16,24 @@ signal move(movement: Vector2)
 			eater.tag = value
 
 
+@export var state_holder: StateHolder
+
 @onready var hunt_target: HuntTarget = $"HuntTarget"
 @onready var eater: Eater = $"Eater"
 @onready var move_towards: MoveTowardsTarget = $"MoveTowardsTarget"
 
 func _ready():
+	if state_holder == null:
+		state_holder = StateHolder.get_default(self)
 	hunt_target.tag = tag
 	eater.tag = tag
 
 func _on_target_selected(body: Node2D) -> void:
-	move_towards.target = body
+	if state_holder.propose_state('hunt', 60, func(): move_towards.target = null):
+		move_towards.target = body
 
 func _on_target_abandoned(_body: Node2D) -> void:
-	move_towards.target = null
+	state_holder.remove_state('hunt')
 
 func _on_eater_eaten(edible):
 	eaten.emit(edible)

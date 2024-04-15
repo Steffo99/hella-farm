@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqlhv4j3b62hd"]
+
+[ext_resource type="Script" path="res://behaviours/random_walk.gd" id="1_hs213"]
+
+[node name="RandomWalk" type="Node2D"]
+script = ExtResource("1_hs213")
+speed = null
+wait_time_mean = null
+wait_time_dev = null
+wander_time_mean = null
+wander_time_dev = null
