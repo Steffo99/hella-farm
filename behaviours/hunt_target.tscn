@@ -5,6 +5,8 @@
 
 [node name="HuntTarget" type="Node2D"]
 script = ExtResource("1_1ex7u")
+tag = null
+give_up_secs = null
 
 [node name="Hunter" parent="." instance=ExtResource("2_vjdtc")]
 
