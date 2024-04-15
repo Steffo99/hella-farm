@@ -1,3 +1,4 @@
+@icon("res://behaviours/hover_detector.svg")
 extends Area2D
 class_name HoverDetector
 
