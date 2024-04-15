@@ -1,36 +1,40 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=11 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
+[ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
 [ext_resource type="PackedScene" uid="uid://bvrxvrjlo5130" path="res://behaviours/move_towards_mouse.tscn" id="2_tfd2i"]
+[ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_xbkrm"]
 [ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="3_8ku7r"]
+[ext_resource type="Texture2D" uid="uid://cxtmas4g0v6en" path="res://entities/sheep_right.png" id="4_5qoof"]
 [ext_resource type="AudioStream" uid="uid://buxgivpkh8dyl" path="res://entities/drop.wav" id="4_nxjnl"]
 [ext_resource type="AudioStream" uid="uid://bmfscpnugaejk" path="res://entities/sheep_drag.wav" id="4_oalqu"]
 [ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="6_3odsh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
-radius = 16.0
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_08frh"]
+radius = 8.0
 
 [node name="Sheep" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 14
 script = ExtResource("1_4dmll")
 
-[node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_c5tcn")
+[node name="Sprite" parent="." instance=ExtResource("2_xbkrm")]
+scale = Vector2(2, 2)
+texture = ExtResource("2_t13f5")
+left_texture = ExtResource("2_t13f5")
+right_texture = ExtResource("4_5qoof")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(32, 32)
-texture = SubResource("PlaceholderTexture2D_08frh")
+[node name="Shape" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_c5tcn")
 
 [node name="MoveTowardsMouse" parent="." instance=ExtResource("2_tfd2i")]
 scale = Vector2(30, 30)
-speed = -20.0
+speed = -30.0
 can_detach = true
 
 [node name="Draggable" parent="." instance=ExtResource("3_8ku7r")]
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="Draggable"]
 scale = Vector2(0.5, 0.5)
