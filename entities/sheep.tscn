@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=14 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
-[ext_resource type="PackedScene" uid="uid://bvrxvrjlo5130" path="res://behaviours/move_towards_mouse.tscn" id="2_tfd2i"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_xbkrm"]
 [ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="3_8ku7r"]
 [ext_resource type="Texture2D" uid="uid://cxtmas4g0v6en" path="res://entities/sheep_right.png" id="4_5qoof"]
@@ -12,24 +11,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
 radius = 8.0
-
-[sub_resource type="Animation" id="Animation_lxieb"]
-resource_name = "wobble"
-length = 3.0
-loop_mode = 1
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.261799, 0.0, 0.261799, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_gokbg"]
 length = 0.001
@@ -64,6 +45,24 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(1, 1), Vector2(-1, -1), Vector2(-1, 0), Vector2(1, -1), Vector2(-1, 1), Vector2(1, 1), Vector2(1, 0), Vector2(-1, -1), Vector2(1, 0), Vector2(0, -1)]
 }
 
+[sub_resource type="Animation" id="Animation_lxieb"]
+resource_name = "wobble"
+length = 3.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.0, 0.261799, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6mutq"]
 _data = {
 "RESET": SubResource("Animation_gokbg"),
@@ -87,11 +86,6 @@ right_texture = ExtResource("4_5qoof")
 scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_c5tcn")
 
-[node name="MoveTowardsMouse" parent="." instance=ExtResource("2_tfd2i")]
-scale = Vector2(30, 30)
-speed = -30.0
-can_detach = true
-
 [node name="Draggable" parent="." instance=ExtResource("3_8ku7r")]
 scale = Vector2(3, 3)
 
@@ -104,14 +98,11 @@ scale = Vector2(0.5, 0.5)
 stream = ExtResource("4_nxjnl")
 
 [node name="Edible" parent="." instance=ExtResource("6_3odsh")]
-tag = &"Sheep"
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_6mutq")
 }
 
-[connection signal="move" from="MoveTowardsMouse" to="." method="_on_move"]
 [connection signal="dragged" from="Draggable" to="." method="_on_draggable_dragged"]
 [connection signal="dropped" from="Draggable" to="." method="_on_draggable_dropped"]
-[connection signal="move" from="Draggable" to="." method="_on_drag_move"]
