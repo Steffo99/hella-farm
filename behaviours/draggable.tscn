@@ -1,15 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dijcjahkddudv"]
+[gd_scene load_steps=2 format=3 uid="uid://dijcjahkddudv"]
 
 [ext_resource type="Script" path="res://behaviours/draggable.gd" id="1_hdedq"]
-[ext_resource type="PackedScene" uid="uid://bvrxvrjlo5130" path="res://behaviours/move_towards_mouse.tscn" id="2_gi6xd"]
 
 [node name="Draggable" type="Area2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_hdedq")
-
-[node name="MatchMousePosition" parent="." instance=ExtResource("2_gi6xd")]
-scale = Vector2(10000, 10000)
-speed = 3600.0
-
-[connection signal="move" from="MatchMousePosition" to="." method="_on_move"]
