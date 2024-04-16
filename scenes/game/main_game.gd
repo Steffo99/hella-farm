@@ -15,3 +15,4 @@ static func get_ancestor(start: Node) -> MainGame:
 
 @onready var gold_counter: Counter = $"GoldCounter"
 @onready var camera: GameCamera = $"GameCamera"
+@onready var default_spawn_parent: Node2D = %"DefaultSpawnParent"
