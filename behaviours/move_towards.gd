@@ -1,12 +1,9 @@
-@icon("res://behaviours/move_towards.svg")
-extends Node2D
+@icon("res://behaviours/move.svg")
+extends Move
 class_name MoveTowards
 
 
-## A node emitting the [signal move] signal each physics timestep to move towards the position of [field target].
-
-
-signal move(norm: Vector2)
+## A [Move] that moves towards the [field position] of a [field target].
 
 
 @export var target: Node2D = null
@@ -27,4 +24,6 @@ func _physics_process(_delta: float) -> void:
 	if target:
 		var gap = target.global_position - global_position
 		var norm = gap.normalized()
-		move.emit(norm)	
+		move.emit(norm)
+	else:
+		move.emit(Vector2.ZERO)
