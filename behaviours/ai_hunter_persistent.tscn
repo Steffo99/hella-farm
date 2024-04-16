@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="2_w2vxl"]
 [ext_resource type="Script" path="res://behaviours/move_towards.gd" id="3_14yk3"]
 
-[node name="AIHunterLatest" type="Node2D"]
+[node name="AIHunterPersistent" type="Node2D"]
 
 [node name="EdibleTracker" parent="." instance=ExtResource("1_j87ny")]
 
