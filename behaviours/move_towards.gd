@@ -1,4 +1,3 @@
-@icon("res://behaviours/move.svg")
 extends Move
 class_name MoveTowards
 
