@@ -2,5 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/game/cursor.gd" id="1_1og6v"]
 
-[node name="Cursor" type="Node2D"]
+[node name="Cursor" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 0
 script = ExtResource("1_1og6v")
