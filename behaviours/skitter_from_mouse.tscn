@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1wqgyakaultt"]
 
 [ext_resource type="Script" path="res://behaviours/skitter_from_mouse.gd" id="1_ftcf8"]
-[ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/hover_detector.tscn" id="2_cuaq0"]
+[ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/cursor_detector.tscn" id="2_cuaq0"]
 
 [node name="SkitterFromMouse" type="Node2D"]
 script = ExtResource("1_ftcf8")

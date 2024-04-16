@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://baiq3nu3p03rh"]
+
+[ext_resource type="Script" path="res://behaviours/move_towards.gd" id="1_wlo1a"]
+[ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/edible_tracker.tscn" id="2_suoff"]
+[ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="3_0uxc2"]
+
+[node name="AIHunterRandom" type="Node2D"]
+
+[node name="EdibleTracker" parent="." instance=ExtResource("2_suoff")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.4
+autostart = true
+
+[node name="TargetPicker" parent="." node_paths=PackedStringArray("tracker") instance=ExtResource("3_0uxc2")]
+tracker = NodePath("../EdibleTracker")
+
+[node name="MoveTowards" type="Node2D" parent="."]
+script = ExtResource("1_wlo1a")
+
+[connection signal="untracked" from="EdibleTracker" to="TargetPicker" method="clear_if_target"]
+[connection signal="timeout" from="Timer" to="TargetPicker" method="sample_target_if_null"]
+[connection signal="target_changed" from="TargetPicker" to="MoveTowards" method="set_target" unbinds=1]

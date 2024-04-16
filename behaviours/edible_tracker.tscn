@@ -3,9 +3,12 @@
 [ext_resource type="Script" path="res://behaviours/edible_tracker.gd" id="1_vo18u"]
 
 [node name="EdibleTracker" type="Area2D"]
+collision_layer = 0
+collision_mask = 56
+monitorable = false
 script = ExtResource("1_vo18u")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="tracked" from="." to="." method="_on_tracked"]
-[connection signal="untracked" from="." to="." method="_on_untracked"]
+[connection signal="body_entered" from="." to="." method="check_diet_then_track"]
+[connection signal="body_exited" from="." to="." method="untrack"]
+[connection signal="tracked" from="." to="." method="log_tracked"]
+[connection signal="untracked" from="." to="." method="log_untracked"]
