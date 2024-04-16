@@ -1,4 +1,4 @@
-@icon("res://behaviours/edible_tracker.svg")
+@icon("res://behaviours/tracker_edible.svg")
 extends Tracker
 class_name EdibleTracker
 

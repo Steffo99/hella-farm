@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://ctpn4hvkhxoi3"]
 
-[ext_resource type="Script" path="res://behaviours/edible_tracker.gd" id="1_vo18u"]
+[ext_resource type="Script" path="res://behaviours/tracker_edible.gd" id="1_vmdw6"]
 
-[node name="EdibleTracker" type="Area2D"]
+[node name="TrackerEdible" type="Area2D"]
 collision_layer = 0
 collision_mask = 56
 monitorable = false
-script = ExtResource("1_vo18u")
+script = ExtResource("1_vmdw6")
 
 [connection signal="body_entered" from="." to="." method="check_diet_then_track"]
 [connection signal="body_exited" from="." to="." method="untrack"]

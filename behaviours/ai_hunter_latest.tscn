@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgnvp5bmtbpxr"]
 
 [ext_resource type="Script" path="res://behaviours/move_towards.gd" id="1_demja"]
-[ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/edible_tracker.tscn" id="2_jlt4x"]
+[ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="2_jlt4x"]
 [ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="3_lfvrb"]
 
 [node name="AIHunterLatest" type="Node2D"]

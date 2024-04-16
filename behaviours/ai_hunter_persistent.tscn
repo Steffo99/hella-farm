@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpq0ubwun5wec"]
 
-[ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/edible_tracker.tscn" id="1_j87ny"]
+[ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="1_j87ny"]
 [ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="2_w2vxl"]
 [ext_resource type="Script" path="res://behaviours/move_towards.gd" id="3_14yk3"]
 
