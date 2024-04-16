@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2ftjun7wdif0"]
+
+[ext_resource type="Script" path="res://behaviours/sampler_weighted.gd" id="1_hhnbk"]
+
+[node name="SamplerWeighted" type="Node"]
+script = ExtResource("1_hhnbk")

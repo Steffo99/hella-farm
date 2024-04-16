@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djcwis8ycrq85"]
+
+[ext_resource type="Script" path="res://behaviours/sampler_priority.gd" id="1_jy5r5"]
+
+[node name="SamplerPriority" type="Node"]
+script = ExtResource("1_jy5r5")
