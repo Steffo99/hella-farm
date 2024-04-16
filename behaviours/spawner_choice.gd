@@ -1,5 +1,10 @@
+@icon("res://behaviours/spawner_choice.svg")
 extends Node
 class_name SpawnerChoice
+
+## Randomly choose a [Spawner] to use from [field spawners] considering [field weights].
+##
+## If a null [Spawner] is selected, nothing is spawned.
 
 
 @export var spawners: Array[Spawner] = []
@@ -24,7 +29,9 @@ func select_spawner() -> Spawner:
 	return spawners[idx]
 
 func spawn():
-	select_spawner().spawn()
+	var spawner = select_spawner()
+	if spawner != null:
+		spawner.spawn()
 
 
 func _ready():
