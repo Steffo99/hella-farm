@@ -1,12 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=19 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_xbkrm"]
-[ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="3_8ku7r"]
 [ext_resource type="Texture2D" uid="uid://cxtmas4g0v6en" path="res://entities/sheep_right.png" id="4_5qoof"]
-[ext_resource type="AudioStream" uid="uid://buxgivpkh8dyl" path="res://entities/drop.wav" id="4_nxjnl"]
-[ext_resource type="AudioStream" uid="uid://bmfscpnugaejk" path="res://entities/sheep_drag.wav" id="4_oalqu"]
 [ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="6_3odsh"]
 [ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="9_s5lod"]
 [ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="10_05kcd"]
@@ -96,17 +93,6 @@ right_texture = ExtResource("4_5qoof")
 scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_c5tcn")
 
-[node name="Draggable" parent="." instance=ExtResource("3_8ku7r")]
-scale = Vector2(3, 3)
-
-[node name="DragSound" type="AudioStreamPlayer2D" parent="Draggable"]
-scale = Vector2(0.5, 0.5)
-stream = ExtResource("4_oalqu")
-
-[node name="DropSound" type="AudioStreamPlayer2D" parent="Draggable"]
-scale = Vector2(0.5, 0.5)
-stream = ExtResource("4_nxjnl")
-
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_6mutq")
@@ -162,8 +148,6 @@ enabled = false
 
 [node name="HunterSense" parent="MovementRunFromHunter" instance=ExtResource("14_eqowb")]
 
-[connection signal="dragged" from="Draggable" to="." method="_on_draggable_dragged"]
-[connection signal="dropped" from="Draggable" to="." method="_on_draggable_dropped"]
 [connection signal="ready" from="MovementSampler" to="MovementSampler" method="enable"]
 [connection signal="move" from="MovementIdle" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="stop"]
