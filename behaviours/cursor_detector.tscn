@@ -10,3 +10,5 @@ script = ExtResource("1_4hcxj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="cursor_entered" from="." to="." method="_on_cursor_entered"]
+[connection signal="cursor_exited" from="." to="." method="_on_cursor_exited"]

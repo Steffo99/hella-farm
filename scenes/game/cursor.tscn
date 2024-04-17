@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://col1q3elvkfwk"]
+[gd_scene load_steps=3 format=3 uid="uid://col1q3elvkfwk"]
 
 [ext_resource type="Script" path="res://scenes/game/cursor.gd" id="1_1og6v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j2mj5"]
+radius = 4.0
 
 [node name="Cursor" type="CharacterBody2D"]
 collision_layer = 64
 collision_mask = 0
+motion_mode = 1
 script = ExtResource("1_1og6v")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j2mj5")
+debug_color = Color(1, 1, 1, 1)

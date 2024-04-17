@@ -13,13 +13,14 @@ func sample() -> Priority:
 	# FIXME: Change this to something more efficient when needed
 	var highest_possibility: Priority = null	
 	for possibility in possibilities:
+		Log.p(self, "Possibility: %s (%d)" % [possibility, possibility.priority])
 		if highest_possibility == null or possibility.priority > highest_possibility.priority:
 			highest_possibility = possibility
 	
 	if highest_possibility == null:
 		return null
 	
-	Log.p(self, "Sampled: %s" % highest_possibility)
+	Log.p(self, "Sampled: %s (%d)" % [highest_possibility, highest_possibility.priority])
 	return highest_possibility.get_ref()
 
 func get_refs() -> Array[Node]:

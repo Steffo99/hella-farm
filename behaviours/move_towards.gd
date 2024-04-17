@@ -5,15 +5,15 @@ class_name MoveTowards
 ## A [Move] that moves towards the [field position] of a [field target].
 
 
-signal changed_target(target: Node2D)
+signal changed_target(new: Node2D)
 
 
 @export var target: Node2D = null:
 	get:
 		return target
 	set(value):
-		value = target
-		changed_target.emit()
+		target = value
+		changed_target.emit(value)
 
 
 func set_target(value: Node2D) -> void:
@@ -31,3 +31,6 @@ func _physics_process(_delta: float) -> void:
 			move.emit(norm)
 		else:
 			move.emit(Vector2.ZERO)
+
+func _on_changed_target(new: Node2D) -> void:
+	Log.p(self, "Changed target to: %s" % new)

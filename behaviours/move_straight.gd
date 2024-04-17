@@ -15,6 +15,12 @@ signal changed_direction(new: Vector2)
 		changed_direction.emit(direction)
 
 
+func set_direction(value: Vector2) -> void:
+	direction = value
+
+func clear_direction() -> void:
+	direction = Vector2.ZERO
+
 func randomize_direction() -> void:
 	direction = Vector2.from_angle(Random.rng.randf_range(0, 2*PI))
 
@@ -22,3 +28,6 @@ func randomize_direction() -> void:
 func _physics_process(_delta: float) -> void:
 	if enabled:
 		move.emit(direction)
+
+func _on_changed_direction(new: Vector2) -> void:
+	Log.p(self, "Changed direction to: %s" % new)
