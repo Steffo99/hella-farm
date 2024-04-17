@@ -124,7 +124,6 @@ priority = 10
 
 [node name="BoredTimer" type="Timer" parent="Movement/Idle"]
 one_shot = true
-autostart = true
 
 [node name="Wander" parent="Movement" instance=ExtResource("10_05kcd")]
 enabled = false
@@ -152,20 +151,31 @@ enabled = false
 
 [node name="TrackerTracker" parent="Movement/RunFromHunter" instance=ExtResource("14_eqowb")]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
+
 [connection signal="dragged" from="Draggable" to="." method="_on_draggable_dragged"]
 [connection signal="dropped" from="Draggable" to="." method="_on_draggable_dropped"]
 [connection signal="ready" from="Movement" to="Movement" method="enable"]
+[connection signal="move" from="Movement/Idle" to="." method="_on_move"]
+[connection signal="move_disabled" from="Movement/Idle" to="Movement/Idle/BoredTimer" method="stop"]
+[connection signal="move_enabled" from="Movement/Idle" to="Movement/Idle/BoredTimer" method="start"]
 [connection signal="priority_changed_no_args" from="Movement/Idle/IdlePriority" to="Movement" method="enable"]
 [connection signal="timeout" from="Movement/Idle/BoredTimer" to="Movement/Wander" method="randomize_direction"]
 [connection signal="changed_direction" from="Movement/Wander" to="Movement/Wander/WanderPriority" method="set_priority_if_truthy" binds= [20]]
-[connection signal="changed_direction" from="Movement/Wander" to="Movement/Wander/TiredTimer" method="start" unbinds=1]
+[connection signal="move" from="Movement/Wander" to="." method="_on_move"]
+[connection signal="move_disabled" from="Movement/Wander" to="Movement/Wander/TiredTimer" method="stop"]
+[connection signal="move_enabled" from="Movement/Wander" to="Movement/Wander/TiredTimer" method="start"]
 [connection signal="priority_changed_no_args" from="Movement/Wander/WanderPriority" to="Movement" method="enable"]
 [connection signal="timeout" from="Movement/Wander/TiredTimer" to="Movement/Wander/WanderPriority" method="set_priority" binds= [0]]
 [connection signal="changed_target" from="Movement/RunFromMouse" to="Movement/RunFromMouse/RunFromMousePriority" method="set_priority_if_truthy" binds= [30]]
+[connection signal="move" from="Movement/RunFromMouse" to="." method="_on_move"]
 [connection signal="priority_changed_no_args" from="Movement/RunFromMouse/RunFromMousePriority" to="Movement" method="enable"]
 [connection signal="cursor_entered" from="Movement/RunFromMouse/CursorDetector" to="Movement/RunFromMouse" method="set_target"]
 [connection signal="cursor_exited" from="Movement/RunFromMouse/CursorDetector" to="Movement/RunFromMouse" method="clear_target" unbinds=1]
 [connection signal="changed_target" from="Movement/RunFromHunter" to="Movement/RunFromHunter/RunFromHunterPriority" method="set_priority_if_truthy" binds= [40]]
+[connection signal="move" from="Movement/RunFromHunter" to="." method="_on_move"]
 [connection signal="priority_changed_no_args" from="Movement/RunFromHunter/RunFromHunterPriority" to="Movement" method="enable"]
 [connection signal="tracked" from="Movement/RunFromHunter/TrackerTracker" to="Movement/RunFromHunter" method="set_target"]
 [connection signal="untracked" from="Movement/RunFromHunter/TrackerTracker" to="Movement/RunFromHunter" method="clear_target" unbinds=1]
