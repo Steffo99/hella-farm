@@ -1,11 +1,18 @@
 extends Move
 class_name MoveStraight
 
-
 ## A [Move] that moves in a fixed direction.
 
 
-@export var direction: Vector2
+signal changed_direction(new: Vector2)
+
+
+@export var direction: Vector2:
+	get: 
+		return direction
+	set(value):
+		direction = value
+		changed_direction.emit(direction)
 
 
 func randomize_direction() -> void:
@@ -13,4 +20,5 @@ func randomize_direction() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	move.emit(direction)
+	if enabled:
+		move.emit(direction)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=21 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
@@ -8,6 +8,12 @@
 [ext_resource type="AudioStream" uid="uid://buxgivpkh8dyl" path="res://entities/drop.wav" id="4_nxjnl"]
 [ext_resource type="AudioStream" uid="uid://bmfscpnugaejk" path="res://entities/sheep_drag.wav" id="4_oalqu"]
 [ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="6_3odsh"]
+[ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="9_s5lod"]
+[ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="10_05kcd"]
+[ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="11_0jlmk"]
+[ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="12_x2g3x"]
+[ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/cursor_detector.tscn" id="13_5fkdr"]
+[ext_resource type="PackedScene" uid="uid://c5pyp5hvthdof" path="res://behaviours/tracker_tracker.tscn" id="14_eqowb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
 radius = 8.0
@@ -70,6 +76,9 @@ _data = {
 "wobble": SubResource("Animation_lxieb")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_etpf6"]
+radius = 144.0
+
 [node name="Sheep" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 14
@@ -97,12 +106,66 @@ stream = ExtResource("4_oalqu")
 scale = Vector2(0.5, 0.5)
 stream = ExtResource("4_nxjnl")
 
-[node name="Edible" parent="." instance=ExtResource("6_3odsh")]
-
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_6mutq")
 }
 
+[node name="Edible" parent="." instance=ExtResource("6_3odsh")]
+
+[node name="Movement" parent="." node_paths=PackedStringArray("possibilities") instance=ExtResource("9_s5lod")]
+possibilities = [NodePath("Idle/IdlePriority"), NodePath("Wander/WanderPriority"), NodePath("RunFromMouse/RunFromMousePriority"), NodePath("RunFromHunter/RunFromHunterPriority")]
+
+[node name="Idle" parent="Movement" instance=ExtResource("10_05kcd")]
+enabled = false
+
+[node name="IdlePriority" parent="Movement/Idle" instance=ExtResource("11_0jlmk")]
+priority = 10
+
+[node name="BoredTimer" type="Timer" parent="Movement/Idle"]
+one_shot = true
+autostart = true
+
+[node name="Wander" parent="Movement" instance=ExtResource("10_05kcd")]
+enabled = false
+
+[node name="WanderPriority" parent="Movement/Wander" instance=ExtResource("11_0jlmk")]
+
+[node name="TiredTimer" type="Timer" parent="Movement/Wander"]
+one_shot = true
+
+[node name="RunFromMouse" parent="Movement" instance=ExtResource("12_x2g3x")]
+enabled = false
+
+[node name="RunFromMousePriority" parent="Movement/RunFromMouse" instance=ExtResource("11_0jlmk")]
+
+[node name="CursorDetector" parent="Movement/RunFromMouse" instance=ExtResource("13_5fkdr")]
+
+[node name="Shape" type="CollisionShape2D" parent="Movement/RunFromMouse/CursorDetector"]
+shape = SubResource("CircleShape2D_etpf6")
+debug_color = Color(1, 0, 0, 0.0470588)
+
+[node name="RunFromHunter" parent="Movement" instance=ExtResource("12_x2g3x")]
+enabled = false
+
+[node name="RunFromHunterPriority" parent="Movement/RunFromHunter" instance=ExtResource("11_0jlmk")]
+
+[node name="TrackerTracker" parent="Movement/RunFromHunter" instance=ExtResource("14_eqowb")]
+
 [connection signal="dragged" from="Draggable" to="." method="_on_draggable_dragged"]
 [connection signal="dropped" from="Draggable" to="." method="_on_draggable_dropped"]
+[connection signal="ready" from="Movement" to="Movement" method="enable"]
+[connection signal="priority_changed_no_args" from="Movement/Idle/IdlePriority" to="Movement" method="enable"]
+[connection signal="timeout" from="Movement/Idle/BoredTimer" to="Movement/Wander" method="randomize_direction"]
+[connection signal="changed_direction" from="Movement/Wander" to="Movement/Wander/WanderPriority" method="set_priority_if_truthy" binds= [20]]
+[connection signal="changed_direction" from="Movement/Wander" to="Movement/Wander/TiredTimer" method="start" unbinds=1]
+[connection signal="priority_changed_no_args" from="Movement/Wander/WanderPriority" to="Movement" method="enable"]
+[connection signal="timeout" from="Movement/Wander/TiredTimer" to="Movement/Wander/WanderPriority" method="set_priority" binds= [0]]
+[connection signal="changed_target" from="Movement/RunFromMouse" to="Movement/RunFromMouse/RunFromMousePriority" method="set_priority_if_truthy" binds= [30]]
+[connection signal="priority_changed_no_args" from="Movement/RunFromMouse/RunFromMousePriority" to="Movement" method="enable"]
+[connection signal="cursor_entered" from="Movement/RunFromMouse/CursorDetector" to="Movement/RunFromMouse" method="set_target"]
+[connection signal="cursor_exited" from="Movement/RunFromMouse/CursorDetector" to="Movement/RunFromMouse" method="clear_target" unbinds=1]
+[connection signal="changed_target" from="Movement/RunFromHunter" to="Movement/RunFromHunter/RunFromHunterPriority" method="set_priority_if_truthy" binds= [40]]
+[connection signal="priority_changed_no_args" from="Movement/RunFromHunter/RunFromHunterPriority" to="Movement" method="enable"]
+[connection signal="tracked" from="Movement/RunFromHunter/TrackerTracker" to="Movement/RunFromHunter" method="set_target"]
+[connection signal="untracked" from="Movement/RunFromHunter/TrackerTracker" to="Movement/RunFromHunter" method="clear_target" unbinds=1]

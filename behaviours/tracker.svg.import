@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8443tt517pkv"
-path="res://.godot/imported/tracker_edible.svg-fb108b51d33883549e8e498a16701c4f.ctex"
+uid="uid://b3myvaqud7w0p"
+path="res://.godot/imported/tracker.svg-98e9b55805c6d630e7da524610510efd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://behaviours/tracker_edible.svg"
-dest_files=["res://.godot/imported/tracker_edible.svg-fb108b51d33883549e8e498a16701c4f.ctex"]
+source_file="res://behaviours/tracker.svg"
+dest_files=["res://.godot/imported/tracker.svg-98e9b55805c6d630e7da524610510efd.ctex"]
 
 [params]
 

@@ -1,4 +1,3 @@
-@icon("res://behaviours/tracker_edible.svg")
 extends Tracker
 class_name EdibleTracker
 
@@ -9,7 +8,7 @@ class_name EdibleTracker
 
 
 func check_diet_then_track(body: Node2D) -> void:
-	var edibles: Array = body.find_children("Edible", "Edible", false, false)
+	var edibles: Array = body.find_children("*", "Edible", false, false)
 	for edible in edibles:
 		if edible.tag in acceptable_diets:
 			track(body)

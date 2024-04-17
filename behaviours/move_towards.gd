@@ -5,7 +5,15 @@ class_name MoveTowards
 ## A [Move] that moves towards the [field position] of a [field target].
 
 
-@export var target: Node2D = null
+signal changed_target(target: Node2D)
+
+
+@export var target: Node2D = null:
+	get:
+		return target
+	set(value):
+		value = target
+		changed_target.emit()
 
 
 func set_target(value: Node2D) -> void:
@@ -15,14 +23,11 @@ func clear_target() -> void:
 	target = null
 
 
-func _ready() -> void:
-	if target == null:
-		Log.w(self, "No target is set, no signals will be emitted.")
-
 func _physics_process(_delta: float) -> void:
-	if target:
-		var gap = target.global_position - global_position
-		var norm = gap.normalized()
-		move.emit(norm)
-	else:
-		move.emit(Vector2.ZERO)
+	if enabled:
+		if target:
+			var gap = target.global_position - global_position
+			var norm = gap.normalized()
+			move.emit(norm)
+		else:
+			move.emit(Vector2.ZERO)

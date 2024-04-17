@@ -4,3 +4,5 @@
 
 [node name="Priority" type="Node"]
 script = ExtResource("1_8u7ji")
+
+[connection signal="priority_changed" from="." to="." method="_on_priority_changed"]

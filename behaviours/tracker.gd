@@ -1,3 +1,4 @@
+@icon("res://behaviours/tracker.svg")
 extends Area2D
 class_name Tracker
 
@@ -15,6 +16,9 @@ func track(body: Node2D) -> bool:
 	if act:
 		tracking.push_back(body)
 		tracked.emit(body)
+		# Handle TrackerTracker
+		for tracker_tracker in body.find_children("*", "TrackerTracker", false, false):
+			tracker_tracker.track(self)
 	return act
 
 func untrack(body: Node2D) -> bool:
@@ -22,6 +26,9 @@ func untrack(body: Node2D) -> bool:
 	if act:
 		tracking.erase(body)
 		untracked.emit(body)
+		# Handle TrackerTracker
+		for tracker_tracker in body.find_children("*", "TrackerTracker", false, false):
+			tracker_tracker.untrack(self)
 	return act
 
 func log_tracked(body: Node2D) -> void:

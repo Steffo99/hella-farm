@@ -5,11 +5,10 @@ class_name SamplerWeighted
 ## Sample a random reference from the array, considering the given weights.
 
 
-@export var possibilities: Array = []
 @export var weights: Array[int] = []
 
 
-func sample() -> Object:
+func sample() -> Node:
 	var total = compute_total_weight()
 	if total == 0:
 		return null
