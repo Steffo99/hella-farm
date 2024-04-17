@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://g8t6dt0ye6n3"]
+
+[ext_resource type="Script" path="res://behaviours/timer_stddev.gd" id="1_rvemn"]
+
+[node name="TimerStddev" type="Timer"]
+script = ExtResource("1_rvemn")
+
+[connection signal="timeout" from="." to="." method="randomize_wait_time"]

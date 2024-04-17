@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=22 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="9_s5lod"]
 [ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="10_05kcd"]
 [ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="11_0jlmk"]
+[ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="12_c45uk"]
 [ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="12_x2g3x"]
 [ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/cursor_detector.tscn" id="13_5fkdr"]
 [ext_resource type="PackedScene" uid="uid://c5pyp5hvthdof" path="res://behaviours/tracker_tracker.tscn" id="14_eqowb"]
@@ -123,8 +124,12 @@ enabled = false
 [node name="IdlePriority" parent="MovementIdle" instance=ExtResource("11_0jlmk")]
 priority = 10
 
-[node name="BoredTimer" type="Timer" parent="MovementIdle"]
+[node name="BoredTimer" parent="MovementIdle" instance=ExtResource("12_c45uk")]
 one_shot = true
+autostart = true
+mean_secs = 3.0
+min_secs = 1.0
+max_secs = 5.0
 
 [node name="MovementWander" parent="." instance=ExtResource("10_05kcd")]
 speed = 66.0
@@ -132,8 +137,10 @@ enabled = false
 
 [node name="WanderPriority" parent="MovementWander" instance=ExtResource("11_0jlmk")]
 
-[node name="TiredTimer" type="Timer" parent="MovementWander"]
+[node name="TiredTimer" parent="MovementWander" instance=ExtResource("12_c45uk")]
 one_shot = true
+min_secs = 0.3
+max_secs = 1.5
 
 [node name="MovementRunFromMouse" parent="." instance=ExtResource("12_x2g3x")]
 speed = -100.0
