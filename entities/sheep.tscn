@@ -117,6 +117,7 @@ libraries = {
 possibilities = [NodePath("../MovementIdle/IdlePriority"), NodePath("../MovementWander/WanderPriority"), NodePath("../MovementRunFromMouse/RunFromMousePriority"), NodePath("../MovementRunFromHunter/RunFromHunterPriority")]
 
 [node name="MovementIdle" parent="." instance=ExtResource("10_05kcd")]
+speed = 0.0
 enabled = false
 
 [node name="IdlePriority" parent="MovementIdle" instance=ExtResource("11_0jlmk")]
@@ -126,6 +127,7 @@ priority = 10
 one_shot = true
 
 [node name="MovementWander" parent="." instance=ExtResource("10_05kcd")]
+speed = 66.0
 enabled = false
 
 [node name="WanderPriority" parent="MovementWander" instance=ExtResource("11_0jlmk")]
@@ -134,6 +136,7 @@ enabled = false
 one_shot = true
 
 [node name="MovementRunFromMouse" parent="." instance=ExtResource("12_x2g3x")]
+speed = -100.0
 enabled = false
 
 [node name="RunFromMousePriority" parent="MovementRunFromMouse" instance=ExtResource("11_0jlmk")]
@@ -145,6 +148,7 @@ shape = SubResource("CircleShape2D_etpf6")
 debug_color = Color(1, 0, 0, 0.0470588)
 
 [node name="MovementRunFromHunter" parent="." instance=ExtResource("12_x2g3x")]
+speed = -100.0
 enabled = false
 
 [node name="RunFromHunterPriority" parent="MovementRunFromHunter" instance=ExtResource("11_0jlmk")]

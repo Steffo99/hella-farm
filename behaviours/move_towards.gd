@@ -8,6 +8,8 @@ class_name MoveTowards
 signal changed_target(new: Node2D)
 
 
+@export var speed: float = 100.0
+
 @export var target: Node2D = null:
 	get:
 		return target
@@ -23,12 +25,12 @@ func clear_target() -> void:
 	target = null
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if enabled:
 		if target:
 			var gap = target.global_position - global_position
 			var norm = gap.normalized()
-			move.emit(norm)
+			move.emit(norm * delta * speed)
 		else:
 			move.emit(Vector2.ZERO)
 
