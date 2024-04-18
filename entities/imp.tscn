@@ -43,7 +43,7 @@ wait_time = 0.8
 autostart = true
 
 [node name="MovementSampler" parent="." node_paths=PackedStringArray("possibilities") instance=ExtResource("7_ech8d")]
-possibilities = [null, null, null, null]
+possibilities = [NodePath("../MovementWander/WanderPriority"), NodePath("../MovementHunt/HuntPriority")]
 
 [node name="MovementWander" parent="." instance=ExtResource("8_ffcw0")]
 speed = 25.0
@@ -80,10 +80,12 @@ tracker = NodePath("..")
 [connection signal="timeout" from="CoinSpawner/Timer" to="CoinSpawner" method="spawn"]
 [connection signal="ready" from="MovementSampler" to="MovementSampler" method="enable"]
 [connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
+[connection signal="move" from="MovementWander" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementWander" to="MovementWander/ChangeDirectionTimer" method="stop"]
 [connection signal="move_enabled" from="MovementWander" to="MovementWander/ChangeDirectionTimer" method="start"]
 [connection signal="timeout" from="MovementWander/ChangeDirectionTimer" to="MovementWander" method="randomize_direction"]
 [connection signal="changed_target" from="MovementHunt" to="MovementHunt/HuntPriority" method="priority_conditional"]
+[connection signal="move" from="MovementHunt" to="." method="_on_move"]
 [connection signal="tracked" from="MovementHunt/TrackerMeat" to="MovementHunt/TrackerMeat/TargetPicker" method="sample_target_if_null"]
 [connection signal="untracked" from="MovementHunt/TrackerMeat" to="MovementHunt/TrackerMeat/TargetPicker" method="clear_if_target"]
 [connection signal="target_changed" from="MovementHunt/TrackerMeat/TargetPicker" to="MovementHunt/TrackerMeat/TargetPicker" method="sample_target_if_null"]
