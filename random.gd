@@ -13,6 +13,8 @@ static var rng: RandomNumberGenerator = null:
 
 
 static func sample(array: Array[Variant], imin = null, imax = null) -> Variant:
+	if len(array) == 0:
+		return null
 	if imin == null:
 		imin = 0
 	if imax == null:
