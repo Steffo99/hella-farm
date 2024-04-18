@@ -58,8 +58,7 @@ func get_ref() -> Node:
 	return get_parent()
 
 
-func _on_priority_changed(new: int, _old: int) -> void:
-	Log.p(self, "Priority changed to: %s" % new)
+func _on_priority_changed(_new: int, _old: int) -> void:
 	priority_changed_no_args.emit()
 
 func _ready() -> void:
