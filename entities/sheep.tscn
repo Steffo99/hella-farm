@@ -108,7 +108,7 @@ speed = 0.0
 enabled = false
 
 [node name="IdlePriority" parent="MovementIdle" instance=ExtResource("11_0jlmk")]
-priority = 10
+alternative_priority = 0
 
 [node name="BoredTimer" parent="MovementIdle" instance=ExtResource("12_c45uk")]
 one_shot = true
@@ -122,6 +122,7 @@ speed = 66.0
 enabled = false
 
 [node name="WanderPriority" parent="MovementWander" instance=ExtResource("11_0jlmk")]
+alternative_priority = 20
 
 [node name="TiredTimer" parent="MovementWander" instance=ExtResource("12_c45uk")]
 one_shot = true
@@ -133,6 +134,7 @@ speed = -100.0
 enabled = false
 
 [node name="RunFromMousePriority" parent="MovementRunFromMouse" instance=ExtResource("11_0jlmk")]
+alternative_priority = 30
 
 [node name="CursorSense" parent="MovementRunFromMouse" instance=ExtResource("13_5fkdr")]
 
@@ -154,19 +156,19 @@ enabled = false
 [connection signal="move_enabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="start"]
 [connection signal="priority_changed_no_args" from="MovementIdle/IdlePriority" to="MovementSampler" method="enable"]
 [connection signal="timeout" from="MovementIdle/BoredTimer" to="MovementWander" method="randomize_direction"]
-[connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="set_priority_if_truthy" binds= [20]]
+[connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
 [connection signal="move" from="MovementWander" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementWander" to="MovementWander/TiredTimer" method="stop"]
 [connection signal="move_enabled" from="MovementWander" to="MovementWander/TiredTimer" method="start"]
 [connection signal="priority_changed_no_args" from="MovementWander/WanderPriority" to="MovementSampler" method="enable"]
 [connection signal="timeout" from="MovementWander/TiredTimer" to="MovementWander" method="clear_direction"]
-[connection signal="changed_target" from="MovementRunFromMouse" to="MovementRunFromMouse/RunFromMousePriority" method="set_priority_if_truthy" binds= [30]]
+[connection signal="changed_target" from="MovementRunFromMouse" to="MovementRunFromMouse/RunFromMousePriority" method="priority_conditional"]
 [connection signal="move" from="MovementRunFromMouse" to="." method="_on_move"]
 [connection signal="move_enabled" from="MovementRunFromMouse" to="MovementWander" method="clear_direction"]
 [connection signal="priority_changed_no_args" from="MovementRunFromMouse/RunFromMousePriority" to="MovementSampler" method="enable"]
 [connection signal="cursor_entered" from="MovementRunFromMouse/CursorSense" to="MovementRunFromMouse" method="set_target"]
 [connection signal="cursor_exited" from="MovementRunFromMouse/CursorSense" to="MovementRunFromMouse" method="clear_target" unbinds=1]
-[connection signal="changed_target" from="MovementRunFromHunter" to="MovementRunFromHunter/RunFromHunterPriority" method="set_priority_if_truthy" binds= [40]]
+[connection signal="changed_target" from="MovementRunFromHunter" to="MovementRunFromHunter/RunFromHunterPriority" method="priority_conditional"]
 [connection signal="move" from="MovementRunFromHunter" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementRunFromHunter" to="MovementWander" method="clear_direction"]
 [connection signal="priority_changed_no_args" from="MovementRunFromHunter/RunFromHunterPriority" to="MovementSampler" method="enable"]
