@@ -57,6 +57,10 @@ func priority_conditional(variant: Variant, truthy: int = alternative_priority, 
 func get_ref() -> Node:
 	return get_parent()
 
+## Log the current [field priority] value.
+func log_priority() -> void:
+	Log.p(self, "Priority: %d" % priority)
+
 
 func _on_priority_changed(_new: int, _old: int) -> void:
 	priority_changed_no_args.emit()
