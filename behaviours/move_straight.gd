@@ -26,10 +26,10 @@ func clear_direction() -> void:
 func randomize_direction() -> void:
 	direction = Vector2.from_angle(Random.rng.randf_range(0, 2*PI))
 
+func log_state() -> void:
+	Log.p(self, "Direction: %s | Speed: %s" % [direction, speed])
+
 
 func _physics_process(delta: float) -> void:
 	if enabled:
 		move.emit(direction * delta * speed)
-
-func _on_changed_direction(new: Vector2) -> void:
-	Log.p(self, "Changed direction to: %s" % new)
