@@ -24,6 +24,9 @@ func set_target(value: Node2D) -> void:
 func clear_target() -> void:
 	target = null
 
+func log_target() -> void:
+	Log.p(self, "Target: %s" % target)
+
 
 func _physics_process(delta: float) -> void:
 	if enabled:
@@ -33,6 +36,3 @@ func _physics_process(delta: float) -> void:
 			move.emit(norm * delta * speed)
 		else:
 			move.emit(Vector2.ZERO)
-
-func _on_changed_target(new: Node2D) -> void:
-	Log.p(self, "Changed target to: %s" % new)
