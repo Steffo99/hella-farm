@@ -1,15 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://4d3ksr3171x4"]
+[gd_scene load_steps=16 format=3 uid="uid://4d3ksr3171x4"]
 
 [ext_resource type="Script" path="res://entities/imp.gd" id="1_dixpc"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_eqcdi"]
-[ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="3_4528r"]
 [ext_resource type="Texture2D" uid="uid://crhwsob76ieya" path="res://entities/imp_left.png" id="3_qda0k"]
 [ext_resource type="Texture2D" uid="uid://bubehid53q8h1" path="res://entities/imp_right.png" id="4_0sckn"]
 [ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="4_d8lgm"]
 [ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="5_yrfoq"]
+[ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="7_ech8d"]
+[ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="8_ffcw0"]
+[ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="9_2wb1b"]
+[ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="10_phvea"]
+[ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="11_4ra22"]
+[ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="12_dr2oe"]
+[ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="13_mwxuf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ide4n"]
 radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bmhf"]
+radius = 256.0
 
 [node name="Imp" type="CharacterBody2D"]
 collision_layer = 8
@@ -26,21 +35,56 @@ right_texture = ExtResource("4_0sckn")
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_ide4n")
 
-[node name="Draggable" parent="." instance=ExtResource("3_4528r")]
-scale = Vector2(4, 4)
-
-[node name="DragSound" type="AudioStreamPlayer2D" parent="Draggable"]
-scale = Vector2(0.5, 0.5)
-
-[node name="DropSound" type="AudioStreamPlayer2D" parent="Draggable"]
-scale = Vector2(0.5, 0.5)
-
-[node name="Spawner" parent="." instance=ExtResource("4_d8lgm")]
+[node name="CoinSpawner" parent="." instance=ExtResource("4_d8lgm")]
 scene = ExtResource("5_yrfoq")
 
-[node name="Timer" type="Timer" parent="Spawner"]
+[node name="Timer" type="Timer" parent="CoinSpawner"]
 wait_time = 0.8
 autostart = true
 
-[connection signal="move" from="Draggable" to="." method="_on_draggable_move"]
-[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="spawn"]
+[node name="MovementSampler" parent="." node_paths=PackedStringArray("possibilities") instance=ExtResource("7_ech8d")]
+possibilities = [null, null, null, null]
+
+[node name="MovementWander" parent="." instance=ExtResource("8_ffcw0")]
+speed = 25.0
+enabled = false
+
+[node name="WanderPriority" parent="MovementWander" instance=ExtResource("9_2wb1b")]
+default_priority = 10
+alternative_priority = 10
+
+[node name="ChangeDirectionTimer" parent="MovementWander" instance=ExtResource("10_phvea")]
+one_shot = true
+mean_secs = 2.0
+deviation = 2.0
+min_secs = 0.6
+max_secs = 3.0
+
+[node name="MovementHunt" parent="." instance=ExtResource("11_4ra22")]
+speed = -100.0
+enabled = false
+
+[node name="HuntPriority" parent="MovementHunt" instance=ExtResource("9_2wb1b")]
+alternative_priority = 40
+
+[node name="TrackerMeat" parent="MovementHunt" instance=ExtResource("12_dr2oe")]
+acceptable_diets = Array[StringName]([&"Meat"])
+
+[node name="Shape" type="CollisionShape2D" parent="MovementHunt/TrackerMeat"]
+shape = SubResource("CircleShape2D_1bmhf")
+debug_color = Color(1, 0.498039, 0, 0)
+
+[node name="TargetPicker" parent="MovementHunt/TrackerMeat" node_paths=PackedStringArray("tracker") instance=ExtResource("13_mwxuf")]
+tracker = NodePath("..")
+
+[connection signal="timeout" from="CoinSpawner/Timer" to="CoinSpawner" method="spawn"]
+[connection signal="ready" from="MovementSampler" to="MovementSampler" method="enable"]
+[connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
+[connection signal="move_disabled" from="MovementWander" to="MovementWander/ChangeDirectionTimer" method="stop"]
+[connection signal="move_enabled" from="MovementWander" to="MovementWander/ChangeDirectionTimer" method="start"]
+[connection signal="timeout" from="MovementWander/ChangeDirectionTimer" to="MovementWander" method="randomize_direction"]
+[connection signal="changed_target" from="MovementHunt" to="MovementHunt/HuntPriority" method="priority_conditional"]
+[connection signal="tracked" from="MovementHunt/TrackerMeat" to="MovementHunt/TrackerMeat/TargetPicker" method="sample_target_if_null"]
+[connection signal="untracked" from="MovementHunt/TrackerMeat" to="MovementHunt/TrackerMeat/TargetPicker" method="clear_if_target"]
+[connection signal="target_changed" from="MovementHunt/TrackerMeat/TargetPicker" to="MovementHunt/TrackerMeat/TargetPicker" method="sample_target_if_null"]
+[connection signal="target_changed" from="MovementHunt/TrackerMeat/TargetPicker" to="MovementHunt" method="set_target" unbinds=1]
