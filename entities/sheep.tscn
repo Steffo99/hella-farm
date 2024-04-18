@@ -99,6 +99,7 @@ libraries = {
 }
 
 [node name="Edible" parent="." instance=ExtResource("6_3odsh")]
+diet = &"Meat"
 
 [node name="MovementSampler" parent="." node_paths=PackedStringArray("possibilities") instance=ExtResource("9_s5lod")]
 possibilities = [NodePath("../MovementIdle/IdlePriority"), NodePath("../MovementWander/WanderPriority"), NodePath("../MovementRunFromMouse/RunFromMousePriority"), NodePath("../MovementRunFromHunter/RunFromHunterPriority")]
