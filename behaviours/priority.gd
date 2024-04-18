@@ -16,36 +16,42 @@ signal priority_changed_no_args
 @export var default_priority: int = 0
 @export var alternative_priority: int = 1
 
-var priority: int = 0
+var priority: int = 0:
+	get:
+		return priority
+	set(value):
+		var old = priority
+		priority = value
+		priority_changed.emit(priority, old)
 
 
 ## Set [field priority] to [field default_priority].
-func default() -> void:
-	set_priority(default_priority)
+func priority_default() -> void:
+	priority = default_priority
 
 ## Set [field priority] to [field alternative_priority]
-func alternative() -> void:
-	set_priority(alternative_priority)
+func priority_alternative() -> void:
+	priority = alternative_priority
 
 ## Toggle [field priority] between [field default_priority] and [field alternative_priority].
-func toggle_priority() -> void:
+func priority_toggle() -> void:
 	if priority == default_priority:
-		set_priority(alternative_priority)
+		priority = alternative_priority
 	else:
-		set_priority(default_priority)
+		priority = default_priority
 
 ## Set the [field priority] to a specific value.
-func set_priority(value: int):
-	var old = priority
+func priority_set(value: int):
 	priority = value
-	priority_changed.emit(priority, old)
 
 ## Set the [field priority] to a specific value if the [param variant] is truthy, otherwise set it to a different value.
-func set_priority_if_truthy(variant: Variant, truthy: int, falsy: int = 0):
+## 
+## Defaults to using [field alternative_priority] for truthy, and [field default_priority] for falsy
+func priority_conditional(variant: Variant, truthy: int = alternative_priority, falsy: int = default_priority):
 	if variant:
-		set_priority(truthy)
+		priority = truthy
 	else:
-		set_priority(falsy)
+		priority = falsy
 
 ## Get the node to which the [field priority] of this one applies to.
 func get_ref() -> Node:
