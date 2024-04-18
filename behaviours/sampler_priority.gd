@@ -23,7 +23,7 @@ func sample() -> Priority:
 	Log.p(self, "Sampled: %s (%d)" % [highest_possibility, highest_possibility.priority])
 	return highest_possibility.get_ref()
 
-func get_refs() -> Array[Node]:
+func get_all_refs() -> Array[Node]:
 	var refs: Array[Node] = []
 	for possibility in possibilities:
 		refs.append(possibility.get_ref())
