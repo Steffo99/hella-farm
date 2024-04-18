@@ -20,9 +20,5 @@ func _on_body_exited(body: Node2D) -> void:
 		mouse_inside = true
 		cursor_exited.emit(body)
 
-
-func _on_cursor_entered(cursor: Cursor) -> void:
-	Log.p(self, "Cursor entered: %s" % cursor)
-
-func _on_cursor_exited(cursor: Cursor) -> void:
-	Log.p(self, "Cursor exited: %s" % cursor)
+func log_cursor(cursor: Cursor) -> void:
+	Log.p(self, "Cursor: %s" % cursor)
