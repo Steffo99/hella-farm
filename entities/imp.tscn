@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://4d3ksr3171x4"]
+[gd_scene load_steps=18 format=3 uid="uid://4d3ksr3171x4"]
 
 [ext_resource type="Script" path="res://entities/imp.gd" id="1_dixpc"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_eqcdi"]
@@ -13,12 +13,16 @@
 [ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="11_4ra22"]
 [ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="12_dr2oe"]
 [ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="13_mwxuf"]
+[ext_resource type="PackedScene" uid="uid://jg7qkbswgqjc" path="res://behaviours/eater.tscn" id="14_w2h8x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ide4n"]
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bmhf"]
 radius = 256.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhk1q"]
+radius = 40.0
 
 [node name="Imp" type="CharacterBody2D"]
 collision_layer = 8
@@ -54,6 +58,7 @@ default_priority = 10
 alternative_priority = 10
 
 [node name="ChangeDirectionTimer" parent="MovementWander" instance=ExtResource("10_phvea")]
+wait_time = 0.001
 autostart = true
 mean_secs = 2.0
 deviation = 2.0
@@ -61,6 +66,7 @@ min_secs = 0.6
 max_secs = 3.0
 
 [node name="MovementHunt" parent="." instance=ExtResource("11_4ra22")]
+speed = 140.0
 enabled = false
 
 [node name="HuntPriority" parent="MovementHunt" instance=ExtResource("9_2wb1b")]
@@ -76,12 +82,17 @@ debug_color = Color(1, 0.498039, 0, 0)
 [node name="TargetPicker" parent="MovementHunt/TrackerMeat" node_paths=PackedStringArray("tracker") instance=ExtResource("13_mwxuf")]
 tracker = NodePath("..")
 
+[node name="Eater" parent="." instance=ExtResource("14_w2h8x")]
+acceptable_diets = Array[StringName]([&"Meat"])
+
+[node name="Shape" type="CollisionShape2D" parent="Eater"]
+shape = SubResource("CircleShape2D_qhk1q")
+debug_color = Color(1, 0, 0, 0)
+
 [connection signal="timeout" from="CoinSpawner/Timer" to="CoinSpawner" method="spawn"]
 [connection signal="ready" from="MovementSampler" to="MovementSampler" method="enable"]
 [connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
 [connection signal="move" from="MovementWander" to="." method="_on_move"]
-[connection signal="move_disabled" from="MovementWander" to="MovementWander/ChangeDirectionTimer" method="stop"]
-[connection signal="move_enabled" from="MovementWander" to="MovementWander/ChangeDirectionTimer" method="start"]
 [connection signal="priority_changed_no_args" from="MovementWander/WanderPriority" to="MovementSampler" method="enable"]
 [connection signal="timeout" from="MovementWander/ChangeDirectionTimer" to="MovementWander" method="randomize_direction"]
 [connection signal="changed_target" from="MovementHunt" to="MovementHunt/HuntPriority" method="priority_conditional"]
@@ -90,3 +101,4 @@ tracker = NodePath("..")
 [connection signal="tracked" from="MovementHunt/TrackerMeat" to="MovementHunt/TrackerMeat/TargetPicker" method="sample_target_if_null" unbinds=1]
 [connection signal="untracked" from="MovementHunt/TrackerMeat" to="MovementHunt/TrackerMeat/TargetPicker" method="clear_if_target"]
 [connection signal="target_changed" from="MovementHunt/TrackerMeat/TargetPicker" to="MovementHunt" method="set_target" unbinds=1]
+[connection signal="eaten" from="Eater" to="." method="_on_eater_eaten"]

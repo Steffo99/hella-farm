@@ -17,7 +17,3 @@ func randomize_wait_time() -> void:
 		Random.rng.randfn(mean_secs, deviation),
 		max_secs
 	)
-
-
-func _ready() -> void:
-	randomize_wait_time()
