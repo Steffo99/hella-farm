@@ -2,7 +2,7 @@
 extends Area2D
 class_name Tracker
 
-## Abstract base class for [Area2D]s tracking a certain subset of [Node2D]s.
+## [Area2D]s tracking a certain subset of [Node2D]s.
 
 
 signal tracked(body: Node2D)
@@ -11,6 +11,9 @@ signal untracked(body: Node2D)
 var tracking: Array = []
 
 
+## Start [field tracking] a [Node2D]. 
+##
+## Returns whether the body was added to the [field tracking] array.
 func track(body: Node2D) -> bool:
 	var act: bool = not body in tracking
 	if act:
@@ -18,9 +21,12 @@ func track(body: Node2D) -> bool:
 		tracked.emit(body)
 		# Handle TrackerTracker
 		for tracker_tracker in body.find_children("*", "TrackerTracker", true, false):
-			tracker_tracker.track(self)
+			tracker_tracker.track_if_detected(self)
 	return act
 
+## Stop [field tracking] a [Node2D].
+##
+## Returns whether the body was removed from the [field tracking] array.
 func untrack(body: Node2D) -> bool:
 	var act: bool = body in tracking
 	if act:

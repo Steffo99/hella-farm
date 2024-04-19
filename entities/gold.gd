@@ -9,7 +9,7 @@ func _on_move(movement: Vector2) -> void:
 	position += movement
 
 func _on_collected(tag: StringName) -> void:
-	var game = MainGame.get_ancestor(self)
+	var game = MainGame.get_via_group(self)
 	
 	# TODO: Perhaps use a dictionary in game to store multiple currencies?
 	match tag:

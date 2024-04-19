@@ -4,7 +4,7 @@ class_name Cursor
 ## A [CharacterBody2D] syncing its position with the mouse on each physics timestep.
 
 
-@onready var game := MainGame.get_ancestor(self)
+@onready var game := MainGame.get_via_group(self)
 
 
 func _physics_process(_delta: float) -> void:

@@ -60,7 +60,6 @@ default_priority = 10
 alternative_priority = 10
 
 [node name="ChangeDirectionTimer" parent="MovementWander" instance=ExtResource("10_phvea")]
-wait_time = 0.001
 autostart = true
 mean_secs = 2.0
 deviation = 2.0

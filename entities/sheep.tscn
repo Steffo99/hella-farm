@@ -153,6 +153,10 @@ alternative_priority = 40
 
 [node name="HunterSense" parent="MovementRunFromHunter" instance=ExtResource("14_eqowb")]
 
+[node name="Shape" type="CollisionShape2D" parent="MovementRunFromHunter/HunterSense"]
+shape = SubResource("CircleShape2D_etpf6")
+debug_color = Color(1, 1, 0, 0)
+
 [node name="TargetPicker" parent="MovementRunFromHunter/HunterSense" node_paths=PackedStringArray("tracker") instance=ExtResource("13_jf6em")]
 tracker = NodePath("..")
 

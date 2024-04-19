@@ -4,7 +4,9 @@
 
 [node name="TrackerTracker" type="Area2D"]
 collision_layer = 0
-collision_mask = 0
-monitoring = false
+collision_mask = 24
 monitorable = false
 script = ExtResource("1_7b21r")
+
+[connection signal="body_entered" from="." to="." method="track_if_tracked"]
+[connection signal="body_exited" from="." to="." method="untrack"]
