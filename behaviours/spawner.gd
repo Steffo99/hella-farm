@@ -1,16 +1,14 @@
 @icon("res://behaviours/spawner.svg")
-extends Node2D
+extends Area2D
 class_name Spawner
 
 signal spawned(entity: Node2D)
 
 @export var scene: PackedScene
-@export var default_target: Node2D
+@export var target: Node2D
 
 
-func spawn(target: Node2D = null):
-	if not target:
-		target = default_target
+func spawn():
 	if not target:
 		target = MainGame.get_ancestor(self).default_spawn_parent
 	var entity = scene.instantiate()
