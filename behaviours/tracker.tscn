@@ -5,6 +5,7 @@
 [node name="Tracker" type="Area2D"]
 collision_layer = 0
 collision_mask = 56
+input_pickable = false
 monitorable = false
 script = ExtResource("1_4joji")
 
