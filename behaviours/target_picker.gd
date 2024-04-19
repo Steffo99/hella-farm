@@ -19,7 +19,7 @@ var target: Node2D:
 		if target != value:
 			var old = target
 			target = value
-			target_changed.emit(old, target)
+			target_changed.emit(target, old)
 
 
 func set_target(body: Node2D) -> void:
@@ -42,3 +42,7 @@ func sample_target() -> void:
 func sample_target_if_null() -> void:
 	if target == null:
 		sample_target()
+
+
+func log_target() -> void:
+	pass # Replace with function body.

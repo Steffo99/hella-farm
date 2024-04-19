@@ -17,7 +17,7 @@ func track(body: Node2D) -> bool:
 		tracking.push_back(body)
 		tracked.emit(body)
 		# Handle TrackerTracker
-		for tracker_tracker in body.find_children("*", "TrackerTracker", false, false):
+		for tracker_tracker in body.find_children("*", "TrackerTracker", true, false):
 			tracker_tracker.track(self)
 	return act
 
@@ -27,7 +27,7 @@ func untrack(body: Node2D) -> bool:
 		tracking.erase(body)
 		untracked.emit(body)
 		# Handle TrackerTracker
-		for tracker_tracker in body.find_children("*", "TrackerTracker", false, false):
+		for tracker_tracker in body.find_children("*", "TrackerTracker", true, false):
 			tracker_tracker.untrack(self)
 	return act
 

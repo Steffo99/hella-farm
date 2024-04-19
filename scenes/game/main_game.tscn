@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=11 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/main_game.gd" id="1_wiglu"]
 [ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
@@ -811,6 +811,8 @@ terrain_set_0/terrain_1/name = "Dirt"
 terrain_set_0/terrain_1/color = Color(0.619608, 0.407843, 0.172549, 1)
 sources/0 = SubResource("TileSetAtlasSource_058kb")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_htttx"]
+
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_wiglu")
 
@@ -830,19 +832,44 @@ unique_name_in_owner = true
 [node name="Cursor" parent="." instance=ExtResource("5_g504x")]
 
 [node name="Sheep" parent="." instance=ExtResource("6_j2kdp")]
-position = Vector2(-221, -32)
-
-[node name="Sheep2" parent="." instance=ExtResource("6_j2kdp")]
-position = Vector2(-187, 190)
-
-[node name="Sheep3" parent="." instance=ExtResource("6_j2kdp")]
-position = Vector2(230, 216)
-
-[node name="Sheep4" parent="." instance=ExtResource("6_j2kdp")]
-position = Vector2(307, -33)
-
-[node name="Sheep5" parent="." instance=ExtResource("6_j2kdp")]
-position = Vector2(182, -217)
+position = Vector2(-246, 25)
 
 [node name="Imp" parent="." instance=ExtResource("7_7od2n")]
-position = Vector2(-65, -233)
+position = Vector2(237, 10)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="BottomBoundary" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 360)
+collision_layer = 2
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Walls/BottomBoundary"]
+shape = SubResource("WorldBoundaryShape2D_htttx")
+
+[node name="TopBoundary" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -360)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Walls/TopBoundary"]
+shape = SubResource("WorldBoundaryShape2D_htttx")
+
+[node name="RightBoundary" type="StaticBody2D" parent="Walls"]
+position = Vector2(640, 0)
+rotation = 4.71239
+collision_layer = 2
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Walls/RightBoundary"]
+shape = SubResource("WorldBoundaryShape2D_htttx")
+
+[node name="LeftBoundary" type="StaticBody2D" parent="Walls"]
+position = Vector2(-640, 0)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Walls/LeftBoundary"]
+shape = SubResource("WorldBoundaryShape2D_htttx")
