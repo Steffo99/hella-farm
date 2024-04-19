@@ -11,6 +11,8 @@ signal spawned(entity: Node2D)
 func spawn():
 	if not target:
 		target = MainGame.get_ancestor(self).default_spawn_parent
+	if not target:
+		target = self
 	var entity = scene.instantiate()
 	entity.global_scale = global_scale
 	entity.global_position = global_position
