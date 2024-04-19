@@ -10,5 +10,3 @@ script = ExtResource("1_vmdw6")
 
 [connection signal="body_entered" from="." to="." method="check_diet_then_track"]
 [connection signal="body_exited" from="." to="." method="untrack"]
-[connection signal="tracked" from="." to="." method="log_tracked"]
-[connection signal="untracked" from="." to="." method="log_untracked"]
