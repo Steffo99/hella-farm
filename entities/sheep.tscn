@@ -164,8 +164,6 @@ debug_color = Color(1, 1, 0, 0)
 tracker = NodePath("..")
 
 [node name="MovementDrag" parent="." instance=ExtResource("14_3wojv")]
-acceleration = 650.0
-linear_damp = 18.0
 enabled = false
 
 [node name="DragPriority" parent="MovementDrag" instance=ExtResource("11_0jlmk")]
