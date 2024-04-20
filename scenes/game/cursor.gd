@@ -36,14 +36,14 @@ func drag():
 	var target = find_closest_target()
 	if target and not dragging:
 		dragging = target
-		target.drag()
+		target.drag(self)
 		dragged.emit(target)
 
 func drop():
 	if dragging:
 		var target = dragging
 		dragging = null
-		target.drop()
+		target.drop(self)
 		dropped.emit(target)
 
 func log_dragging() -> void:

@@ -3,17 +3,17 @@ extends Area2D
 class_name Draggable
 
 
-signal dragged
-signal dropped
+signal dragged(cursor: Cursor)
+signal dropped(cursor: Cursor)
 
 
 var being_dragged: bool = false
 
 
-func drag():
+func drag(cursor: Cursor):
 	being_dragged = true
-	dragged.emit()
+	dragged.emit(cursor)
 
-func drop():
+func drop(cursor: Cursor):
 	being_dragged = false
-	dropped.emit()
+	dropped.emit(cursor)
