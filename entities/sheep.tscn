@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/cursor_detector.tscn" id="13_5fkdr"]
 [ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="13_jf6em"]
 [ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="14_0b1hs"]
-[ext_resource type="PackedScene" uid="uid://rx24bppccih7" path="res://behaviours/move_towards_physics.tscn" id="14_3wojv"]
+[ext_resource type="PackedScene" uid="uid://rx24bppccih7" path="res://behaviours/move_physics.tscn" id="14_3wojv"]
 [ext_resource type="PackedScene" uid="uid://c5pyp5hvthdof" path="res://behaviours/tracker_tracker.tscn" id="14_eqowb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
@@ -164,7 +164,9 @@ debug_color = Color(1, 1, 0, 0)
 tracker = NodePath("..")
 
 [node name="MovementDrag" parent="." instance=ExtResource("14_3wojv")]
-speed = 1200.0
+acceleration = 650.0
+linear_damp = 18.0
+enabled = false
 
 [node name="DragPriority" parent="MovementDrag" instance=ExtResource("11_0jlmk")]
 alternative_priority = 50
@@ -175,6 +177,10 @@ alternative_priority = 50
 scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_c5tcn")
 debug_color = Color(1, 1, 1, 0)
+
+[node name="FallTimer" type="Timer" parent="MovementDrag"]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="ready" from="MovementSampler" to="MovementSampler" method="enable"]
 [connection signal="move" from="MovementIdle" to="." method="_on_move"]
@@ -201,11 +207,14 @@ debug_color = Color(1, 1, 1, 0)
 [connection signal="tracked" from="MovementRunFromHunter/HunterSense" to="MovementRunFromHunter/HunterSense/TargetPicker" method="set_target_if_null"]
 [connection signal="untracked" from="MovementRunFromHunter/HunterSense" to="MovementRunFromHunter/HunterSense/TargetPicker" method="clear_if_target"]
 [connection signal="target_changed" from="MovementRunFromHunter/HunterSense/TargetPicker" to="MovementRunFromHunter" method="set_target" unbinds=1]
-[connection signal="changed_target" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_conditional"]
+[connection signal="dragged" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_alternative" unbinds=1]
+[connection signal="dropped" from="MovementDrag" to="MovementDrag/FallTimer" method="start"]
+[connection signal="fallen" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_default"]
 [connection signal="move" from="MovementDrag" to="." method="_on_move"]
 [connection signal="move_enabled" from="MovementDrag" to="MovementWander" method="clear_direction"]
 [connection signal="priority_changed_no_args" from="MovementDrag/DragPriority" to="MovementSampler" method="enable"]
 [connection signal="dragged" from="MovementDrag/Draggable" to="." method="_on_draggable_dragged"]
-[connection signal="dragged" from="MovementDrag/Draggable" to="MovementDrag" method="set_target"]
+[connection signal="dragged" from="MovementDrag/Draggable" to="MovementDrag" method="drag"]
 [connection signal="dropped" from="MovementDrag/Draggable" to="." method="_on_draggable_dropped"]
-[connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="clear_target"]
+[connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="drop"]
+[connection signal="timeout" from="MovementDrag/FallTimer" to="MovementDrag" method="fall"]
