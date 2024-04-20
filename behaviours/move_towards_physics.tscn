@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rx24bppccih7"]
+
+[ext_resource type="Script" path="res://behaviours/move_towards_physics.gd" id="1_u02i3"]
+
+[node name="MoveTowardsPhysics" type="Node2D"]
+script = ExtResource("1_u02i3")

@@ -893,6 +893,4 @@ max_secs = 9.0
 shape = SubResource("CircleShape2D_h5qsh")
 debug_color = Color(0, 1, 0, 0.152941)
 
-[connection signal="dragged" from="Cursor" to="Cursor" method="log_dragging" unbinds=1]
-[connection signal="dropped" from="Cursor" to="Cursor" method="log_dragging" unbinds=1]
 [connection signal="timeout" from="Spawner/TimerStddev" to="Spawner" method="spawn"]

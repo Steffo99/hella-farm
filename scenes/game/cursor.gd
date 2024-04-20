@@ -43,7 +43,7 @@ func drop():
 	if dragging:
 		var target = dragging
 		dragging = null
-		target.drop(self)
+		target.drop()
 		dropped.emit(target)
 
 func log_dragging() -> void:
