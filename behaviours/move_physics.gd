@@ -1,5 +1,5 @@
 extends Move
-class_name MoveTowardsGravity
+class_name MovePhysics
 
 
 signal dragged(cursor: Cursor)
