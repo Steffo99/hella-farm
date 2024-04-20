@@ -23,7 +23,7 @@ func find_closest_target() -> Draggable:
 	var min_distance: float = INF
 	var to_drag: Node = null
 	for body in bodies:
-		for target in body.find_children("Draggable", "Draggable", false, false):
+		for target in body.find_children("*", "Draggable", true, false):
 			var distance = position.distance_to(target.position)
 			if distance < min_distance:
 				min_distance = distance
