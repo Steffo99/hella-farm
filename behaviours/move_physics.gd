@@ -7,8 +7,8 @@ signal dropped
 signal fallen
 
 
-@export var acceleration = 2500.0
-@export var linear_damp = 50.0
+@export var acceleration = 650.0
+@export var linear_damp = 18.0
 
 var cursor: Cursor = null
 
