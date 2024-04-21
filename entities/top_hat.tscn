@@ -10,7 +10,7 @@
 radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_juisb"]
-radius = 24.0
+radius = 12.0
 
 [node name="TopHat" type="CharacterBody2D"]
 collision_layer = 8
