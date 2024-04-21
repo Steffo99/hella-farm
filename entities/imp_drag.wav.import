@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dlp0oo8tbp3w1"
-path="res://.godot/imported/gore.wav-c74757bf12b5b41aaaf2eb9a0f1110a0.sample"
+uid="uid://d0feiq5s6fnux"
+path="res://.godot/imported/imp_drag.wav-e4ed42c6f5f4ccfe6d180bc00d8af7df.sample"
 
 [deps]
 
-source_file="res://temp/gore.wav"
-dest_files=["res://.godot/imported/gore.wav-c74757bf12b5b41aaaf2eb9a0f1110a0.sample"]
+source_file="res://entities/imp_drag.wav"
+dest_files=["res://.godot/imported/imp_drag.wav-e4ed42c6f5f4ccfe6d180bc00d8af7df.sample"]
 
 [params]
 

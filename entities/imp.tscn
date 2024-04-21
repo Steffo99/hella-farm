@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://4d3ksr3171x4"]
+[gd_scene load_steps=24 format=3 uid="uid://4d3ksr3171x4"]
 
 [ext_resource type="Script" path="res://entities/imp.gd" id="1_dixpc"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_eqcdi"]
@@ -16,8 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://rx24bppccih7" path="res://behaviours/move_physics.tscn" id="14_p3w0g"]
 [ext_resource type="PackedScene" uid="uid://jg7qkbswgqjc" path="res://behaviours/eater.tscn" id="14_w2h8x"]
 [ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="15_otrbh"]
-[ext_resource type="AudioStream" uid="uid://bmfscpnugaejk" path="res://entities/sheep_drag.wav" id="16_0nbhd"]
+[ext_resource type="AudioStream" uid="uid://d0feiq5s6fnux" path="res://entities/imp_drag.wav" id="16_0frai"]
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="17_lib0h"]
+[ext_resource type="AudioStream" uid="uid://c1yuksnjdd6g2" path="res://entities/imp_eat.ogg" id="19_7la6c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ide4n"]
 radius = 32.0
@@ -104,7 +105,7 @@ shape = SubResource("CircleShape2D_50iad")
 debug_color = Color(1, 1, 1, 0)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
-stream = ExtResource("16_0nbhd")
+stream = ExtResource("16_0frai")
 
 [node name="FallSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("17_lib0h")
@@ -115,6 +116,9 @@ acceptable_diets = Array[StringName]([&"Meat"])
 [node name="Shape" type="CollisionShape2D" parent="Eater"]
 shape = SubResource("CircleShape2D_qhk1q")
 debug_color = Color(1, 0, 0, 0)
+
+[node name="EatSound" type="AudioStreamPlayer2D" parent="Eater"]
+stream = ExtResource("19_7la6c")
 
 [connection signal="timeout" from="GoldSpawner/TimerStddev" to="GoldSpawner" method="spawn"]
 [connection signal="ready" from="MovementSampler" to="MovementSampler" method="enable"]
@@ -140,3 +144,4 @@ debug_color = Color(1, 0, 0, 0)
 [connection signal="dragged" from="MovementDrag/Draggable" to="MovementDrag" method="drag"]
 [connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="drop"]
 [connection signal="eaten" from="Eater" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="Eater" to="Eater/EatSound" method="play" unbinds=1]

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dgd1ldpffk6ql"
-path="res://.godot/imported/pop.wav-5c8ab1a460889e6b7e24366eae5d4a3a.sample"
+path="res://.godot/imported/monocle_drag.wav-d899e772e1792f41cd5a6ddac30bd2f6.sample"
 
 [deps]
 
-source_file="res://temp/pop.wav"
-dest_files=["res://.godot/imported/pop.wav-5c8ab1a460889e6b7e24366eae5d4a3a.sample"]
+source_file="res://entities/monocle_drag.wav"
+dest_files=["res://.godot/imported/monocle_drag.wav-d899e772e1792f41cd5a6ddac30bd2f6.sample"]
 
 [params]
 
