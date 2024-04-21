@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwvvwjdexdywh"
-path="res://.godot/imported/pickup_skull.png-c05653658414d7be9a8a5454887e620a.ctex"
+uid="uid://d3tb6ypb36v8e"
+path="res://.godot/imported/monocle.png-2e39f2ebd2473082b74edcdb99c2e85d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://temp/pickup_skull.png"
-dest_files=["res://.godot/imported/pickup_skull.png-c05653658414d7be9a8a5454887e620a.ctex"]
+source_file="res://entities/monocle.png"
+dest_files=["res://.godot/imported/monocle.png-2e39f2ebd2473082b74edcdb99c2e85d.ctex"]
 
 [params]
 

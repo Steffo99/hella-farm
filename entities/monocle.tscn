@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://b04xhv32ypi42"]
+
+[ext_resource type="Script" path="res://entities/monocle.gd" id="1_ehpfj"]
+[ext_resource type="Texture2D" uid="uid://d3tb6ypb36v8e" path="res://entities/monocle.png" id="1_omrit"]
+[ext_resource type="PackedScene" uid="uid://rx24bppccih7" path="res://behaviours/move_physics.tscn" id="2_jgnsw"]
+[ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="3_e0ni5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7chm"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_juisb"]
+radius = 24.0
+
+[node name="Monocle" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 38
+script = ExtResource("1_ehpfj")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_omrit")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o7chm")
+
+[node name="MovementDrag" parent="." instance=ExtResource("2_jgnsw")]
+
+[node name="Draggable" parent="MovementDrag" instance=ExtResource("3_e0ni5")]
+collision_layer = 32
+
+[node name="Shape" type="CollisionShape2D" parent="MovementDrag/Draggable"]
+shape = SubResource("CircleShape2D_juisb")
+debug_color = Color(1, 1, 1, 0)
+
+[node name="FallTimer" type="Timer" parent="MovementDrag"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="dropped" from="MovementDrag" to="MovementDrag/FallTimer" method="start"]
+[connection signal="move" from="MovementDrag" to="." method="_on_move"]
+[connection signal="dragged" from="MovementDrag/Draggable" to="MovementDrag" method="drag"]
+[connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="drop"]
+[connection signal="timeout" from="MovementDrag/FallTimer" to="MovementDrag" method="fall"]
