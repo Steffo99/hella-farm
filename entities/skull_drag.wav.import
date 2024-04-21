@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dq3xf4i2wpt50"
-path="res://.godot/imported/bones.wav-53a2d1735511ef1f1bf2921348b332aa.sample"
+path="res://.godot/imported/skull_drag.wav-b4fa618d3799af68752c0db13a8d9e22.sample"
 
 [deps]
 
-source_file="res://temp/bones.wav"
-dest_files=["res://.godot/imported/bones.wav-53a2d1735511ef1f1bf2921348b332aa.sample"]
+source_file="res://entities/skull_drag.wav"
+dest_files=["res://.godot/imported/skull_drag.wav-b4fa618d3799af68752c0db13a8d9e22.sample"]
 
 [params]
 
