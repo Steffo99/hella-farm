@@ -176,10 +176,6 @@ scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_c5tcn")
 debug_color = Color(1, 1, 1, 0)
 
-[node name="FallTimer" type="Timer" parent="MovementDrag"]
-wait_time = 0.5
-one_shot = true
-
 [connection signal="ready" from="MovementSampler" to="MovementSampler" method="enable"]
 [connection signal="move" from="MovementIdle" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="stop"]
@@ -206,7 +202,6 @@ one_shot = true
 [connection signal="untracked" from="MovementRunFromHunter/HunterSense" to="MovementRunFromHunter/HunterSense/TargetPicker" method="clear_if_target"]
 [connection signal="target_changed" from="MovementRunFromHunter/HunterSense/TargetPicker" to="MovementRunFromHunter" method="set_target" unbinds=1]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_alternative" unbinds=1]
-[connection signal="dropped" from="MovementDrag" to="MovementDrag/FallTimer" method="start"]
 [connection signal="fallen" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_default"]
 [connection signal="move" from="MovementDrag" to="." method="_on_move"]
 [connection signal="move_enabled" from="MovementDrag" to="MovementWander" method="clear_direction"]
@@ -215,4 +210,3 @@ one_shot = true
 [connection signal="dragged" from="MovementDrag/Draggable" to="MovementDrag" method="drag"]
 [connection signal="dropped" from="MovementDrag/Draggable" to="." method="_on_draggable_dropped"]
 [connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="drop"]
-[connection signal="timeout" from="MovementDrag/FallTimer" to="MovementDrag" method="fall"]
