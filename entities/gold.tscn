@@ -16,7 +16,8 @@ radius = 64.0
 [node name="Gold" type="Node2D"]
 script = ExtResource("1_lbls1")
 
-[node name="Collectable" parent="." instance=ExtResource("2_j75yq")]
+[node name="Collectible" parent="." instance=ExtResource("2_j75yq")]
+unique_name_in_owner = true
 kind = &"Gold"
 
 [node name="Sprite" type="Sprite2D" parent="."]

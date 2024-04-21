@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu6mvnfa01nb6"]
+
+[ext_resource type="Script" path="res://scenes/game/inventory.gd" id="1_yji81"]
+[ext_resource type="PackedScene" uid="uid://brvbtvt4em32" path="res://behaviours/counter.tscn" id="2_vhog3"]
+
+[node name="Inventory" type="Node"]
+script = ExtResource("1_yji81")
+
+[node name="Gold" parent="." instance=ExtResource("2_vhog3")]

@@ -2,9 +2,9 @@ extends Node2D
 class_name MainGame
 
 
-@onready var gold_counter: Counter = $"GoldCounter"
 @onready var camera: GameCamera = $"GameCamera"
 @onready var default_spawn_parent: Node2D = %"DefaultSpawnParent"
+@onready var inventory: Inventory = %"Inventory"
 
 
 static func get_via_group(node: Node) -> MainGame:
