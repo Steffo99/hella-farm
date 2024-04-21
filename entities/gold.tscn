@@ -1,23 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://uoxwjpmgg27a"]
+[gd_scene load_steps=10 format=3 uid="uid://uoxwjpmgg27a"]
 
 [ext_resource type="Script" path="res://entities/gold.gd" id="1_lbls1"]
+[ext_resource type="PackedScene" uid="uid://dj72yshd25ucx" path="res://behaviours/collectible.tscn" id="2_j75yq"]
 [ext_resource type="Texture2D" uid="uid://bfl0tkg85cvb8" path="res://entities/gold.png" id="2_tt3v6"]
-[ext_resource type="PackedScene" uid="uid://dj72yshd25ucx" path="res://behaviours/collectable.tscn" id="3_q0bno"]
+[ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/cursor_detector.tscn" id="3_ne3sj"]
+[ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="5_bcbgf"]
 [ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="5_t7ey8"]
 [ext_resource type="PackedScene" uid="uid://eqg6snsgn1kh" path="res://players/gold_pickup_player.tscn" id="6_eoeje"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w1h35"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jm7yp"]
+
 [node name="Gold" type="Node2D"]
 script = ExtResource("1_lbls1")
+
+[node name="Collectable" parent="." instance=ExtResource("2_j75yq")]
+kind = &"Gold"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("2_tt3v6")
 
-[node name="Collectable" parent="." instance=ExtResource("3_q0bno")]
-scale = Vector2(0.6, 0.6)
-tag = &"Gold"
+[node name="MagnetizeArea" parent="." instance=ExtResource("3_ne3sj")]
 
-[node name="Spawner" parent="." instance=ExtResource("5_t7ey8")]
+[node name="Shape" type="CollisionShape2D" parent="MagnetizeArea"]
+shape = SubResource("CircleShape2D_w1h35")
+debug_color = Color(0.337255, 0.611765, 1, 0)
+
+[node name="CollectArea" parent="." instance=ExtResource("3_ne3sj")]
+
+[node name="Shape" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("CircleShape2D_jm7yp")
+debug_color = Color(0, 0.388235, 0.815686, 0.219608)
+
+[node name="MoveTowards" parent="." instance=ExtResource("5_bcbgf")]
+unique_name_in_owner = true
+speed = 184.0
+
+[node name="CollectSoundSpawner" parent="." instance=ExtResource("5_t7ey8")]
+unique_name_in_owner = true
+scale = Vector2(1.66667, 1.66667)
 scene = ExtResource("6_eoeje")
 
-[connection signal="collected" from="Collectable" to="." method="_on_collected"]
+[connection signal="cursor_entered" from="MagnetizeArea" to="." method="magnetize"]
+[connection signal="cursor_entered" from="CollectArea" to="." method="collect" unbinds=1]
+[connection signal="move" from="MoveTowards" to="." method="_on_move"]
