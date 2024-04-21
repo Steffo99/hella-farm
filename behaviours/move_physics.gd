@@ -7,14 +7,15 @@ signal dropped
 signal fallen
 
 
-@export var acceleration = 650.0
-@export var linear_damp = 18.0
+@export var acceleration = 1250.0
+@export var drag_damp = 0.4
+@export var drop_damp = 0.05
+@export var drop_epsilon = 16.0
 
 var cursor: Cursor = null
+var falling: bool = false
 
 var velocity := Vector2.ZERO
-
-@onready var ticks_per_second = ProjectSettings.get_setting("physics/common/physics_ticks_per_second")
 
 
 func drag(value: Cursor) -> void:
@@ -23,10 +24,12 @@ func drag(value: Cursor) -> void:
 
 func drop() -> void:
 	cursor = null
+	falling = true
 	dropped.emit()
 
 func fall() -> void:
 	velocity = Vector2.ZERO
+	falling = false
 	fallen.emit()
 
 
@@ -35,5 +38,9 @@ func _physics_process(delta: float) -> void:
 		if cursor:
 			var gap = cursor.global_position - global_position
 			velocity += gap * delta * acceleration
-		velocity *= 1.0 - linear_damp / ticks_per_second
+			velocity *= 1.0 - drag_damp
+		else:
+			velocity *= 1.0 - drop_damp
+		if falling and velocity.length() < drop_epsilon:
+			fall()
 		move.emit(velocity * delta)
