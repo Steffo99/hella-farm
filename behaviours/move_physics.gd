@@ -9,8 +9,10 @@ signal fallen
 
 @export var acceleration = 1250.0
 @export var drag_damp = 0.4
-@export var drop_damp = 0.05
-@export var drop_epsilon = 16.0
+@export var fly_damp = 0.045
+@export var drop_damp = 0.2
+@export var fly_cutoff = 400.0
+@export var drop_cutoff = 16.0
 
 var cursor: Cursor = null
 var falling: bool = false
@@ -40,7 +42,12 @@ func _physics_process(delta: float) -> void:
 			velocity += gap * delta * acceleration
 			velocity *= 1.0 - drag_damp
 		else:
-			velocity *= 1.0 - drop_damp
-		if falling and velocity.length() < drop_epsilon:
+			if velocity.length() >= fly_cutoff:
+				velocity *= (1.0 - fly_damp)
+			else:
+				velocity *= (1.0 - drop_damp)
+
+
+		if falling and velocity.length() < drop_cutoff:
 			fall()
 		move.emit(velocity * delta)

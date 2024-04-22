@@ -884,6 +884,9 @@ position = Vector2(56, -50)
 [node name="Sheep" parent="." instance=ExtResource("9_qrqqu")]
 position = Vector2(-310, 166)
 
+[node name="Imp2" parent="." instance=ExtResource("10_yw228")]
+position = Vector2(408, 225)
+
 [node name="Imp" parent="." instance=ExtResource("10_yw228")]
 position = Vector2(393, -137)
 
