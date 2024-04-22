@@ -3,7 +3,11 @@ class_name SamplerPriority
 
 
 ## Always sample the object with the highest priority in the queue.
+var selected_priority = 0;
 
+func _ready():
+	for possibility in possibilities:
+		possibility.link(self)
 
 ## Get a reference.
 func sample() -> Priority:
@@ -19,10 +23,25 @@ func sample() -> Priority:
 	if highest_possibility == null:
 		return null
 	
-	return highest_possibility.get_ref()
+	selected_priority = highest_possibility.priority
+
+	return highest_possibility
+
+func on_priority_changed(node: Node):
+	if node == selected:
+		if node.priority > selected_priority:
+			selected_priority = node.priority
+		else:
+			sample_and_enable()
+	else:
+		if selected == null or node.priority > selected.priority:
+			set_enabled(node)
 
 func get_all_refs() -> Array[Node]:
 	var refs: Array[Node] = []
 	for possibility in possibilities:
 		refs.append(possibility.get_ref())
 	return refs
+
+func get_ref(node: Node) -> Node:
+	return node.get_ref()
