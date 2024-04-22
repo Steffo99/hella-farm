@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="tracker.svg"
+   width="16"
+   height="16"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="8"
+     inkscape:cx="21.0625"
+     inkscape:cy="41.9375"
+     inkscape:window-width="1280"
+     inkscape:window-height="964"
+     inkscape:window-x="0"
+     inkscape:window-y="60"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. -->
+  <path
+     d="m 256,0 c 17.7,0 32,14.3 32,32 v 10.4 c 93.7,13.9 167.7,88 181.6,181.6 H 480 c 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 H 469.6 C 455.7,381.7 381.6,455.7 288,469.6 V 480 c 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 V 469.6 C 130.3,455.7 56.3,381.7 42.4,288 H 32 C 14.3,288 0,273.7 0,256 0,238.3 14.3,224 32,224 H 42.4 C 56.3,130.3 130.3,56.3 224,42.4 V 32 C 224,14.3 238.3,0 256,0 Z M 107.4,288 c 12.5,58.3 58.4,104.1 116.6,116.6 V 384 c 0,-17.7 14.3,-32 32,-32 17.7,0 32,14.3 32,32 v 20.6 C 346.3,392.1 392.1,346.2 404.6,288 H 384 c -17.7,0 -32,-14.3 -32,-32 0,-17.7 14.3,-32 32,-32 h 20.6 C 392.1,165.7 346.3,119.9 288,107.4 V 128 c 0,17.7 -14.3,32 -32,32 -17.7,0 -32,-14.3 -32,-32 V 107.4 C 165.7,119.9 119.9,165.7 107.4,224 H 128 c 17.7,0 32,14.3 32,32 0,17.7 -14.3,32 -32,32 z M 256,224 a 32,32 0 1 1 0,64 32,32 0 1 1 0,-64 z"
+     id="path1"
+     style="fill:#699ce8" />
+</svg>

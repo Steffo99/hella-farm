@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5pyp5hvthdof"]
+
+[ext_resource type="Script" path="res://behaviours/tracker_tracker.gd" id="1_7b21r"]
+
+[node name="TrackerTracker" type="Area2D"]
+collision_layer = 0
+collision_mask = 24
+input_pickable = false
+monitorable = false
+script = ExtResource("1_7b21r")
+
+[connection signal="body_entered" from="." to="." method="track_if_tracked"]
+[connection signal="body_exited" from="." to="." method="untrack"]

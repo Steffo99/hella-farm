@@ -1,25 +1,26 @@
 extends CharacterBody2D
 class_name Imp
 
-@export var skull_chance: float = 0.2
 
-@onready var skull_spawner: Spawner = $"SkullSpawner"
 @onready var sprite: SpriteLeftRight = $"Sprite"
-@onready var draggable: Draggable = $"Draggable"
+@onready var eater: Eater = $"Eater"
 
 
-func _on_eat_target_eaten(target: Edible):
-	target.queue_free()
-	if Random.rng.randf() < skull_chance:
-		skull_spawner.spawn()
+func _on_move(movement: Vector2):
+	move_and_collide(movement)
+	sprite.handle_move(movement)
 
+func _on_eater_eaten(edible: Edible) -> void:
+	edible.get_parent().queue_free()
 
-func _on_draggable_move(movement:Vector2):
-	if draggable.being_dragged:
-		move_and_collide(movement)
-		sprite.handle_move(movement)
+func _on_dragged(_cursor: Cursor) -> void:
+	collision_layer = 16
+	collision_mask = 18
+	z_index = 1
+	eater.collision_mask = 16
 
-func _on_move(movement:Vector2):
-	if not draggable.being_dragged:
-		move_and_collide(movement)
-		sprite.handle_move(movement)
+func _on_fallen() -> void:
+	collision_layer = 8
+	collision_mask = 14
+	z_index = 0
+	eater.collision_mask = 8

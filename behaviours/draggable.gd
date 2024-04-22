@@ -1,34 +1,19 @@
+@icon("res://behaviours/draggable.svg")
 extends Area2D
 class_name Draggable
 
 
-signal move(movement: Vector2)
-signal dragged
+signal dragged(cursor: Cursor)
 signal dropped
 
 
-@onready var mover: Node2D = $"MatchMousePosition"
-
-var being_dragged: bool:
-	get:
-		return being_dragged
-	set(value):
-		being_dragged = value
-		mover.set_process(being_dragged)
-		mover.set_physics_process(being_dragged)
+var being_dragged: bool = false
 
 
-func drag():
+func drag(cursor: Cursor):
 	being_dragged = true
-	dragged.emit()
+	dragged.emit(cursor)
 
 func drop():
 	being_dragged = false
 	dropped.emit()
-
-
-func _ready():
-	being_dragged = false
-
-func _on_move(movement: Vector2):
-	move.emit(movement)

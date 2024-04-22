@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dti7l0d40hhgt"]
+
+[ext_resource type="Script" path="res://behaviours/target_picker.gd" id="1_ldiw7"]
+
+[node name="TargetPicker" type="Node"]
+script = ExtResource("1_ldiw7")

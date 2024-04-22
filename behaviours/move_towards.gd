@@ -1,44 +1,38 @@
-extends Node2D
+extends Move
 class_name MoveTowards
 
 
-signal move(movement: Vector2)
-signal detached
-signal captured
+## A [Move] that moves towards the [field position] of a [field target].
+
+
+signal changed_target(new: Node2D)
 
 
 @export var speed: float = 100.0
-@export var can_detach: bool = false
+
+@export var target: Node2D = null:
+	get:
+		return target
+	set(value):
+		target = value
+		changed_target.emit(value)
 
 
-enum State { DETACHED, CAPTURED }
+func set_target(value: Node2D) -> void:
+	target = value
 
-var state: State = State.DETACHED
+func clear_target() -> void:
+	target = null
 
-func get_followed_global_position():
-	return Vector2.ZERO # OVERRIDE ME!
-
-
-func get_followed_mouse_position():
-	var global_followed_position: Vector2 = get_followed_global_position()
-	var relative_followed_position: Vector2 = global_followed_position - global_position
-	return relative_followed_position
+func log_target() -> void:
+	Log.p(self, "Target: %s" % target)
 
 
 func _physics_process(delta: float) -> void:
-	match state:
-		State.CAPTURED:
-			var relative_followed_position: Vector2 = get_followed_mouse_position()
-			var direction: Vector2 = position.direction_to(relative_followed_position)
-			var actual_speed: float = min(delta * speed, relative_followed_position.length())  # Don't overshoot.
-			var movement: Vector2 = direction * actual_speed
-			move.emit(movement)
-
-func _on_capture_area_mouse_entered() -> void:
-	state = State.CAPTURED
-	captured.emit()
-
-func _on_capture_area_mouse_exited() -> void:
-	if can_detach:
-		state = State.DETACHED
-		detached.emit()
+	if enabled:
+		if target:
+			var gap = target.global_position - global_position
+			var norm = gap.normalized()
+			move.emit(norm * delta * speed)
+		else:
+			move.emit(Vector2.ZERO)

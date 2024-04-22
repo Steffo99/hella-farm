@@ -1,0 +1,18 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch Project",
+			"type": "godot",
+			"request": "launch",
+			"project": "${workspaceFolder}",
+		},
+		{
+			"name": "Launch Scene",
+			"type": "godot",
+			"request": "launch",
+			"scene": "current",
+			"project": "${workspaceFolder}",		
+		}
+	]
+}

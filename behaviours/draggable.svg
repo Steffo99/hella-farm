@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="draggable.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   width="16"
+   height="16"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.6464844"
+     inkscape:cx="217.1293"
+     inkscape:cy="209.84104"
+     inkscape:window-width="1920"
+     inkscape:window-height="1020"
+     inkscape:window-x="3200"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. -->
+  <path
+     d="m 278.6,9.4 c -12.5,-12.5 -32.8,-12.5 -45.3,0 l -64,64 c -12.5,12.5 -12.5,32.8 0,45.3 12.5,12.5 32.8,12.5 45.3,0 l 9.4,-9.4 V 224 H 109.3 l 9.4,-9.4 c 12.5,-12.5 12.5,-32.8 0,-45.3 -12.5,-12.5 -32.8,-12.5 -45.3,0 l -64,64 c -12.5,12.5 -12.5,32.8 0,45.3 l 64,64 c 12.5,12.5 32.8,12.5 45.3,0 12.5,-12.5 12.5,-32.8 0,-45.3 l -9.4,-9.4 H 224 v 114.8 l -9.4,-9.4 c -12.5,-12.5 -32.8,-12.5 -45.3,0 -12.5,12.5 -12.5,32.8 0,45.3 l 64,64 c 12.5,12.5 32.8,12.5 45.3,0 l 64,-64 c 12.5,-12.5 12.5,-32.8 0,-45.3 -12.5,-12.5 -32.8,-12.5 -45.3,0 l -9.4,9.4 V 288 h 114.8 l -9.4,9.4 c -12.5,12.5 -12.5,32.8 0,45.3 12.5,12.5 32.8,12.5 45.3,0 l 64,-64 c 12.5,-12.5 12.5,-32.8 0,-45.3 l -64,-64 c -12.5,-12.5 -32.8,-12.5 -45.3,0 -12.5,12.5 -12.5,32.8 0,45.3 l 9.4,9.4 H 288 V 109.3 l 9.4,9.4 c 12.5,12.5 32.8,12.5 45.3,0 12.5,-12.5 12.5,-32.8 0,-45.3 l -64,-64 z"
+     id="path1"
+     style="fill:#8da5f3" />
+</svg>

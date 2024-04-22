@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm67ko1k6kn4u"]
+
+[ext_resource type="Script" path="res://behaviours/priority.gd" id="1_8u7ji"]
+
+[node name="Priority" type="Node"]
+script = ExtResource("1_8u7ji")
+
+[connection signal="priority_changed" from="." to="." method="_on_priority_changed"]

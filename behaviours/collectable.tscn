@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj72yshd25ucx"]
-
-[ext_resource type="Script" path="res://behaviours/collectable.gd" id="1_p0pc3"]
-
-[node name="Collectable" type="Area2D"]
-script = ExtResource("1_p0pc3")
-
-[connection signal="collected" from="." to="." method="_on_collected"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
