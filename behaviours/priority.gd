@@ -9,10 +9,6 @@ class_name Priority
 ## Emitted when the priority is changed.
 signal priority_changed(new: int, old: int)
 
-## Emitted when the priority is changed. No args are provided to work around a Godot bug.
-signal priority_changed_no_args
-
-
 @export var default_priority: int = 0
 @export var alternative_priority: int = 1
 
@@ -60,10 +56,6 @@ func get_ref() -> Node:
 ## Log the current [field priority] value.
 func log_priority() -> void:
 	Log.p(self, "Priority: %d" % priority)
-
-
-func _on_priority_changed(_new: int, _old: int) -> void:
-	priority_changed_no_args.emit()
 
 func _ready() -> void:
 	priority = default_priority

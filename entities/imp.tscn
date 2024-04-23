@@ -57,8 +57,7 @@ deviation = 4.0
 min_secs = 1.0
 max_secs = 9.0
 
-[node name="MovementSampler" parent="." node_paths=PackedStringArray("possibilities") instance=ExtResource("7_ech8d")]
-possibilities = [NodePath("../MovementWander/WanderPriority"), NodePath("../MovementHunt/HuntPriority"), NodePath("../MovementDrag/DragPriority")]
+[node name="MovementSampler" parent="." instance=ExtResource("7_ech8d")]
 
 [node name="MovementWander" parent="." instance=ExtResource("8_ffcw0")]
 speed = 25.0
@@ -121,14 +120,11 @@ debug_color = Color(1, 0, 0, 0)
 stream = ExtResource("19_7la6c")
 
 [connection signal="timeout" from="GoldSpawner/TimerStddev" to="GoldSpawner" method="spawn"]
-[connection signal="ready" from="MovementSampler" to="MovementSampler" method="enable"]
 [connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
 [connection signal="move" from="MovementWander" to="." method="_on_move"]
-[connection signal="priority_changed_no_args" from="MovementWander/WanderPriority" to="MovementSampler" method="enable"]
 [connection signal="timeout" from="MovementWander/ChangeDirectionTimer" to="MovementWander" method="randomize_direction"]
 [connection signal="changed_target" from="MovementHunt" to="MovementHunt/HuntPriority" method="priority_conditional"]
 [connection signal="move" from="MovementHunt" to="." method="_on_move"]
-[connection signal="priority_changed_no_args" from="MovementHunt/HuntPriority" to="MovementSampler" method="enable"]
 [connection signal="tracked" from="MovementHunt/TrackerMeat" to="MovementHunt/TrackerMeat/TargetPicker" method="sample_target_if_null" unbinds=1]
 [connection signal="untracked" from="MovementHunt/TrackerMeat" to="MovementHunt/TrackerMeat/TargetPicker" method="clear_if_target"]
 [connection signal="target_changed" from="MovementHunt/TrackerMeat/TargetPicker" to="MovementHunt" method="set_target" unbinds=1]
@@ -140,7 +136,6 @@ stream = ExtResource("19_7la6c")
 [connection signal="fallen" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_default"]
 [connection signal="fallen" from="MovementDrag" to="MovementDrag/FallSound" method="play"]
 [connection signal="move" from="MovementDrag" to="." method="_on_move"]
-[connection signal="priority_changed_no_args" from="MovementDrag/DragPriority" to="MovementSampler" method="enable"]
 [connection signal="dragged" from="MovementDrag/Draggable" to="MovementDrag" method="drag"]
 [connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="drop"]
 [connection signal="eaten" from="Eater" to="." method="_on_eater_eaten"]
