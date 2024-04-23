@@ -120,7 +120,6 @@ debug_color = Color(1, 0, 0, 0)
 stream = ExtResource("19_7la6c")
 
 [connection signal="timeout" from="GoldSpawner/TimerStddev" to="GoldSpawner" method="spawn"]
-[connection signal="ready" from="MovementSampler" to="MovementSampler" method="enable"]
 [connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
 [connection signal="move" from="MovementWander" to="." method="_on_move"]
 [connection signal="timeout" from="MovementWander/ChangeDirectionTimer" to="MovementWander" method="randomize_direction"]
