@@ -13,7 +13,7 @@ class_name Sampler
 @export var autoenable_on_ready: bool = true
 
 
-var selected: Node = null;
+var selected: Node = null
 
 
 ## Get a reference.
