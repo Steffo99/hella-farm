@@ -9,8 +9,16 @@ class_name Sampler
 ## [Array] of [Node]s that can be [func sample]d by this [Sampler].
 @export var possibilities: Array[Node] = []
 
+## If true, the [Sampler] will attempt to automatically detect the [field possibilities] on NOTIFICATION_READY.
+@export var autodetect_possibilities_on_ready: bool = true
+
+
 var selected: Node = null;
 
+
+## Update [field possibilities] with the most likely subset of nodes.
+func autodetect_possibilities():
+	possibilities = get_children()
 
 ## Get a reference.
 func sample() -> Node:
@@ -37,3 +45,8 @@ func get_ref(node: Node) -> Node:
 ## Useful as it may be overridden by some other [Sampler]s, such as [SamplerPriority].
 func get_all_refs() -> Array[Node]:
 	return possibilities
+
+
+func _ready() -> void:
+	if autodetect_possibilities_on_ready:
+		autodetect_possibilities()

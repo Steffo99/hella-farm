@@ -9,6 +9,11 @@ func _ready():
 	for possibility in possibilities:
 		possibility.link(self)
 
+
+## Update [field possibilities] with the most likely subset of nodes.
+func autodetect_possibilities():
+	possibilities = find_children("*", "Priority", true, false)
+
 ## Get a reference.
 func sample() -> Priority:
 	if len(possibilities) == 0:
