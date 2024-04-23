@@ -57,8 +57,7 @@ deviation = 4.0
 min_secs = 1.0
 max_secs = 9.0
 
-[node name="MovementSampler" parent="." node_paths=PackedStringArray("possibilities") instance=ExtResource("7_ech8d")]
-possibilities = [NodePath("../MovementWander/WanderPriority"), NodePath("../MovementHunt/HuntPriority"), NodePath("../MovementDrag/DragPriority")]
+[node name="MovementSampler" parent="." instance=ExtResource("7_ech8d")]
 
 [node name="MovementWander" parent="." instance=ExtResource("8_ffcw0")]
 speed = 25.0

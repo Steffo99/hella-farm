@@ -11,7 +11,6 @@ signal priority_changed(new: int, old: int)
 
 @export var default_priority: int = 0
 @export var alternative_priority: int = 1
-@export var setup_signals_on_ready: bool = true
 
 var priority: int = 0:
 	get:
@@ -60,7 +59,3 @@ func log_priority() -> void:
 
 func _ready() -> void:
 	priority = default_priority
-
-func link(parent: SamplerPriority) -> void:
-	if setup_signals_on_ready:
-		priority_changed.connect(func(_old, _new): parent.on_priority_changed(self))
