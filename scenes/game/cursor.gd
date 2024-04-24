@@ -9,7 +9,7 @@ signal dropped(node: Draggable)
 
 
 @onready var game: MainGame = MainGame.get_via_group(self)
-@onready var gold_counter: GoldCounter = %"GoldCounter"
+@onready var gold_display: GoldDisplay = %"GoldDisplay"
 
 var dragging: Draggable = null
 

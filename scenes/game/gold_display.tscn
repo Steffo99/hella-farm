@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cu750c7yd57qa"]
 
-[ext_resource type="Script" path="res://scenes/game/gold_counter.gd" id="1_koxhc"]
+[ext_resource type="Script" path="res://scenes/game/gold_display.gd" id="1_yhouw"]
 
 [sub_resource type="Animation" id="Animation_3gb4u"]
 resource_name = "RESET"
@@ -40,12 +40,12 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_1jb4h"]
 
-[node name="GoldCounter" type="PanelContainer"]
+[node name="GoldDisplay" type="PanelContainer"]
 offset_left = 16.0
 offset_top = 24.0
 offset_right = 56.0
 offset_bottom = 51.0
-script = ExtResource("1_koxhc")
+script = ExtResource("1_yhouw")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

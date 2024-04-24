@@ -16,6 +16,7 @@ static func get_via_group(node: Node) -> MainGame:
 
 
 func _ready():
+	# Set up the gold display
 	var gold_counter = inventory.get_counter(&"Gold")
-	gold_counter.changed.connect(cursor.gold_counter.display.unbind(1))
-	cursor.gold_counter.set_text(gold_counter.value)
+	gold_counter.changed.connect(cursor.gold_display.display.unbind(1))
+	cursor.gold_display.set_text(gold_counter.value)

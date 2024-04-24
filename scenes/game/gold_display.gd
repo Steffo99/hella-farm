@@ -1,5 +1,5 @@
 extends PanelContainer
-class_name GoldCounter
+class_name GoldDisplay
 
 
 @onready var label: Label = %"Label"
