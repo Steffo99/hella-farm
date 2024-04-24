@@ -9,6 +9,7 @@ class_name TimerStddev
 @export var deviation: float = 1.0
 @export_range(0, 10, 0.1, "or_greater") var min_secs: float = 0.0
 @export_range(0, 10, 0.1, "or_greater") var max_secs: float = 2.0
+@export var randomize_on_ready: bool = true
 
 
 func randomize_wait_time() -> void:
@@ -17,3 +18,8 @@ func randomize_wait_time() -> void:
 		Random.rng.randfn(mean_secs, deviation),
 		max_secs
 	)
+
+
+func _ready() -> void:
+	if randomize_on_ready:
+		randomize_wait_time()
