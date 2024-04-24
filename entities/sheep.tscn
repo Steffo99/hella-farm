@@ -149,7 +149,8 @@ speed = 0.0
 enabled = false
 
 [node name="IdlePriority" parent="MovementIdle" instance=ExtResource("11_0jlmk")]
-alternative_priority = 0
+default_priority = 10
+alternative_priority = 10
 
 [node name="BoredTimer" parent="MovementIdle" instance=ExtResource("12_c45uk")]
 one_shot = true
