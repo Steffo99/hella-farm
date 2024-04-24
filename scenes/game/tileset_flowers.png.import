@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyi83lx88i5jy"
-path="res://.godot/imported/flower7.png-d965c93c2812311cc906ccccd74da92e.ctex"
+uid="uid://ki0xyx6gvkty"
+path="res://.godot/imported/tileset_flowers.png-0717f2844d17702a2a010029017a09ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://temp/flower7.png"
-dest_files=["res://.godot/imported/flower7.png-d965c93c2812311cc906ccccd74da92e.ctex"]
+source_file="res://scenes/game/tileset_flowers.png"
+dest_files=["res://.godot/imported/tileset_flowers.png-0717f2844d17702a2a010029017a09ab.ctex"]
 
 [params]
 
