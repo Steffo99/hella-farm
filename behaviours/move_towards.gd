@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	if enabled:
 		if target:
 			var gap = target.global_position - global_position
-			var norm = gap.normalized()
-			move.emit(norm * delta * speed)
+			var norm = Vector2.ZERO.move_toward(gap, delta * speed)
+			move.emit(norm)
 		else:
 			move.emit(Vector2.ZERO)
