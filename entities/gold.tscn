@@ -9,12 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://eqg6snsgn1kh" path="res://players/gold_pickup_player.tscn" id="6_eoeje"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w1h35"]
-radius = 64.0
+radius = 96.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jm7yp"]
 
 [node name="Gold" type="Node2D"]
 script = ExtResource("1_lbls1")
+speed_up_factor = 8.0
 
 [node name="Collectible" parent="." instance=ExtResource("2_j75yq")]
 unique_name_in_owner = true
@@ -38,7 +39,6 @@ debug_color = Color(0, 0.388235, 0.815686, 0.219608)
 
 [node name="MoveTowards" parent="." instance=ExtResource("5_bcbgf")]
 unique_name_in_owner = true
-speed = 184.0
 
 [node name="CollectSoundSpawner" parent="." instance=ExtResource("5_t7ey8")]
 unique_name_in_owner = true
