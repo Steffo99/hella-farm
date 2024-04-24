@@ -5,7 +5,7 @@ class_name Counter
 ## Counts up or down from a starting value.
 
 
-signal changed(old: int, new: int)
+signal changed(new: int, old: int)
 
 
 @export var starting_value: int
