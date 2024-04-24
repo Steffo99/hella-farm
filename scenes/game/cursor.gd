@@ -8,12 +8,13 @@ signal dragged(node: Draggable)
 signal dropped(node: Draggable)
 
 
-@onready var game := MainGame.get_via_group(self)
+@onready var game: MainGame = MainGame.get_via_group(self)
+@onready var gold_counter: GoldCounter = %"GoldCounter"
 
 var dragging: Draggable = null
 
 
-static func get_via_group(node: Node) -> MainGame:
+static func get_via_group(node: Node) -> Cursor:
 	var result = node.get_tree().get_nodes_in_group("cursor")
 	if result.is_empty():
 		return null

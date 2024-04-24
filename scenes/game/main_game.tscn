@@ -831,6 +831,7 @@ layer_0/tile_data = PackedInt32Array(720915, 196608, 9, 655379, 65536, 10, 58984
 [node name="GameCamera" parent="." instance=ExtResource("2_db5xs")]
 
 [node name="Cursor" parent="." instance=ExtResource("5_g504x")]
+unique_name_in_owner = true
 
 [node name="Walls" type="Node2D" parent="."]
 

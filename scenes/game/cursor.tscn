@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://col1q3elvkfwk"]
+[gd_scene load_steps=4 format=3 uid="uid://col1q3elvkfwk"]
 
 [ext_resource type="Script" path="res://scenes/game/cursor.gd" id="1_1og6v"]
+[ext_resource type="PackedScene" uid="uid://cu750c7yd57qa" path="res://scenes/game/gold_counter.tscn" id="2_ofjhi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2mj5"]
 radius = 4.0
@@ -14,3 +15,6 @@ script = ExtResource("1_1og6v")
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_j2mj5")
 debug_color = Color(1, 1, 1, 1)
+
+[node name="GoldCounter" parent="." instance=ExtResource("2_ofjhi")]
+unique_name_in_owner = true
