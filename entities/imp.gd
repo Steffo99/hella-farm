@@ -4,6 +4,7 @@ class_name Imp
 
 @onready var sprite: SpriteLeftRight = $"Sprite"
 @onready var eater: Eater = $"Eater"
+@onready var animator: AnimationPlayer = %"Animator"
 
 
 func _on_move(movement: Vector2):
@@ -18,9 +19,11 @@ func _on_dragged(_cursor: Cursor) -> void:
 	collision_mask = 18
 	z_index = 1
 	eater.collision_mask = 16
+	animator.play(&"drag_start")
 
 func _on_fallen() -> void:
 	collision_layer = 8
 	collision_mask = 14
 	z_index = 0
 	eater.collision_mask = 8
+	animator.play(&"RESET")
