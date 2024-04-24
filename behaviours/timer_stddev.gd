@@ -5,10 +5,10 @@ class_name TimerStddev
 ## A [Timer] which randomizes its [field wait_time] at each timeout.
 
 
-@export_range(0, 10, 0.1, "or_greater") var mean_secs: float = 1.0
+@export var mean_secs: float = 1.0
 @export var deviation: float = 1.0
-@export_range(0, 10, 0.1, "or_greater") var min_secs: float = 0.0
-@export_range(0, 10, 0.1, "or_greater") var max_secs: float = 2.0
+@export var min_secs: float = 0.0
+@export var max_secs: float = 2.0
 @export var randomize_on_ready: bool = true
 
 
