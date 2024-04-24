@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba01u171xjl7"
-path="res://.godot/imported/monster_chupacabra_onground_right.png-60153fba3a276c2ad87a5f33b09d0040.ctex"
+path="res://.godot/imported/chupacabra_right.png-eecd27583006f3a37115e4a481d66343.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://temp/monster_chupacabra_onground_right.png"
-dest_files=["res://.godot/imported/monster_chupacabra_onground_right.png-60153fba3a276c2ad87a5f33b09d0040.ctex"]
+source_file="res://entities/chupacabra_right.png"
+dest_files=["res://.godot/imported/chupacabra_right.png-eecd27583006f3a37115e4a481d66343.ctex"]
 
 [params]
 

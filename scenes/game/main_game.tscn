@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=15 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/main_game.gd" id="1_wiglu"]
 [ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://8ejgwtkpaa44" path="res://entities/top_hat.tscn" id="8_atoon"]
 [ext_resource type="PackedScene" uid="uid://bc2bm8lbol18w" path="res://entities/sheep.tscn" id="9_qrqqu"]
 [ext_resource type="PackedScene" uid="uid://4d3ksr3171x4" path="res://entities/imp.tscn" id="10_yw228"]
+[ext_resource type="PackedScene" uid="uid://cmemgijh6nfmk" path="res://entities/chupacabra.tscn" id="11_ixo4x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_058kb"]
 texture = ExtResource("2_o7bg5")
@@ -908,3 +909,6 @@ position = Vector2(-491, 137)
 
 [node name="Sheep7" parent="." instance=ExtResource("9_qrqqu")]
 position = Vector2(-177, 154)
+
+[node name="Chupacabra" parent="." instance=ExtResource("11_ixo4x")]
+position = Vector2(-159, -116)

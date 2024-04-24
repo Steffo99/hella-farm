@@ -1,0 +1,260 @@
+[gd_scene load_steps=26 format=3 uid="uid://cmemgijh6nfmk"]
+
+[ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_11voy"]
+[ext_resource type="Script" path="res://entities/chupacabra.gd" id="1_s4qg1"]
+[ext_resource type="Texture2D" uid="uid://dcm4txm5gxogt" path="res://entities/chupacabra_left.png" id="2_3kvme"]
+[ext_resource type="Texture2D" uid="uid://ba01u171xjl7" path="res://entities/chupacabra_right.png" id="3_rolht"]
+[ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="4_j4lsq"]
+[ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="5_ati6g"]
+[ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="6_qsds3"]
+[ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="7_nq78n"]
+[ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="8_7fxrt"]
+[ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="9_7i81t"]
+[ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/cursor_detector.tscn" id="10_3wu3x"]
+[ext_resource type="PackedScene" uid="uid://rx24bppccih7" path="res://behaviours/move_physics.tscn" id="12_oildi"]
+[ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="13_wcydr"]
+[ext_resource type="AudioStream" uid="uid://d0feiq5s6fnux" path="res://entities/imp_drag.wav" id="14_u2uf4"]
+[ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="15_q7bw3"]
+[ext_resource type="PackedScene" uid="uid://jg7qkbswgqjc" path="res://behaviours/eater.tscn" id="16_ltvqn"]
+[ext_resource type="AudioStream" uid="uid://c1yuksnjdd6g2" path="res://entities/imp_eat.ogg" id="17_ccla5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnexs"]
+radius = 32.0
+
+[sub_resource type="Animation" id="Animation_gokbg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5yt72"]
+resource_name = "drag_loop"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.4, 2.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, -2), Vector2(1, -1), Vector2(-1, 1), Vector2(1, 1), Vector2(-2, 0), Vector2(1, 1), Vector2(1, -1), Vector2(-1, 1), Vector2(2, 0), Vector2(-1, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2igbw"]
+resource_name = "drag_start"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.4, 2.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_okyam"]
+_data = {
+"RESET": SubResource("Animation_gokbg"),
+"drag_loop": SubResource("Animation_5yt72"),
+"drag_start": SubResource("Animation_2igbw")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dcrcb"]
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vm5g3"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_binyt"]
+radius = 40.0
+
+[node name="Chupacabra" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 14
+motion_mode = 1
+script = ExtResource("1_s4qg1")
+skitter_directions = Array[Vector2]([Vector2(-1, 0), Vector2(1, 0)])
+
+[node name="Sprite" parent="." instance=ExtResource("1_11voy")]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+texture = ExtResource("2_3kvme")
+left_texture = ExtResource("2_3kvme")
+right_texture = ExtResource("3_rolht")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mnexs")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_okyam")
+}
+next/drag_loop = &"drag_loop"
+next/drag_start = &"drag_loop"
+
+[node name="GoldSpawner" parent="." instance=ExtResource("4_j4lsq")]
+scene = ExtResource("5_ati6g")
+
+[node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("6_qsds3")]
+autostart = true
+mean_secs = 2.0
+deviation = 4.0
+min_secs = 0.4
+max_secs = 4.0
+
+[node name="MovementSampler" parent="." instance=ExtResource("7_nq78n")]
+
+[node name="MovementIdle" parent="." instance=ExtResource("8_7fxrt")]
+speed = 0.0
+enabled = false
+
+[node name="IdlePriority" parent="MovementIdle" instance=ExtResource("9_7i81t")]
+default_priority = 10
+alternative_priority = 10
+
+[node name="MovementSkitter" parent="." instance=ExtResource("8_7fxrt")]
+unique_name_in_owner = true
+speed = 400.0
+enabled = false
+
+[node name="SkitterPriority" parent="MovementSkitter" instance=ExtResource("9_7i81t")]
+alternative_priority = 20
+
+[node name="CursorSense" parent="MovementSkitter" instance=ExtResource("10_3wu3x")]
+
+[node name="Shape" type="CollisionShape2D" parent="MovementSkitter/CursorSense"]
+shape = SubResource("CircleShape2D_dcrcb")
+debug_color = Color(1, 1, 0, 0)
+
+[node name="CalmTimer" parent="MovementSkitter" instance=ExtResource("6_qsds3")]
+wait_time = 0.2
+one_shot = true
+mean_secs = 0.3
+deviation = 0.2
+min_secs = 0.2
+max_secs = 0.4
+
+[node name="MovementDrag" parent="." instance=ExtResource("12_oildi")]
+enabled = false
+
+[node name="DragPriority" parent="MovementDrag" instance=ExtResource("9_7i81t")]
+alternative_priority = 50
+
+[node name="Draggable" parent="MovementDrag" instance=ExtResource("13_wcydr")]
+
+[node name="Shape" type="CollisionShape2D" parent="MovementDrag/Draggable"]
+shape = SubResource("CircleShape2D_vm5g3")
+debug_color = Color(1, 1, 1, 0)
+
+[node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
+stream = ExtResource("14_u2uf4")
+
+[node name="FallSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
+stream = ExtResource("15_q7bw3")
+
+[node name="Eater" parent="." instance=ExtResource("16_ltvqn")]
+unique_name_in_owner = true
+acceptable_diets = Array[StringName]([&"Meat"])
+
+[node name="Shape" type="CollisionShape2D" parent="Eater"]
+shape = SubResource("CircleShape2D_binyt")
+debug_color = Color(1, 0, 0, 0)
+
+[node name="EatSound" type="AudioStreamPlayer2D" parent="Eater"]
+stream = ExtResource("17_ccla5")
+
+[connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]
+[connection signal="move" from="MovementIdle" to="." method="_on_move"]
+[connection signal="changed_direction" from="MovementSkitter" to="MovementSkitter/SkitterPriority" method="priority_conditional"]
+[connection signal="changed_direction" from="MovementSkitter" to="MovementSkitter/CalmTimer" method="start" unbinds=1]
+[connection signal="move" from="MovementSkitter" to="." method="_on_move"]
+[connection signal="cursor_entered" from="MovementSkitter/CursorSense" to="." method="_on_cursor_detected"]
+[connection signal="timeout" from="MovementSkitter/CalmTimer" to="MovementSkitter" method="clear_direction"]
+[connection signal="dragged" from="MovementDrag" to="." method="_on_dragged"]
+[connection signal="dragged" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_alternative" unbinds=1]
+[connection signal="dragged" from="MovementDrag" to="MovementDrag/DragSound" method="play" unbinds=1]
+[connection signal="fallen" from="MovementDrag" to="." method="_on_fallen"]
+[connection signal="fallen" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_default"]
+[connection signal="fallen" from="MovementDrag" to="MovementDrag/FallSound" method="play"]
+[connection signal="move" from="MovementDrag" to="." method="_on_move"]
+[connection signal="dragged" from="MovementDrag/Draggable" to="MovementDrag" method="drag"]
+[connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="drop"]
+[connection signal="eaten" from="Eater" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="Eater" to="Eater/EatSound" method="play" unbinds=1]
