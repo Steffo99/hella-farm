@@ -172,7 +172,7 @@ next/drag_start = &"drag_loop"
 [node name="GoldSpawner" parent="." instance=ExtResource("4_d8lgm")]
 scene = ExtResource("5_yrfoq")
 
-[node name="TimerStddev" parent="GoldSpawner" instance=ExtResource("10_phvea")]
+[node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("10_phvea")]
 autostart = true
 mean_secs = 5.0
 deviation = 4.0
@@ -241,7 +241,7 @@ debug_color = Color(1, 0, 0, 0)
 [node name="EatSound" type="AudioStreamPlayer2D" parent="Eater"]
 stream = ExtResource("19_7la6c")
 
-[connection signal="timeout" from="GoldSpawner/TimerStddev" to="GoldSpawner" method="spawn"]
+[connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]
 [connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
 [connection signal="move" from="MovementWander" to="." method="_on_move"]
 [connection signal="timeout" from="MovementWander/ChangeDirectionTimer" to="MovementWander" method="randomize_direction"]
