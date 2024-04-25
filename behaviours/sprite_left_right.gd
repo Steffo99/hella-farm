@@ -5,9 +5,15 @@ class_name SpriteLeftRight
 @export var left_texture: Texture2D
 @export var right_texture: Texture2D
 
+var last_discrim: float = 0
 
 func handle_move(movement: Vector2):
-	if movement.x > 0:
+	var discrim = movement.x 
+	if discrim == 0:
+		discrim = last_discrim
+	if discrim > 0:
 		texture = right_texture
-	elif movement.x < 0:
+		last_discrim = discrim
+	elif discrim < 0:
 		texture = left_texture
+		last_discrim = discrim

@@ -1,10 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=26 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_xbkrm"]
 [ext_resource type="Texture2D" uid="uid://cxtmas4g0v6en" path="res://entities/sheep_right.png" id="4_5qoof"]
+[ext_resource type="Texture2D" uid="uid://cfduc7cdorasr" path="res://entities/sheep_drag_left.png" id="5_gh6h6"]
 [ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="6_3odsh"]
+[ext_resource type="Texture2D" uid="uid://m5bebwb06kqe" path="res://entities/sheep_drag_right.png" id="6_x4fsj"]
 [ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="9_s5lod"]
 [ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="10_05kcd"]
 [ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="11_0jlmk"]
@@ -47,6 +49,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:left_texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_t13f5")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:right_texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_5qoof")]
+}
 
 [sub_resource type="Animation" id="Animation_5yt72"]
 resource_name = "drag_loop"
@@ -76,6 +102,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:left_texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_gh6h6")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:right_texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_x4fsj")]
+}
 
 [sub_resource type="Animation" id="Animation_2igbw"]
 resource_name = "drag_start"
@@ -104,6 +154,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:left_texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_gh6h6")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:right_texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_x4fsj")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6mutq"]
 _data = {
@@ -122,6 +196,7 @@ motion_mode = 1
 script = ExtResource("1_4dmll")
 
 [node name="Sprite" parent="." instance=ExtResource("2_xbkrm")]
+position = Vector2(0, -4)
 scale = Vector2(2, 2)
 texture = ExtResource("2_t13f5")
 left_texture = ExtResource("2_t13f5")
