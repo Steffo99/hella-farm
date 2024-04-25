@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cmemgijh6nfmk"]
+[gd_scene load_steps=28 format=3 uid="uid://cmemgijh6nfmk"]
 
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_11voy"]
 [ext_resource type="Script" path="res://entities/chupacabra.gd" id="1_s4qg1"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ba01u171xjl7" path="res://entities/chupacabra_right.png" id="3_rolht"]
 [ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="4_j4lsq"]
 [ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="5_ati6g"]
+[ext_resource type="Texture2D" uid="uid://bpg0do7wlvqdj" path="res://entities/chupacabra_drag_left.png" id="5_hxrq2"]
+[ext_resource type="Texture2D" uid="uid://do1nfcfcs6jgx" path="res://entities/chupacabra_drag_right.png" id="6_kmadh"]
 [ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="6_qsds3"]
 [ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="7_nq78n"]
 [ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="8_7fxrt"]
@@ -59,6 +61,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:left_texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_3kvme")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:right_texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_rolht")]
+}
 
 [sub_resource type="Animation" id="Animation_5yt72"]
 resource_name = "drag_loop"
@@ -99,6 +125,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(-2, -2), Vector2(1, -1), Vector2(-1, 1), Vector2(1, 1), Vector2(-2, 0), Vector2(1, 1), Vector2(1, -1), Vector2(-1, 1), Vector2(2, 0), Vector2(-1, -1), Vector2(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:left_texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_hxrq2")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:right_texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_kmadh")]
+}
 
 [sub_resource type="Animation" id="Animation_2igbw"]
 resource_name = "drag_start"
@@ -126,6 +176,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:left_texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_hxrq2")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:right_texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_kmadh")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_okyam"]
