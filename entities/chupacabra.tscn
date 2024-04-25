@@ -1,11 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://cmemgijh6nfmk"]
+[gd_scene load_steps=26 format=3 uid="uid://cmemgijh6nfmk"]
 
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_11voy"]
 [ext_resource type="Script" path="res://entities/chupacabra.gd" id="1_s4qg1"]
 [ext_resource type="Texture2D" uid="uid://dcm4txm5gxogt" path="res://entities/chupacabra_left.png" id="2_3kvme"]
 [ext_resource type="Texture2D" uid="uid://ba01u171xjl7" path="res://entities/chupacabra_right.png" id="3_rolht"]
-[ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="4_j4lsq"]
-[ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="5_ati6g"]
 [ext_resource type="Texture2D" uid="uid://bpg0do7wlvqdj" path="res://entities/chupacabra_drag_left.png" id="5_hxrq2"]
 [ext_resource type="Texture2D" uid="uid://do1nfcfcs6jgx" path="res://entities/chupacabra_drag_right.png" id="6_kmadh"]
 [ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="6_qsds3"]
@@ -243,16 +241,6 @@ libraries = {
 next/drag_loop = &"drag_loop"
 next/drag_start = &"drag_loop"
 
-[node name="GoldSpawner" parent="." instance=ExtResource("4_j4lsq")]
-scene = ExtResource("5_ati6g")
-
-[node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("6_qsds3")]
-autostart = true
-mean_secs = 2.0
-deviation = 4.0
-min_secs = 0.4
-max_secs = 4.0
-
 [node name="MovementSampler" parent="." instance=ExtResource("7_nq78n")]
 
 [node name="MovementIdle" parent="." instance=ExtResource("8_7fxrt")]
@@ -314,7 +302,6 @@ debug_color = Color(1, 0, 0, 0)
 [node name="EatSound" type="AudioStreamPlayer2D" parent="Eater"]
 stream = ExtResource("17_ccla5")
 
-[connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]
 [connection signal="move" from="MovementIdle" to="." method="_on_move"]
 [connection signal="changed_direction" from="MovementSkitter" to="MovementSkitter/SkitterPriority" method="priority_conditional"]
 [connection signal="changed_direction" from="MovementSkitter" to="MovementSkitter/CalmTimer" method="start" unbinds=1]
