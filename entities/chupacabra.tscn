@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cmemgijh6nfmk"]
+[gd_scene load_steps=28 format=3 uid="uid://cmemgijh6nfmk"]
 
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_11voy"]
 [ext_resource type="Script" path="res://entities/chupacabra.gd" id="1_s4qg1"]
@@ -200,11 +200,142 @@ tracks/3/keys = {
 "values": [ExtResource("6_kmadh")]
 }
 
+[sub_resource type="Animation" id="Animation_3namd"]
+resource_name = "run"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:left_texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_3kvme")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:right_texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_rolht")]
+}
+
+[sub_resource type="Animation" id="Animation_fsmcn"]
+resource_name = "sit"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.0349066]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:left_texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_3kvme")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:right_texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_rolht")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_okyam"]
 _data = {
 "RESET": SubResource("Animation_gokbg"),
 "drag_loop": SubResource("Animation_5yt72"),
-"drag_start": SubResource("Animation_2igbw")
+"drag_start": SubResource("Animation_2igbw"),
+"run": SubResource("Animation_3namd"),
+"sit": SubResource("Animation_fsmcn")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dcrcb"]
@@ -240,16 +371,33 @@ libraries = {
 }
 next/drag_loop = &"drag_loop"
 next/drag_start = &"drag_loop"
+next/run = &"run"
+next/sit = &"sit"
 
 [node name="MovementSampler" parent="." instance=ExtResource("7_nq78n")]
 
-[node name="MovementIdle" parent="." instance=ExtResource("8_7fxrt")]
-speed = 0.0
+[node name="MovementWander" parent="." instance=ExtResource("8_7fxrt")]
+speed = 300.0
 enabled = false
 
-[node name="IdlePriority" parent="MovementIdle" instance=ExtResource("9_7i81t")]
+[node name="WanderPriority" parent="MovementWander" instance=ExtResource("9_7i81t")]
 default_priority = 10
 alternative_priority = 10
+
+[node name="StartMovingTimer" parent="MovementWander" instance=ExtResource("6_qsds3")]
+one_shot = true
+autostart = true
+mean_secs = 3.0
+deviation = 2.0
+min_secs = 1.0
+max_secs = 5.0
+
+[node name="StopMovingTimer" parent="MovementWander" instance=ExtResource("6_qsds3")]
+one_shot = true
+mean_secs = 0.5
+deviation = 0.5
+min_secs = 0.1
+max_secs = 1.0
 
 [node name="MovementSkitter" parent="." instance=ExtResource("8_7fxrt")]
 unique_name_in_owner = true
@@ -302,7 +450,19 @@ debug_color = Color(1, 0, 0, 0)
 [node name="EatSound" type="AudioStreamPlayer2D" parent="Eater"]
 stream = ExtResource("17_ccla5")
 
-[connection signal="move" from="MovementIdle" to="." method="_on_move"]
+[connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
+[connection signal="move" from="MovementWander" to="." method="_on_move"]
+[connection signal="move_disabled" from="MovementWander" to="MovementWander" method="clear_direction"]
+[connection signal="move_disabled" from="MovementWander" to="MovementWander/StopMovingTimer" method="stop"]
+[connection signal="move_disabled" from="MovementWander" to="MovementWander/StartMovingTimer" method="stop"]
+[connection signal="move_enabled" from="MovementWander" to="MovementWander/StartMovingTimer" method="start"]
+[connection signal="move_enabled" from="MovementWander" to="Animator" method="play" binds= [&"sit"]]
+[connection signal="timeout" from="MovementWander/StartMovingTimer" to="MovementWander" method="randomize_direction"]
+[connection signal="timeout" from="MovementWander/StartMovingTimer" to="MovementWander/StopMovingTimer" method="start"]
+[connection signal="timeout" from="MovementWander/StartMovingTimer" to="Animator" method="play" binds= [&"run"]]
+[connection signal="timeout" from="MovementWander/StopMovingTimer" to="MovementWander" method="clear_direction"]
+[connection signal="timeout" from="MovementWander/StopMovingTimer" to="MovementWander/StartMovingTimer" method="start"]
+[connection signal="timeout" from="MovementWander/StopMovingTimer" to="Animator" method="play" binds= [&"sit"]]
 [connection signal="changed_direction" from="MovementSkitter" to="MovementSkitter/SkitterPriority" method="priority_conditional"]
 [connection signal="changed_direction" from="MovementSkitter" to="MovementSkitter/CalmTimer" method="start" unbinds=1]
 [connection signal="move" from="MovementSkitter" to="." method="_on_move"]
