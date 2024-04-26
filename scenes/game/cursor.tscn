@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://col1q3elvkfwk"]
+[gd_scene load_steps=8 format=3 uid="uid://col1q3elvkfwk"]
 
 [ext_resource type="Script" path="res://scenes/game/cursor.gd" id="1_1og6v"]
 [ext_resource type="PackedScene" uid="uid://cu750c7yd57qa" path="res://scenes/game/gold_display.tscn" id="2_5c4iq"]
+[ext_resource type="Script" path="res://behaviours/spawner.gd" id="3_tutfd"]
+[ext_resource type="PackedScene" uid="uid://bc2bm8lbol18w" path="res://entities/sheep.tscn" id="4_7isfg"]
+[ext_resource type="PackedScene" uid="uid://8jkesanu4hrn" path="res://behaviours/tracker.tscn" id="5_ewy4o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j2mj5"]
-radius = 4.0
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dc2ul"]
+radius = 8.0
 
 [node name="Cursor" type="Area2D" groups=["cursor"]]
 z_index = 100
@@ -14,7 +20,18 @@ script = ExtResource("1_1og6v")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_j2mj5")
-debug_color = Color(1, 1, 1, 1)
+debug_color = Color(0, 0.411765, 0, 0)
 
 [node name="GoldDisplay" parent="." instance=ExtResource("2_5c4iq")]
 unique_name_in_owner = true
+
+[node name="SheepSpawner" type="Node2D" parent="." node_paths=PackedStringArray("blocking_tracker")]
+unique_name_in_owner = true
+script = ExtResource("3_tutfd")
+scene = ExtResource("4_7isfg")
+blocking_tracker = NodePath("Tracker")
+
+[node name="Tracker" parent="SheepSpawner" instance=ExtResource("5_ewy4o")]
+
+[node name="Shape" type="CollisionShape2D" parent="SheepSpawner/Tracker"]
+shape = SubResource("CircleShape2D_dc2ul")

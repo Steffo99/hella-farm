@@ -16,7 +16,7 @@ var value: int = 0
 func change(amount: int):
 	var old = value
 	value = amount
-	changed.emit(old, value)
+	changed.emit(value, old)
 
 func increase(amount: int = 1):
 	if amount < 0:

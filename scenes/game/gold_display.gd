@@ -9,8 +9,18 @@ class_name GoldDisplay
 func set_text(value: int) -> void:
 	label.text = "%d €" % value
 
-
-func display(value: int):
+func increase(value: int):
 	set_text(value)
 	animator.stop()
-	animator.play(&"collect")
+	animator.play(&"increase")
+
+func decrease(value: int):
+	set_text(value)
+	animator.stop()
+	animator.play(&"decrease")
+
+func change(new: int, old: int):
+	if new > old:
+		increase(new)
+	elif old > new:
+		decrease(new)

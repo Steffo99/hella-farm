@@ -8,8 +8,12 @@ signal dragged(node: Draggable)
 signal dropped(node: Draggable)
 
 
+@export var sheep_spawn_cost: int = 5
+
+
 @onready var game: MainGame = MainGame.get_via_group(self)
 @onready var gold_display: GoldDisplay = %"GoldDisplay"
+@onready var sheep_spawner: Spawner = %"SheepSpawner"
 
 var dragging: Draggable = null
 
@@ -58,6 +62,13 @@ func _input(event: InputEvent) -> void:
 				drag()
 			else:
 				drop()
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			if event.pressed:
+				var counter: Counter = game.inventory.get_counter(&"Gold")
+				if counter.value >= sheep_spawn_cost:
+					counter.decrease(sheep_spawn_cost)
+					sheep_spawner.spawn()
+
 
 func _physics_process(_delta: float) -> void:
 	position += (game.camera.get_global_mouse_position() - global_position)
