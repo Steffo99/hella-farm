@@ -1,12 +1,12 @@
 extends CharacterBody2D
-class_name Sheep
+class_name Cthulhu
 
 
 @onready var sprite: SpriteLeftRight = %"Sprite"
 @onready var animator: AnimationPlayer = %"Animator"
 
 
-func _on_move(movement: Vector2) -> void:
+func _on_move(movement: Vector2):
 	move_and_collide(movement)
 	sprite.handle_move(movement)
 

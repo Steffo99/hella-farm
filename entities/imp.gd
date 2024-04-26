@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name Imp
 
 
-@onready var sprite: SpriteLeftRight = $"Sprite"
-@onready var eater: Eater = $"Eater"
+@onready var sprite: SpriteLeftRight = %"Sprite"
+@onready var eater: Eater = %"Eater"
 @onready var animator: AnimationPlayer = %"Animator"
 
 

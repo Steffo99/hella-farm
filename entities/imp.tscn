@@ -227,6 +227,7 @@ motion_mode = 1
 script = ExtResource("1_dixpc")
 
 [node name="Sprite" parent="." instance=ExtResource("2_eqcdi")]
+unique_name_in_owner = true
 scale = Vector2(2, 2)
 texture = ExtResource("3_qda0k")
 left_texture = ExtResource("3_qda0k")
@@ -306,6 +307,7 @@ stream = ExtResource("16_0frai")
 stream = ExtResource("17_lib0h")
 
 [node name="Eater" parent="." instance=ExtResource("14_w2h8x")]
+unique_name_in_owner = true
 acceptable_diets = Array[StringName]([&"Meat"])
 
 [node name="Shape" type="CollisionShape2D" parent="Eater"]

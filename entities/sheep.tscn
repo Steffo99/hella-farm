@@ -197,6 +197,7 @@ motion_mode = 1
 script = ExtResource("1_4dmll")
 
 [node name="Sprite" parent="." instance=ExtResource("2_xbkrm")]
+unique_name_in_owner = true
 position = Vector2(0, -4)
 scale = Vector2(2, 2)
 texture = ExtResource("2_t13f5")
