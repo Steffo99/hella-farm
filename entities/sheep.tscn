@@ -21,7 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="17_8kst2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
-radius = 8.0
+radius = 24.0
 
 [sub_resource type="Animation" id="Animation_gokbg"]
 length = 0.001
@@ -204,7 +204,6 @@ left_texture = ExtResource("2_t13f5")
 right_texture = ExtResource("4_5qoof")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_c5tcn")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
