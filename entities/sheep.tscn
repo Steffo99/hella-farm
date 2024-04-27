@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=30 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cfduc7cdorasr" path="res://entities/sheep_drag_left.png" id="5_gh6h6"]
 [ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="6_3odsh"]
 [ext_resource type="Texture2D" uid="uid://m5bebwb06kqe" path="res://entities/sheep_drag_right.png" id="6_x4fsj"]
+[ext_resource type="PackedScene" uid="uid://ccul07w0h36nu" path="res://behaviours/monster_type.tscn" id="8_poavy"]
 [ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="9_s5lod"]
 [ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="10_05kcd"]
 [ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="11_0jlmk"]
@@ -227,6 +228,8 @@ blend_times = [&"drag_start", &"drag_loop", 0.5]
 [node name="Edible" parent="." instance=ExtResource("6_3odsh")]
 diet = &"Meat"
 
+[node name="MonsterType" parent="." instance=ExtResource("8_poavy")]
+
 [node name="MovementSampler" parent="." instance=ExtResource("9_s5lod")]
 
 [node name="MovementIdle" parent="." instance=ExtResource("10_05kcd")]
@@ -286,7 +289,7 @@ debug_color = Color(1, 1, 0, 0)
 tracker = NodePath("..")
 
 [node name="MovementTrap" parent="." instance=ExtResource("12_x2g3x")]
-speed = 140.0
+speed = 600.0
 enabled = false
 
 [node name="TrapPriority" parent="MovementTrap" instance=ExtResource("11_0jlmk")]
