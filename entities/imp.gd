@@ -7,6 +7,10 @@ class_name Imp
 @onready var animator: AnimationPlayer = %"Animator"
 
 
+func _ready():
+	# Setup index and layers
+	_on_fallen()
+
 func _on_move(movement: Vector2):
 	move_and_collide(movement)
 	sprite.handle_move(movement)
@@ -17,13 +21,13 @@ func _on_eater_eaten(edible: Edible) -> void:
 func _on_dragged(_cursor: Cursor) -> void:
 	collision_layer = 16
 	collision_mask = 18
-	z_index = 1
+	z_index = Enums.ZIndex.EntityAir
 	eater.collision_mask = 16
 	animator.play(&"drag_start")
 
 func _on_fallen() -> void:
 	collision_layer = 8
 	collision_mask = 14
-	z_index = 0
+	z_index = Enums.ZIndex.EntityGround
 	eater.collision_mask = 8
 	animator.play(&"RESET")

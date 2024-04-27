@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=29 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="14_0b1hs"]
 [ext_resource type="PackedScene" uid="uid://rx24bppccih7" path="res://behaviours/move_physics.tscn" id="14_3wojv"]
 [ext_resource type="PackedScene" uid="uid://c5pyp5hvthdof" path="res://behaviours/tracker_tracker.tscn" id="14_eqowb"]
+[ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="16_6h84f"]
 [ext_resource type="AudioStream" uid="uid://bmfscpnugaejk" path="res://entities/sheep_drag.wav" id="16_nswfl"]
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="17_8kst2"]
 
@@ -190,7 +191,14 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_etpf6"]
 radius = 144.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nn3xr"]
+radius = 25.19
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bct1e"]
+radius = 8.65
+
 [node name="Sheep" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 8
 collision_mask = 14
 motion_mode = 1
@@ -277,6 +285,23 @@ debug_color = Color(1, 1, 0, 0)
 [node name="TargetPicker" parent="MovementRunFromHunter/HunterSense" node_paths=PackedStringArray("tracker") instance=ExtResource("13_jf6em")]
 tracker = NodePath("..")
 
+[node name="MovementTrap" parent="." instance=ExtResource("12_x2g3x")]
+speed = 140.0
+enabled = false
+
+[node name="TrapPriority" parent="MovementTrap" instance=ExtResource("11_0jlmk")]
+alternative_priority = 45
+
+[node name="TrackerMeat" parent="MovementTrap" instance=ExtResource("16_6h84f")]
+acceptable_diets = Array[StringName]([&"Trap"])
+
+[node name="Shape" type="CollisionShape2D" parent="MovementTrap/TrackerMeat"]
+shape = SubResource("CircleShape2D_nn3xr")
+debug_color = Color(1, 0.498039, 0, 0)
+
+[node name="TargetPicker" parent="MovementTrap/TrackerMeat" node_paths=PackedStringArray("tracker") instance=ExtResource("13_jf6em")]
+tracker = NodePath("..")
+
 [node name="MovementDrag" parent="." instance=ExtResource("14_3wojv")]
 enabled = false
 
@@ -287,7 +312,7 @@ alternative_priority = 50
 
 [node name="Shape" type="CollisionShape2D" parent="MovementDrag/Draggable"]
 scale = Vector2(3, 3)
-shape = SubResource("CircleShape2D_c5tcn")
+shape = SubResource("CircleShape2D_bct1e")
 debug_color = Color(1, 1, 1, 0)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
@@ -316,6 +341,14 @@ stream = ExtResource("17_8kst2")
 [connection signal="tracked" from="MovementRunFromHunter/HunterSense" to="MovementRunFromHunter/HunterSense/TargetPicker" method="set_target_if_null"]
 [connection signal="untracked" from="MovementRunFromHunter/HunterSense" to="MovementRunFromHunter/HunterSense/TargetPicker" method="clear_if_target"]
 [connection signal="target_changed" from="MovementRunFromHunter/HunterSense/TargetPicker" to="MovementRunFromHunter" method="set_target" unbinds=1]
+[connection signal="changed_target" from="MovementTrap" to="MovementTrap/TrapPriority" method="priority_conditional"]
+[connection signal="move" from="MovementTrap" to="." method="_on_move"]
+[connection signal="area_entered" from="MovementTrap/TrackerMeat" to="MovementTrap/TrackerMeat" method="check_diet_then_track"]
+[connection signal="area_exited" from="MovementTrap/TrackerMeat" to="MovementTrap/TrackerMeat" method="untrack"]
+[connection signal="tracked" from="MovementTrap/TrackerMeat" to="MovementTrap/TrackerMeat/TargetPicker" method="sample_target_if_null" unbinds=1]
+[connection signal="untracked" from="MovementTrap/TrackerMeat" to="MovementTrap/TrackerMeat/TargetPicker" method="clear_if_target"]
+[connection signal="target_changed" from="MovementTrap/TrackerMeat/TargetPicker" to="MovementTrap" method="set_target" unbinds=1]
+[connection signal="target_changed" from="MovementTrap/TrackerMeat/TargetPicker" to="MovementTrap/TrackerMeat/TargetPicker" method="sample_target_if_null" unbinds=2]
 [connection signal="dragged" from="MovementDrag" to="." method="_on_dragged"]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_alternative" unbinds=1]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragSound" method="play" unbinds=1]

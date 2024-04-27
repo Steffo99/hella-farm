@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://4xivigiybb1d"]
+
+[ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="1_y58y4"]
+[ext_resource type="PackedScene" uid="uid://c5pyp5hvthdof" path="res://behaviours/tracker_tracker.tscn" id="2_6m7pn"]
+[ext_resource type="Texture2D" uid="uid://d3pn6wuykchoa" path="res://entities/sacrifice_stone.png" id="2_rbklw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yv6hf"]
+radius = 0.01
+
+[node name="SacrificeStone" type="Area2D"]
+position = Vector2(50, 50)
+collision_layer = 8
+collision_mask = 24
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yv6hf")
+one_way_collision_margin = 27.5
+
+[node name="Edible" parent="." instance=ExtResource("1_y58y4")]
+diet = &"Trap"
+
+[node name="SacrStone" parent="." instance=ExtResource("2_6m7pn")]
+collision_mask = 56
+
+[node name="Sprite" type="Sprite2D" parent="SacrStone"]
+position = Vector2(0, 22)
+texture = ExtResource("2_rbklw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SacrStone"]
+shape = SubResource("CircleShape2D_yv6hf")
+one_way_collision_margin = 27.5
