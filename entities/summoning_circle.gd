@@ -1,42 +1,29 @@
 extends Node2D
 class_name SummoningCircle
 
-@onready var spawner: Spawner = %"Spawner"
-
-## The scene to spawn.
-@export var scene_imp: PackedScene
-
 
 ## The [SacrificeStone]s part of this summoning circle.
 var stones: Array[SacrificeStone] = []
 
 
-## Refresh the value of [field stones].
+## Refresh the value of [field stones], and reconnect signals accordingly.
 func refresh_stones() -> void:
+	stones.map(func(stone: SacrificeStone):
+		if stone == null:
+			return
+		if stone.sacrifice_changed.is_connected(self._on_sacrifice_changed):
+			stone.sacrifice_changed.disconnect(self._on_sacrifice_changed)
+	)
 	stones.assign(
-		find_children("*", "SacrificeStone", false, false)
+		find_children("*", "SacrificeStone", true, false)
+	)
+	stones.map(func(stone: SacrificeStone):
+		stone.sacrifice_changed.connect(self._on_sacrifice_changed)
 	)
 
-func try_sacrifice() -> void:
-	var first_monster = sacrifices[0]
-	var all_same = true
-	for m in sacrifices:
-		if m != first_monster:
-			all_same = false
-			break
-	if not all_same:
-		return
 
-	if first_monster == Enums.MonsterType.Sheep:
-		spawn(scene_imp)
+func _ready() -> void:
+	refresh_stones()
 
-func spawn(type: PackedScene) -> void:
-	spawner.scene = type
-	spawner.spawn()
-
-	for s in stones:
-		s.entity.queue_free()
-
-func _on_sacrifice_changed(_entity: Node2D, _type: Enums.MonsterType):
-	refresh_sacrifices()
-	try_sacrifice()
+func _on_sacrifice_changed(_entity: Node2D) -> void:
+	Log.w(self, "Sacrifice has changed, but no summoning function is implemented.")

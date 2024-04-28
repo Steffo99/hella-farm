@@ -1,33 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://xj0pa287n1wo"]
+[gd_scene load_steps=5 format=3 uid="uid://xj0pa287n1wo"]
 
 [ext_resource type="Texture2D" uid="uid://n0wj20mduwy8" path="res://entities/summoning_circle.png" id="1_c6jmb"]
 [ext_resource type="Script" path="res://entities/summoning_circle.gd" id="1_x3bxd"]
-[ext_resource type="PackedScene" uid="uid://4d3ksr3171x4" path="res://entities/imp.tscn" id="2_48rxv"]
 [ext_resource type="PackedScene" uid="uid://ddpo03rb6068c" path="res://entities/sacrifice_stone.tscn" id="2_dwkfn"]
 [ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="3_p6s0q"]
 
 [node name="SummoningCircle" type="Node2D"]
 script = ExtResource("1_x3bxd")
-scene_imp = ExtResource("2_48rxv")
 
 [node name="Spawner" parent="." instance=ExtResource("3_p6s0q")]
+unique_name_in_owner = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(2, 4)
 scale = Vector2(2, 2)
 texture = ExtResource("1_c6jmb")
 
-[node name="S1" parent="." instance=ExtResource("2_dwkfn")]
-position = Vector2(-92, -64)
+[node name="SacrificeStones" type="Node2D" parent="."]
 
-[node name="S2" parent="." instance=ExtResource("2_dwkfn")]
+[node name="StoneUp" parent="SacrificeStones" instance=ExtResource("2_dwkfn")]
 position = Vector2(0, -108)
 
-[node name="S3" parent="." instance=ExtResource("2_dwkfn")]
+[node name="StoneTopLeft" parent="SacrificeStones" instance=ExtResource("2_dwkfn")]
+position = Vector2(-92, -64)
+
+[node name="StoneTopRight" parent="SacrificeStones" instance=ExtResource("2_dwkfn")]
 position = Vector2(92, -64)
 
-[node name="S4" parent="." instance=ExtResource("2_dwkfn")]
-position = Vector2(75, 30)
-
-[node name="S5" parent="." instance=ExtResource("2_dwkfn")]
+[node name="StoneBottomLeft" parent="SacrificeStones" instance=ExtResource("2_dwkfn")]
 position = Vector2(-75, 30)
+
+[node name="StoneBottomRight" parent="SacrificeStones" instance=ExtResource("2_dwkfn")]
+position = Vector2(75, 30)
