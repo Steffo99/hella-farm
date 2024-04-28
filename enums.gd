@@ -1,6 +1,5 @@
-extends Node
-
 class_name Enums
+
 
 enum ZIndex {
     EntityAir = 20,
