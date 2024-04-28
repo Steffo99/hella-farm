@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://behaviours/summoning_recipe.gd" id="1_ek58s"]
 
-[node name="SummoningRecipe" type="Node2D"]
+[node name="SummoningRecipe" type="Node"]
 script = ExtResource("1_ek58s")

@@ -1,11 +1,9 @@
 @icon("res://behaviours/summoning_recipe.svg")
-extends Node2D
+extends Node
 class_name SummoningRecipe
 
 
-## A [Node2D] describing a possible recipe that can be performed with the [SummoningCircle].
-##
-## [Node2D] is required instead of [Node] as otherwise the child [Spawner] would lose its relative [field position].
+## A [Node] describing a possible recipe that can be performed with the [SummoningCircle].
 
 
 ## Emitted when [method do_match] is called, and the [field recipe] is successfully matched.
