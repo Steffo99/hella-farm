@@ -295,14 +295,14 @@ enabled = false
 [node name="TrapPriority" parent="MovementTrap" instance=ExtResource("11_0jlmk")]
 alternative_priority = 45
 
-[node name="TrackerMeat" parent="MovementTrap" instance=ExtResource("16_6h84f")]
+[node name="TrackerTrap" parent="MovementTrap" instance=ExtResource("16_6h84f")]
 acceptable_diets = Array[StringName]([&"Trap"])
 
-[node name="Shape" type="CollisionShape2D" parent="MovementTrap/TrackerMeat"]
+[node name="Shape" type="CollisionShape2D" parent="MovementTrap/TrackerTrap"]
 shape = SubResource("CircleShape2D_nn3xr")
 debug_color = Color(1, 0.498039, 0, 0)
 
-[node name="TargetPicker" parent="MovementTrap/TrackerMeat" node_paths=PackedStringArray("tracker") instance=ExtResource("13_jf6em")]
+[node name="TargetPicker" parent="MovementTrap/TrackerTrap" node_paths=PackedStringArray("tracker") instance=ExtResource("13_jf6em")]
 tracker = NodePath("..")
 
 [node name="MovementDrag" parent="." instance=ExtResource("14_3wojv")]
@@ -346,12 +346,12 @@ stream = ExtResource("17_8kst2")
 [connection signal="target_changed" from="MovementRunFromHunter/HunterSense/TargetPicker" to="MovementRunFromHunter" method="set_target" unbinds=1]
 [connection signal="changed_target" from="MovementTrap" to="MovementTrap/TrapPriority" method="priority_conditional"]
 [connection signal="move" from="MovementTrap" to="." method="_on_move"]
-[connection signal="area_entered" from="MovementTrap/TrackerMeat" to="MovementTrap/TrackerMeat" method="check_diet_then_track"]
-[connection signal="area_exited" from="MovementTrap/TrackerMeat" to="MovementTrap/TrackerMeat" method="untrack"]
-[connection signal="tracked" from="MovementTrap/TrackerMeat" to="MovementTrap/TrackerMeat/TargetPicker" method="sample_target_if_null" unbinds=1]
-[connection signal="untracked" from="MovementTrap/TrackerMeat" to="MovementTrap/TrackerMeat/TargetPicker" method="clear_if_target"]
-[connection signal="target_changed" from="MovementTrap/TrackerMeat/TargetPicker" to="MovementTrap" method="set_target" unbinds=1]
-[connection signal="target_changed" from="MovementTrap/TrackerMeat/TargetPicker" to="MovementTrap/TrackerMeat/TargetPicker" method="sample_target_if_null" unbinds=2]
+[connection signal="area_entered" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap" method="check_diet_then_track"]
+[connection signal="area_exited" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap" method="untrack"]
+[connection signal="tracked" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap/TargetPicker" method="sample_target_if_null" unbinds=1]
+[connection signal="untracked" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap/TargetPicker" method="clear_if_target"]
+[connection signal="target_changed" from="MovementTrap/TrackerTrap/TargetPicker" to="MovementTrap" method="set_target" unbinds=1]
+[connection signal="target_changed" from="MovementTrap/TrackerTrap/TargetPicker" to="MovementTrap/TrackerTrap/TargetPicker" method="sample_target_if_null" unbinds=2]
 [connection signal="dragged" from="MovementDrag" to="." method="_on_dragged"]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_alternative" unbinds=1]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragSound" method="play" unbinds=1]
