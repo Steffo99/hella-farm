@@ -41,7 +41,7 @@ func spawn(type: PackedScene) -> void:
 	spawner.spawn()
 
 	for s in stones:
-		s.current_monster.queue_free()
+		s.entity.queue_free()
 
 func _on_sacrifice_changed(_entity: Node2D, _type: Enums.MonsterType):
 	refresh_sacrifices()
