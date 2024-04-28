@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xj0pa287n1wo"]
+
+[ext_resource type="Script" path="res://behaviours/summoning_circle.gd" id="1_x3bxd"]
+
+[node name="SummoningCircle" type="Node2D"]
+script = ExtResource("1_x3bxd")

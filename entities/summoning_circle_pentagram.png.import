@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://n0wj20mduwy8"
-path="res://.godot/imported/summoning_circle.png-a9e8e58bff05ee4e15de5d48253b8a5d.ctex"
+path="res://.godot/imported/summoning_circle_pentagram.png-2b4ad22e35663173dd75a1efb3a64309.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/summoning_circle.png"
-dest_files=["res://.godot/imported/summoning_circle.png-a9e8e58bff05ee4e15de5d48253b8a5d.ctex"]
+source_file="res://entities/summoning_circle_pentagram.png"
+dest_files=["res://.godot/imported/summoning_circle_pentagram.png-2b4ad22e35663173dd75a1efb3a64309.ctex"]
 
 [params]
 

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgpwig0rd08vh"]
+
+[ext_resource type="Script" path="res://behaviours/summoning_circle.gd" id="1_l5mec"]
+[ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="2_xq0wr"]
+[ext_resource type="Texture2D" uid="uid://n0wj20mduwy8" path="res://entities/summoning_circle_pentagram.png" id="3_stpdd"]
+[ext_resource type="PackedScene" uid="uid://ddpo03rb6068c" path="res://entities/sacrifice_stone.tscn" id="4_qyef2"]
+[ext_resource type="PackedScene" uid="uid://ufjnfj3itypj" path="res://behaviours/summoning_recipe.tscn" id="5_jbk35"]
+[ext_resource type="PackedScene" uid="uid://4d3ksr3171x4" path="res://entities/imp.tscn" id="6_utwxo"]
+
+[node name="SummoningCirclePentagram" type="Node2D"]
+script = ExtResource("1_l5mec")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("3_stpdd")
+
+[node name="Stones" type="Node2D" parent="."]
+
+[node name="StoneUp" parent="Stones" instance=ExtResource("4_qyef2")]
+position = Vector2(0, -108)
+
+[node name="StoneTopLeft" parent="Stones" instance=ExtResource("4_qyef2")]
+position = Vector2(-92, -64)
+
+[node name="StoneTopRight" parent="Stones" instance=ExtResource("4_qyef2")]
+position = Vector2(92, -64)
+
+[node name="StoneBottomLeft" parent="Stones" instance=ExtResource("4_qyef2")]
+position = Vector2(-75, 30)
+
+[node name="StoneBottomRight" parent="Stones" instance=ExtResource("4_qyef2")]
+position = Vector2(75, 30)
+
+[node name="Recipes" type="Node" parent="."]
+
+[node name="FiveSheep" parent="Recipes" instance=ExtResource("5_jbk35")]
+mode = 2
+ingredients = Array[StringName]([&"Sheep", &"Sheep", &"Sheep", &"Sheep", &"Sheep"])
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Imp" parent="Spawners" instance=ExtResource("2_xq0wr")]
+scene = ExtResource("6_utwxo")
+
+[connection signal="matched" from="Recipes/FiveSheep" to="Spawners/Imp" method="spawn" unbinds=1]

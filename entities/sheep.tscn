@@ -325,6 +325,7 @@ stream = ExtResource("16_nswfl")
 [node name="FallSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("17_8kst2")
 
+[connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
 [connection signal="move" from="MovementIdle" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="stop"]
 [connection signal="move_enabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="start"]
