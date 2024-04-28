@@ -13,5 +13,5 @@ signal sacrificed
 @export var kind: StringName = &""
 
 
-func sarcifice():
+func sacrifice():
 	sacrificed.emit()
