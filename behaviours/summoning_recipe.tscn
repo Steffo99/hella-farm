@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ufjnfj3itypj"]
+
+[ext_resource type="Script" path="res://behaviours/summoning_recipe.gd" id="1_ek58s"]
+
+[node name="SummoningRecipe" type="Node2D"]
+script = ExtResource("1_ek58s")
