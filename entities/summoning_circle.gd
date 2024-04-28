@@ -1,7 +1,7 @@
 extends Node2D
 class_name SummoningCircle
 
-@onready var spawner: Spawner = $"Spawner"
+@onready var spawner: Spawner = %"Spawner"
 
 ## The scene to spawn.
 @export var scene_imp: PackedScene
