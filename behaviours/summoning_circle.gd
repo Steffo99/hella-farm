@@ -58,11 +58,11 @@ func _ready() -> void:
 	refresh_recipes()
 
 func _on_sacrifice_changed(_entity: Node2D) -> void:
+	var entities: Array[Node2D] = []
+	entities.assign(
+		stones.map(func(stone): return stone.entity)
+	)
 	for recipe in recipes:
-		var entities: Array[Node2D] = []
-		entities.assign(
-			stones.map(func(stone): return stone.entity)
-		)
 		if recipe.do_match(entities):
 			break
 
