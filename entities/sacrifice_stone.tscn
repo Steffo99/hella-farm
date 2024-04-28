@@ -19,7 +19,7 @@ texture = ExtResource("2_rbklw")
 
 [node name="StoneArea" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 24
+collision_mask = 0
 monitoring = false
 
 [node name="Shape" type="CollisionShape2D" parent="StoneArea"]
@@ -31,7 +31,7 @@ debug_color = Color(1, 0, 0, 0.419608)
 diet = &"Trap"
 
 [node name="SacrificeTracker" parent="StoneArea" instance=ExtResource("2_6m7pn")]
-collision_mask = 56
+collision_mask = 8
 
 [node name="Shape" type="CollisionShape2D" parent="StoneArea/SacrificeTracker"]
 shape = SubResource("CircleShape2D_yv6hf")

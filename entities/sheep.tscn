@@ -297,6 +297,7 @@ enabled = false
 alternative_priority = 45
 
 [node name="TrackerTrap" parent="MovementTrap" instance=ExtResource("16_6h84f")]
+collision_mask = 8
 acceptable_diets = Array[StringName]([&"Trap"])
 
 [node name="Shape" type="CollisionShape2D" parent="MovementTrap/TrackerTrap"]
