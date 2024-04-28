@@ -30,6 +30,9 @@ func spawn():
 		target = MainGame.get_via_group(self).default_spawn_parent
 	if not target:
 		target = self
+	if not scene:
+		Log.w(self, "Not spawning, no scene is set.")
+		return
 	var entity = scene.instantiate()
 	entity.global_scale = global_scale
 	entity.global_position = global_position
