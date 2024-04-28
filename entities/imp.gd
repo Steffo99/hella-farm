@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends BetterCharacterBody2D
 class_name Imp
 
 
@@ -8,7 +8,7 @@ class_name Imp
 
 
 func _on_move(movement: Vector2):
-	move_and_collide(movement)
+	better_move_and_collide(movement)
 	sprite.handle_move(movement)
 
 func _on_eater_eaten(edible: Edible) -> void:

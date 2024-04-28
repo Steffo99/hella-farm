@@ -22,6 +22,10 @@ window/size/viewport_height=720
 window/size/initial_position_type=3
 window/size/resizable=false
 
+[editor]
+
+movie_writer/movie_file="/mnt/work/steffo/ld55/.build/movie/capture.avi"
+
 [filesystem]
 
 import/blender/enabled=false

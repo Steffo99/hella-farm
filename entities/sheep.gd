@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends BetterCharacterBody2D
 class_name Sheep
 
 
@@ -7,7 +7,7 @@ class_name Sheep
 
 
 func _on_move(movement: Vector2) -> void:
-	move_and_collide(movement)
+	better_move_and_collide(movement)
 	sprite.handle_move(movement)
 
 func _on_dragged(_cursor: Cursor) -> void:

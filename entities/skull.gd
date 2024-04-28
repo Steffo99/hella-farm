@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends BetterCharacterBody2D
 class_name Skull
 
 
@@ -6,7 +6,7 @@ class_name Skull
 
 
 func _on_move(movement: Vector2) -> void:
-	move_and_collide(movement)
+	better_move_and_collide(movement)
 
 func _on_dragged(_cursor: Cursor) -> void:
 	collision_layer = 16
