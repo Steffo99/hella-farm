@@ -7,7 +7,6 @@ signal sacrifice_changed(entity: PhysicsBody2D, type: Enums.MonsterType)
 
 
 var current_monster: PhysicsBody2D
-var current_type: Enums.MonsterType = Enums.MonsterType.None
 
 
 func _on_tracked(body: PhysicsBody2D):
@@ -18,12 +17,10 @@ func _on_tracked(body: PhysicsBody2D):
 	var types: Array = body.find_children("*", "Sacrificable", false, false)
 	for type in types:
 		current_monster = body
-		current_type = type.type
-		sacrifice_changed.emit(current_monster, current_type)
+		sacrifice_changed.emit(current_monster)
 		break
 
 func _on_untracked(body: PhysicsBody2D):
 	if body == current_monster:
 		current_monster = null
-		current_type = Enums.MonsterType.None
-		sacrifice_changed.emit(current_monster, current_type)
+		sacrifice_changed.emit(current_monster)
