@@ -7,21 +7,15 @@ class_name SacrificeCircle
 @export var scene_imp: PackedScene
 
 
-var stones: Array[SacrificeStone]
-var sacrifices: Array[Enums.MonsterType]
+## The [SacrificeStone]s part of this summoning circle.
+var stones: Array[SacrificeStone] = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	stones = []
-	sacrifices = []
-	stones.assign(find_children("*", "SacrificeStone", true, false))
 
-	for stone in stones:
-		sacrifices.append(stone.current_type)
-
-func refresh_sacrifices() -> void:
-	for i in len(stones):
-		sacrifices[i] = stones[i].current_type
+## Refresh the value of [field stones].
+func refresh_stones() -> void:
+	stones.assign(
+		find_children("*", "SacrificeStone", false, false)
+	)
 
 func try_sacrifice() -> void:
 	var first_monster = sacrifices[0]
