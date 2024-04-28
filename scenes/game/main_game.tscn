@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cmemgijh6nfmk" path="res://entities/chupacabra.tscn" id="11_ixo4x"]
 [ext_resource type="PackedScene" uid="uid://dnjtduk0hla3f" path="res://entities/watcher.tscn" id="14_8rumi"]
 [ext_resource type="PackedScene" uid="uid://gl4umoff474y" path="res://entities/cthulhu.tscn" id="15_k41qf"]
-[ext_resource type="PackedScene" uid="uid://ddpo03rb6068c" path="res://entities/sacrifice_stone.tscn" id="16_rmvkw"]
+[ext_resource type="PackedScene" uid="uid://xj0pa287n1wo" path="res://entities/summoning_circle.tscn" id="16_2s71o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_058kb"]
 texture = ExtResource("2_o7bg5")
@@ -948,5 +948,5 @@ position = Vector2(189, 171)
 [node name="Cthulhu" parent="." instance=ExtResource("15_k41qf")]
 position = Vector2(226, -137)
 
-[node name="SacrificeStone" parent="." instance=ExtResource("16_rmvkw")]
-position = Vector2(-334, -100)
+[node name="SummoningCircle" parent="." instance=ExtResource("16_2s71o")]
+position = Vector2(-382, -89)
