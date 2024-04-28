@@ -1,10 +1,13 @@
 extends Node2D
 class_name SacrificeStone
 
+
 signal sacrifice_changed(entity: Node2D, type: Enums.MonsterType)
+
 
 var current_monster: Node2D
 var current_type: Enums.MonsterType = Enums.MonsterType.None
+
 
 func _on_tracked(body: Node2D):
 	if current_monster != null:
