@@ -1,4 +1,4 @@
-@icon("res://behaviours/edible.svg")
+@icon("res://behaviours/monster_type.svg")
 extends Node
 class_name MonsterType
 
