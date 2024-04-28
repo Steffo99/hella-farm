@@ -1,5 +1,5 @@
 extends Node2D
-class_name SacrificeCircle
+class_name SummoningCircle
 
 @onready var spawner: Spawner = $"Spawner"
 
