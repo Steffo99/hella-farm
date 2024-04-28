@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=22 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/main_game.gd" id="1_wiglu"]
 [ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cmemgijh6nfmk" path="res://entities/chupacabra.tscn" id="11_ixo4x"]
 [ext_resource type="PackedScene" uid="uid://dnjtduk0hla3f" path="res://entities/watcher.tscn" id="14_8rumi"]
 [ext_resource type="PackedScene" uid="uid://gl4umoff474y" path="res://entities/cthulhu.tscn" id="15_k41qf"]
+[ext_resource type="PackedScene" uid="uid://uoopwyh1ea7t" path="res://entities/summoning_circle.tscn" id="16_v1vce"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_058kb"]
 texture = ExtResource("2_o7bg5")
@@ -936,13 +937,15 @@ position = Vector2(-211, 241)
 position = Vector2(-491, 137)
 
 [node name="Sheep7" parent="." instance=ExtResource("9_qrqqu")]
-position = Vector2(-177, 154)
+position = Vector2(63, -115)
 
 [node name="Chupacabra" parent="." instance=ExtResource("11_ixo4x")]
 position = Vector2(6, -210)
 
 [node name="Watcher" parent="." instance=ExtResource("14_8rumi")]
-position = Vector2(189, 171)
+position = Vector2(316, 224)
 
 [node name="Cthulhu" parent="." instance=ExtResource("15_k41qf")]
 position = Vector2(226, -137)
+
+[node name="SummoningCircle" parent="." instance=ExtResource("16_v1vce")]
