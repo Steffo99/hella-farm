@@ -229,6 +229,7 @@ blend_times = [&"drag_start", &"drag_loop", 0.5]
 diet = &"Meat"
 
 [node name="Sacrificable" parent="." instance=ExtResource("8_43m1b")]
+kind = &"Sheep"
 
 [node name="MovementSampler" parent="." instance=ExtResource("9_s5lod")]
 
