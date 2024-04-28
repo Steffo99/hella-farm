@@ -2,14 +2,14 @@ extends Node2D
 class_name SacrificeStone
 
 
-signal sacrifice_changed(entity: Node2D, type: Enums.MonsterType)
+signal sacrifice_changed(entity: PhysicsBody2D, type: Enums.MonsterType)
 
 
-var current_monster: Node2D
+var current_monster: PhysicsBody2D
 var current_type: Enums.MonsterType = Enums.MonsterType.None
 
 
-func _on_tracked(body: Node2D):
+func _on_tracked(body: PhysicsBody2D):
 	if current_monster != null:
 		Log.w(self, "Captured two entities")
 		return
@@ -24,7 +24,7 @@ func _on_tracked(body: Node2D):
 	if current_monster == null:
 		Log.w(self, "Captured entity with no MonsterType")
 
-func _on_untracked(body: Node2D):
+func _on_untracked(body: PhysicsBody2D):
 	if body == current_monster:
 		current_monster = null
 		current_type = Enums.MonsterType.None
