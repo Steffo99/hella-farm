@@ -7,7 +7,7 @@ class_name SacrificeStone
 
 
 ## Emitted when the sacrifice on top of the stone changes.
-signal sacrifice_changed(entity: PhysicsBody2D, type: Enums.MonsterType)
+signal sacrifice_changed(entity: PhysicsBody2D)
 
 ## The entity currently on top of the stone.
 var entity: PhysicsBody2D
