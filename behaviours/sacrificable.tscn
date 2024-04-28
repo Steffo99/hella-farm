@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccul07w0h36nu"]
+
+[ext_resource type="Script" path="res://behaviours/sacrificable.gd" id="1_6rupd"]
+
+[node name="Sacrificable" type="Node"]
+script = ExtResource("1_6rupd")

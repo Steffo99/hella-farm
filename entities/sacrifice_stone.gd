@@ -14,7 +14,7 @@ func _on_tracked(body: PhysicsBody2D):
 		Log.w(self, "Captured two entities")
 		return
 
-	var types: Array = body.find_children("*", "MonsterType", false, false)
+	var types: Array = body.find_children("*", "Sacrificable", false, false)
 	for type in types:
 		current_monster = body
 		current_type = type.type
@@ -22,7 +22,7 @@ func _on_tracked(body: PhysicsBody2D):
 		break
 
 	if current_monster == null:
-		Log.w(self, "Captured entity with no MonsterType")
+		Log.w(self, "Captured entity with no Sacrificable")
 
 func _on_untracked(body: PhysicsBody2D):
 	if body == current_monster:

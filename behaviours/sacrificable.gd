@@ -1,6 +1,6 @@
-@icon("res://behaviours/monster_type.svg")
+@icon("res://behaviours/sacrificable.svg")
 extends Node
-class_name MonsterType
+class_name Sacrificable
 
 ## Emits [signal eaten] when eaten by an [Eater] whose acceptable diets contain this node's [field diet].
 ##
