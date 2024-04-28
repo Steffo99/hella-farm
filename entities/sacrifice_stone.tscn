@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://4xivigiybb1d"]
+[gd_scene load_steps=6 format=3 uid="uid://ddpo03rb6068c"]
 
 [ext_resource type="Script" path="res://entities/sacrifice_stone.gd" id="1_sgl1t"]
 [ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="1_y58y4"]
@@ -27,7 +27,8 @@ diet = &"Trap"
 collision_mask = 56
 
 [node name="Sprite" type="Sprite2D" parent="StoneArea/SacrificeTracker"]
-position = Vector2(0, 22)
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
 texture = ExtResource("2_rbklw")
 
 [node name="Shape" type="CollisionShape2D" parent="StoneArea/SacrificeTracker"]
