@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=25 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/main_game.gd" id="1_wiglu"]
 [ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dnjtduk0hla3f" path="res://entities/watcher.tscn" id="14_8rumi"]
 [ext_resource type="PackedScene" uid="uid://gl4umoff474y" path="res://entities/cthulhu.tscn" id="15_k41qf"]
 [ext_resource type="PackedScene" uid="uid://cgpwig0rd08vh" path="res://entities/summoning_circle_pentagram.tscn" id="16_nhsrb"]
+[ext_resource type="PackedScene" uid="uid://db246fkcf452d" path="res://entities/tree.tscn" id="18_r8twr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_058kb"]
 texture = ExtResource("2_o7bg5")
@@ -967,3 +968,18 @@ position = Vector2(189, 171)
 
 [node name="Cthulhu" parent="DefaultSpawnParent" instance=ExtResource("15_k41qf")]
 position = Vector2(226, -137)
+
+[node name="Tree" parent="." instance=ExtResource("18_r8twr")]
+position = Vector2(424, 68)
+
+[node name="Tree2" parent="." instance=ExtResource("18_r8twr")]
+position = Vector2(385, 104)
+
+[node name="Tree3" parent="." instance=ExtResource("18_r8twr")]
+position = Vector2(341, 143)
+
+[node name="Tree4" parent="." instance=ExtResource("18_r8twr")]
+position = Vector2(341, 247)
+
+[node name="Tree5" parent="." instance=ExtResource("18_r8twr")]
+position = Vector2(379, 292)
