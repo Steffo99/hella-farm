@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dnjtduk0hla3f"]
+[gd_scene load_steps=24 format=3 uid="uid://dnjtduk0hla3f"]
 
 [ext_resource type="Script" path="res://entities/watcher.gd" id="1_brahc"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_thu73"]
@@ -6,12 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://c6tbab5h4osj5" path="res://entities/watcher_right.png" id="3_k8fgk"]
 [ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="4_i1htf"]
 [ext_resource type="Texture2D" uid="uid://dh61knesgvjs" path="res://entities/watcher_drag_left.png" id="7_ff3vx"]
+[ext_resource type="PackedScene" uid="uid://ccul07w0h36nu" path="res://behaviours/sacrificable.tscn" id="7_lxtqq"]
 [ext_resource type="Texture2D" uid="uid://b6uurud5clnqr" path="res://entities/watcher_drag_right.png" id="8_5nq2n"]
 [ext_resource type="PackedScene" uid="uid://rx24bppccih7" path="res://behaviours/move_physics.tscn" id="8_jy8ay"]
 [ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="9_wtsor"]
 [ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="10_qbgiu"]
 [ext_resource type="AudioStream" uid="uid://d0feiq5s6fnux" path="res://entities/imp_drag.wav" id="11_rydo5"]
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="12_0h21e"]
+[ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="14_qtr50"]
+[ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="15_ihnef"]
+[ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="16_ch04y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_diig7"]
 radius = 32.0
@@ -121,7 +125,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_32yw7")]
+"values": [ExtResource("7_ff3vx")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -133,7 +137,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_k8fgk")]
+"values": [ExtResource("8_5nq2n")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yam4u"]
@@ -142,6 +146,9 @@ _data = {
 "drag_loop": SubResource("Animation_5yt72"),
 "drag_start": SubResource("Animation_2igbw")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0gfn"]
+radius = 25.19
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ywwo3"]
 radius = 32.0
@@ -169,7 +176,28 @@ libraries = {
 next/drag_loop = &"drag_loop"
 next/drag_start = &"drag_loop"
 
+[node name="Sacrificable" parent="." instance=ExtResource("7_lxtqq")]
+kind = &"Watcher"
+
 [node name="MovementSampler" parent="." instance=ExtResource("4_i1htf")]
+
+[node name="MovementTrap" parent="." instance=ExtResource("14_qtr50")]
+speed = 600.0
+enabled = false
+
+[node name="TrapPriority" parent="MovementTrap" instance=ExtResource("9_wtsor")]
+alternative_priority = 45
+
+[node name="TrackerTrap" parent="MovementTrap" instance=ExtResource("15_ihnef")]
+collision_mask = 8
+acceptable_diets = Array[StringName]([&"Trap"])
+
+[node name="Shape" type="CollisionShape2D" parent="MovementTrap/TrackerTrap"]
+shape = SubResource("CircleShape2D_a0gfn")
+debug_color = Color(1, 0.498039, 0, 0)
+
+[node name="TargetPicker" parent="MovementTrap/TrackerTrap" node_paths=PackedStringArray("tracker") instance=ExtResource("16_ch04y")]
+tracker = NodePath("..")
 
 [node name="MovementDrag" parent="." instance=ExtResource("8_jy8ay")]
 position = Vector2(1, 0)
@@ -190,6 +218,14 @@ stream = ExtResource("11_rydo5")
 [node name="FallSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("12_0h21e")
 
+[connection signal="changed_target" from="MovementTrap" to="MovementTrap/TrapPriority" method="priority_conditional"]
+[connection signal="move" from="MovementTrap" to="." method="_on_move"]
+[connection signal="area_entered" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap" method="check_diet_then_track"]
+[connection signal="area_exited" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap" method="untrack"]
+[connection signal="tracked" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap/TargetPicker" method="sample_target_if_null" unbinds=1]
+[connection signal="untracked" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap/TargetPicker" method="clear_if_target"]
+[connection signal="target_changed" from="MovementTrap/TrackerTrap/TargetPicker" to="MovementTrap" method="set_target" unbinds=1]
+[connection signal="target_changed" from="MovementTrap/TrackerTrap/TargetPicker" to="MovementTrap/TrackerTrap/TargetPicker" method="sample_target_if_null" unbinds=2]
 [connection signal="dragged" from="MovementDrag" to="." method="_on_dragged"]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_alternative" unbinds=1]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragSound" method="play" unbinds=1]
