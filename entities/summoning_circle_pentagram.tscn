@@ -73,4 +73,4 @@ scene = ExtResource("9_wli14")
 [connection signal="matched" from="Recipes/FiveSheep" to="Spawners/Imp" method="spawn" unbinds=1]
 [connection signal="matched" from="Recipes/FiveImps" to="Spawners/Chupacabra" method="spawn" unbinds=1]
 [connection signal="matched" from="Recipes/FiveChupacabras" to="Spawners/Watcher" method="spawn" unbinds=1]
-[connection signal="matched" from="Recipes/FiveWatchers" to="Spawners/Watcher" method="spawn" unbinds=1]
+[connection signal="matched" from="Recipes/FiveWatchers" to="Spawners/Cthulhu" method="spawn" unbinds=1]
