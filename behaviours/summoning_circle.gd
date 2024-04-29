@@ -66,7 +66,7 @@ func _on_sacrifice_changed(_entity: Node2D) -> void:
 		if recipe.do_match(entities):
 			break
 
-func _on_recipe_matched(m: SummoningRecipe.Match, _recipe: SummoningRecipe) -> void:
-	recipe_matched.emit()
+func _on_recipe_matched(m: SummoningRecipe.Match, recipe: SummoningRecipe) -> void:
+	recipe_matched.emit(m, recipe)
 	for sacrificable in m.sacrificables:
 		sacrificable.sacrifice()

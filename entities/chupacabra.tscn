@@ -483,6 +483,7 @@ debug_color = Color(1, 0, 0, 0)
 stream = ExtResource("17_ccla5")
 bus = &"KillSounds"
 
+[connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
 [connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
 [connection signal="move" from="MovementWander" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementWander" to="MovementWander" method="clear_direction"]

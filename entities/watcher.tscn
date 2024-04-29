@@ -222,6 +222,7 @@ bus = &"DragSounds"
 stream = ExtResource("12_0h21e")
 bus = &"FallSounds"
 
+[connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
 [connection signal="changed_target" from="MovementTrap" to="MovementTrap/TrapPriority" method="priority_conditional"]
 [connection signal="move" from="MovementTrap" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementTrap" to="." method="_on_freed"]

@@ -348,6 +348,7 @@ debug_color = Color(1, 0, 0, 0)
 stream = ExtResource("19_7la6c")
 bus = &"KillSounds"
 
+[connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
 [connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]
 [connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
 [connection signal="move" from="MovementWander" to="." method="_on_move"]
