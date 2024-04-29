@@ -17,10 +17,12 @@ func _on_dragged(_cursor: Cursor) -> void:
 	collision_layer = 16
 	collision_mask = 18
 	z_index = Enums.ZIndex.EntityAir
+	y_sort_enabled = false
 	animator.play(&"drag_start")
 
 func _on_fallen() -> void:
 	collision_layer = 8
 	collision_mask = 14
 	z_index =  Enums.ZIndex.EntityGround
+	y_sort_enabled = true
 	animator.play(&"RESET")

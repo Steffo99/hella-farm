@@ -5,5 +5,6 @@
 [node name="GoldPickupPlayer" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_rpx7k")
 autoplay = true
+bus = &"CollectSounds"
 
 [connection signal="finished" from="." to="." method="queue_free"]

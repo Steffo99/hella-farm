@@ -136,9 +136,11 @@ shape = SubResource("CircleShape2D_juisb")
 debug_color = Color(1, 1, 1, 0)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
+bus = &"DragSounds"
 
 [node name="FallSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("6_6tpnh")
+bus = &"FallSounds"
 
 [connection signal="dragged" from="MovementDrag" to="." method="_on_dragged"]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragSound" method="play" unbinds=1]

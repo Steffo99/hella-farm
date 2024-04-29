@@ -903,53 +903,54 @@ collision_mask = 0
 [node name="Shape" type="CollisionShape2D" parent="Walls/LeftBoundary"]
 shape = SubResource("WorldBoundaryShape2D_htttx")
 
-[node name="DefaultSpawnParent" type="Node2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Skull" parent="." instance=ExtResource("6_5k7gy")]
-position = Vector2(2, 3)
-
-[node name="Monocle" parent="." instance=ExtResource("7_lahut")]
-position = Vector2(-56, 56)
-
-[node name="TopHat" parent="." instance=ExtResource("8_atoon")]
-position = Vector2(56, -50)
-
-[node name="Sheep" parent="." instance=ExtResource("9_qrqqu")]
-position = Vector2(-310, 166)
-
-[node name="Imp2" parent="." instance=ExtResource("10_yw228")]
-position = Vector2(408, 225)
-
-[node name="Imp" parent="." instance=ExtResource("10_yw228")]
-position = Vector2(393, -137)
-
-[node name="Sheep2" parent="." instance=ExtResource("9_qrqqu")]
-position = Vector2(-415, 202)
-
-[node name="Sheep3" parent="." instance=ExtResource("9_qrqqu")]
-position = Vector2(-386, 112)
-
-[node name="Sheep4" parent="." instance=ExtResource("9_qrqqu")]
-position = Vector2(-314, 261)
-
-[node name="Sheep5" parent="." instance=ExtResource("9_qrqqu")]
-position = Vector2(-211, 241)
-
-[node name="Sheep6" parent="." instance=ExtResource("9_qrqqu")]
-position = Vector2(-491, 137)
-
-[node name="Sheep7" parent="." instance=ExtResource("9_qrqqu")]
-position = Vector2(-177, 154)
-
-[node name="Chupacabra" parent="." instance=ExtResource("11_ixo4x")]
-position = Vector2(6, -210)
-
-[node name="Watcher" parent="." instance=ExtResource("14_8rumi")]
-position = Vector2(189, 171)
-
-[node name="Cthulhu" parent="." instance=ExtResource("15_k41qf")]
-position = Vector2(226, -137)
-
 [node name="SummoningCirclePentagram" parent="." instance=ExtResource("16_nhsrb")]
 position = Vector2(-321, -191)
+
+[node name="DefaultSpawnParent" type="Node2D" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+
+[node name="Skull" parent="DefaultSpawnParent" instance=ExtResource("6_5k7gy")]
+position = Vector2(2, 3)
+
+[node name="Monocle" parent="DefaultSpawnParent" instance=ExtResource("7_lahut")]
+position = Vector2(-56, 56)
+
+[node name="TopHat" parent="DefaultSpawnParent" instance=ExtResource("8_atoon")]
+position = Vector2(56, -50)
+
+[node name="Sheep" parent="DefaultSpawnParent" instance=ExtResource("9_qrqqu")]
+position = Vector2(-310, 166)
+
+[node name="Imp2" parent="DefaultSpawnParent" instance=ExtResource("10_yw228")]
+position = Vector2(408, 225)
+
+[node name="Imp" parent="DefaultSpawnParent" instance=ExtResource("10_yw228")]
+position = Vector2(393, -137)
+
+[node name="Sheep2" parent="DefaultSpawnParent" instance=ExtResource("9_qrqqu")]
+position = Vector2(-415, 202)
+
+[node name="Sheep3" parent="DefaultSpawnParent" instance=ExtResource("9_qrqqu")]
+position = Vector2(-386, 112)
+
+[node name="Sheep4" parent="DefaultSpawnParent" instance=ExtResource("9_qrqqu")]
+position = Vector2(-314, 261)
+
+[node name="Sheep5" parent="DefaultSpawnParent" instance=ExtResource("9_qrqqu")]
+position = Vector2(-211, 241)
+
+[node name="Sheep6" parent="DefaultSpawnParent" instance=ExtResource("9_qrqqu")]
+position = Vector2(-491, 137)
+
+[node name="Sheep7" parent="DefaultSpawnParent" instance=ExtResource("9_qrqqu")]
+position = Vector2(-177, 154)
+
+[node name="Chupacabra" parent="DefaultSpawnParent" instance=ExtResource("11_ixo4x")]
+position = Vector2(6, -210)
+
+[node name="Watcher" parent="DefaultSpawnParent" instance=ExtResource("14_8rumi")]
+position = Vector2(189, 171)
+
+[node name="Cthulhu" parent="DefaultSpawnParent" instance=ExtResource("15_k41qf")]
+position = Vector2(226, -137)

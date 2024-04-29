@@ -323,9 +323,11 @@ debug_color = Color(1, 1, 1, 0)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("16_nswfl")
+bus = &"DragSounds"
 
 [node name="FallSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("17_8kst2")
+bus = &"FallSounds"
 
 [connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
 [connection signal="move" from="MovementIdle" to="." method="_on_move"]

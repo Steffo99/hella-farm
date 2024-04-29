@@ -465,9 +465,11 @@ debug_color = Color(1, 1, 1, 0)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("14_u2uf4")
+bus = &"DragSounds"
 
 [node name="FallSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("15_q7bw3")
+bus = &"FallSounds"
 
 [node name="Eater" parent="." instance=ExtResource("16_ltvqn")]
 unique_name_in_owner = true
@@ -479,6 +481,7 @@ debug_color = Color(1, 0, 0, 0)
 
 [node name="EatSound" type="AudioStreamPlayer2D" parent="Eater"]
 stream = ExtResource("17_ccla5")
+bus = &"KillSounds"
 
 [connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
 [connection signal="move" from="MovementWander" to="." method="_on_move"]
@@ -500,6 +503,8 @@ stream = ExtResource("17_ccla5")
 [connection signal="timeout" from="MovementSkitter/CalmTimer" to="MovementSkitter" method="clear_direction"]
 [connection signal="changed_target" from="MovementTrap" to="MovementTrap/TrapPriority" method="priority_conditional"]
 [connection signal="move" from="MovementTrap" to="." method="_on_move"]
+[connection signal="move_disabled" from="MovementTrap" to="." method="_on_freed"]
+[connection signal="move_enabled" from="MovementTrap" to="." method="_on_trapped"]
 [connection signal="area_entered" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap" method="check_diet_then_track"]
 [connection signal="area_exited" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap" method="untrack"]
 [connection signal="tracked" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap/TargetPicker" method="sample_target_if_null" unbinds=1]
