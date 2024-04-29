@@ -154,12 +154,14 @@ radius = 25.19
 radius = 32.0
 
 [node name="Watcher" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 8
 collision_mask = 14
 script = ExtResource("1_brahc")
 
 [node name="Sprite" parent="." instance=ExtResource("1_thu73")]
 unique_name_in_owner = true
+y_sort_enabled = true
 scale = Vector2(2, 2)
 texture = ExtResource("2_32yw7")
 left_texture = ExtResource("2_32yw7")

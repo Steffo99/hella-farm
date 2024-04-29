@@ -11,29 +11,32 @@
 [ext_resource type="PackedScene" uid="uid://gl4umoff474y" path="res://entities/cthulhu.tscn" id="9_wli14"]
 
 [node name="SummoningCirclePentagram" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_l5mec")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+z_index = -10
 position = Vector2(2, 4)
 scale = Vector2(2, 2)
 texture = ExtResource("3_stpdd")
 
 [node name="Stones" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="StoneUp" parent="Stones" instance=ExtResource("4_qyef2")]
-position = Vector2(0, -108)
+position = Vector2(0, -76)
 
 [node name="StoneTopLeft" parent="Stones" instance=ExtResource("4_qyef2")]
-position = Vector2(-92, -64)
+position = Vector2(-92, -32)
 
 [node name="StoneTopRight" parent="Stones" instance=ExtResource("4_qyef2")]
-position = Vector2(92, -64)
+position = Vector2(92, -32)
 
 [node name="StoneBottomLeft" parent="Stones" instance=ExtResource("4_qyef2")]
-position = Vector2(-75, 30)
+position = Vector2(-75, 62)
 
 [node name="StoneBottomRight" parent="Stones" instance=ExtResource("4_qyef2")]
-position = Vector2(75, 30)
+position = Vector2(75, 62)
 
 [node name="Recipes" type="Node" parent="."]
 

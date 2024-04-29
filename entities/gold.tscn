@@ -14,6 +14,8 @@ radius = 96.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jm7yp"]
 
 [node name="Gold" type="Node2D"]
+z_index = -5
+y_sort_enabled = true
 script = ExtResource("1_lbls1")
 
 [node name="Collectible" parent="." instance=ExtResource("2_j75yq")]
@@ -21,6 +23,7 @@ unique_name_in_owner = true
 kind = &"Gold"
 
 [node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
 scale = Vector2(2, 2)
 texture = ExtResource("2_tt3v6")
 

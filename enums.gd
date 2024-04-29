@@ -2,9 +2,11 @@ class_name Enums
 
 
 enum ZIndex {
-    EntityAir = 20,
-    EntityGround = 10,
-    SacrificeStone = 5,
-    Props = 0,
-    Terrain = -10,
+    EntityAir = 10,
+    EntitySacrifice = 5,
+    EntityGround = 0,
+    Gold = -5,
+    Props = -10,
+    Flowers = -20,
+    Terrain = -30,
 }

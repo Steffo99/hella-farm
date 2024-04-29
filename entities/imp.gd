@@ -31,3 +31,9 @@ func _on_fallen() -> void:
 	z_index = Enums.ZIndex.EntityGround
 	eater.collision_mask = 8
 	animator.play(&"RESET")
+
+func _on_trapped() -> void:
+	z_index = Enums.ZIndex.EntitySacrifice
+
+func _on_freed() -> void:
+	z_index = Enums.ZIndex.EntityGround

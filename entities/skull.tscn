@@ -105,12 +105,14 @@ _data = {
 radius = 12.0
 
 [node name="Skull" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 8
 collision_mask = 14
 motion_mode = 1
 script = ExtResource("1_7g8bu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(2, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("1_v6qk3")

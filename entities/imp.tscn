@@ -225,6 +225,7 @@ radius = 32.0
 radius = 40.0
 
 [node name="Imp" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 8
 collision_mask = 14
 motion_mode = 1
@@ -232,6 +233,7 @@ script = ExtResource("1_dixpc")
 
 [node name="Sprite" parent="." instance=ExtResource("2_eqcdi")]
 unique_name_in_owner = true
+y_sort_enabled = true
 scale = Vector2(2, 2)
 texture = ExtResource("3_qda0k")
 left_texture = ExtResource("3_qda0k")
@@ -296,6 +298,7 @@ debug_color = Color(1, 0.498039, 0, 0)
 tracker = NodePath("..")
 
 [node name="MovementTrap" parent="." instance=ExtResource("11_4ra22")]
+y_sort_enabled = true
 speed = 600.0
 enabled = false
 

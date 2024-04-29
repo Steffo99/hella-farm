@@ -184,6 +184,7 @@ _data = {
 radius = 50.0
 
 [node name="Cthulhu" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 8
 collision_mask = 14
 script = ExtResource("1_b55wc")
@@ -192,6 +193,7 @@ script = ExtResource("1_b55wc")
 
 [node name="Sprite" parent="SpriteFocus" instance=ExtResource("1_a8ato")]
 unique_name_in_owner = true
+y_sort_enabled = true
 position = Vector2(0, 48)
 scale = Vector2(2, 2)
 texture = ExtResource("2_13vnj")

@@ -5,6 +5,7 @@ class_name Sheep
 @onready var sprite: SpriteLeftRight = %"Sprite"
 @onready var animator: AnimationPlayer = %"Animator"
 
+
 func _ready():
 	# Setup index and layers
 	_on_fallen()
@@ -24,3 +25,9 @@ func _on_fallen() -> void:
 	collision_mask = 14
 	z_index = Enums.ZIndex.EntityGround
 	animator.play(&"RESET")
+
+func _on_trapped() -> void:
+	z_index = Enums.ZIndex.EntitySacrifice
+
+func _on_freed() -> void:
+	z_index = Enums.ZIndex.EntityGround
