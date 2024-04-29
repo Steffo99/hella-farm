@@ -29,7 +29,5 @@ func better_move_and_collide(movement: Vector2):
 			collided_once.emit(collision)
 		# Determine the normal of the collision (the direction the body should be pushed back in)
 		var collision_normal = collision.get_normal()
-		# Change the velocity adequately
-		velocity = velocity.bounce(collision_normal)
 		# Reflect the remaining movement
-		movement = collision.get_remainder().bounce(collision_normal)
+		movement = collision.get_remainder().slide(collision_normal)
