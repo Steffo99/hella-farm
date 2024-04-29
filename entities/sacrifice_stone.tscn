@@ -24,6 +24,7 @@ collision_mask = 0
 monitoring = false
 
 [node name="Shape" type="CollisionShape2D" parent="StoneArea"]
+z_index = 1
 shape = SubResource("CircleShape2D_yv6hf")
 one_way_collision_margin = 27.5
 debug_color = Color(1, 0, 0, 0.419608)
@@ -35,6 +36,7 @@ diet = &"Trap"
 collision_mask = 8
 
 [node name="Shape" type="CollisionShape2D" parent="StoneArea/SacrificeTracker"]
+z_index = 1
 shape = SubResource("CircleShape2D_yv6hf")
 one_way_collision_margin = 27.5
 debug_color = Color(1, 0, 0, 0)
