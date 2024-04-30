@@ -26,3 +26,6 @@ func _on_trapped() -> void:
 func _on_freed() -> void:
 	z_index = Enums.ZIndex.EntityAir
 	y_sort_enabled = true
+
+func _on_eater_eaten(edible: Edible) -> void:
+	edible.get_parent().queue_free()

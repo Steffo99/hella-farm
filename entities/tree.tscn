@@ -1,9 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://db246fkcf452d"]
+[gd_scene load_steps=3 format=3 uid="uid://db246fkcf452d"]
 
 [ext_resource type="Texture2D" uid="uid://13au54xlwvd8" path="res://entities/tree1.png" id="1_yk0t0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvj5w"]
-size = Vector2(36, 36)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0arkv"]
 radius = 34.5
@@ -17,14 +14,6 @@ y_sort_enabled = true
 position = Vector2(0, -48)
 scale = Vector2(2, 2)
 texture = ExtResource("1_yk0t0")
-
-[node name="Lower" type="StaticBody2D" parent="."]
-collision_layer = 8
-collision_mask = 0
-
-[node name="Shape" type="CollisionShape2D" parent="Lower"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_rvj5w")
 
 [node name="Upper" type="StaticBody2D" parent="."]
 collision_layer = 16

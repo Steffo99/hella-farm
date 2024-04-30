@@ -48,8 +48,11 @@ func drop():
 	if dragging:
 		var target = dragging
 		dragging = null
-		target.drop()
-		dropped.emit(target)
+		if is_instance_valid(target):
+			target.drop()
+			dropped.emit(target)
+		else:
+			dropped.emit(null)
 
 func log_dragging() -> void:
 	Log.p(self, "Dragging: %s" % dragging)
