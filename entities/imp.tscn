@@ -281,7 +281,7 @@ min_secs = 0.6
 max_secs = 3.0
 
 [node name="MovementHunt" parent="." instance=ExtResource("11_4ra22")]
-speed = 140.0
+speed = 110.0
 enabled = false
 
 [node name="HuntPriority" parent="MovementHunt" instance=ExtResource("9_2wb1b")]

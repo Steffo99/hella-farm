@@ -6,14 +6,11 @@ class_name Chupacabra
 
 
 @onready var sprite: SpriteLeftRight = %"Sprite"
-@onready var movement_skitter: MoveStraight = %"MovementSkitter"
+@onready var movement_wander: MoveStraight = %"MovementWander"
+@onready var movement_wander_tp: TargetPicker = movement_wander.get_node("TrackerMeat/TargetPicker")
 @onready var animator: AnimationPlayer = %"Animator"
 @onready var eater: Eater = %"Eater"
 
-
-func _on_cursor_detected(_cursor: Cursor) -> void:
-	var direction = Random.sample(skitter_directions)
-	movement_skitter.set_direction(direction)
 
 func _on_move(movement: Vector2) -> void:
 	move_and_collide(movement)
@@ -45,3 +42,9 @@ func _on_trapped() -> void:
 func _on_freed() -> void:
 	z_index = Enums.ZIndex.EntityGround
 	y_sort_enabled = true
+
+func _on_wander_enabled() -> void:
+	if movement_wander_tp.target:
+		movement_wander.steer_direction_towards(movement_wander_tp.target)
+	else:
+		movement_wander.randomize_direction()

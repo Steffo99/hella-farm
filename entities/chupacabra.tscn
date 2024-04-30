@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cmemgijh6nfmk"]
+[gd_scene load_steps=34 format=3 uid="uid://cmemgijh6nfmk"]
 
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_11voy"]
 [ext_resource type="Script" path="res://entities/chupacabra.gd" id="1_s4qg1"]
@@ -342,6 +342,9 @@ _data = {
 "sit": SubResource("Animation_fsmcn")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wya3j"]
+radius = 320.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_dcrcb"]
 radius = 48.0
 
@@ -388,50 +391,52 @@ kind = &"Chupacabra"
 
 [node name="MovementSampler" parent="." instance=ExtResource("7_nq78n")]
 
-[node name="MovementWander" parent="." instance=ExtResource("8_7fxrt")]
-speed = 300.0
+[node name="MovementIdle" parent="." instance=ExtResource("8_7fxrt")]
+speed = 0.0
 enabled = false
 
-[node name="WanderPriority" parent="MovementWander" instance=ExtResource("9_7i81t")]
+[node name="IdlePriority" parent="MovementIdle" instance=ExtResource("9_7i81t")]
 default_priority = 10
 alternative_priority = 10
 
-[node name="StartMovingTimer" parent="MovementWander" instance=ExtResource("6_qsds3")]
+[node name="BoredTimer" parent="MovementIdle" instance=ExtResource("6_qsds3")]
 one_shot = true
 autostart = true
-mean_secs = 3.0
-deviation = 2.0
+mean_secs = 5.0
 min_secs = 1.0
-max_secs = 5.0
+max_secs = 9.0
 
-[node name="StopMovingTimer" parent="MovementWander" instance=ExtResource("6_qsds3")]
-one_shot = true
-mean_secs = 0.5
-deviation = 0.5
-min_secs = 0.1
-max_secs = 1.0
-
-[node name="MovementSkitter" parent="." instance=ExtResource("8_7fxrt")]
+[node name="MovementWander" parent="." instance=ExtResource("8_7fxrt")]
 unique_name_in_owner = true
-speed = 600.0
+speed = 333.0
 enabled = false
 
-[node name="SkitterPriority" parent="MovementSkitter" instance=ExtResource("9_7i81t")]
+[node name="WanderPriority" parent="MovementWander" instance=ExtResource("9_7i81t")]
 alternative_priority = 20
 
-[node name="CursorSense" parent="MovementSkitter" instance=ExtResource("10_3wu3x")]
+[node name="TiredTimer" parent="MovementWander" instance=ExtResource("6_qsds3")]
+one_shot = true
+mean_secs = 0.6
+deviation = 0.5
+min_secs = 0.3
+max_secs = 1.2
 
-[node name="Shape" type="CollisionShape2D" parent="MovementSkitter/CursorSense"]
+[node name="TrackerMeat" parent="MovementWander" instance=ExtResource("14_mk76g")]
+collision_mask = 8
+acceptable_diets = Array[StringName]([&"Meat"])
+
+[node name="Shape" type="CollisionShape2D" parent="MovementWander/TrackerMeat"]
+shape = SubResource("CircleShape2D_wya3j")
+debug_color = Color(1, 0.498039, 0, 0)
+
+[node name="TargetPicker" parent="MovementWander/TrackerMeat" node_paths=PackedStringArray("tracker") instance=ExtResource("15_xay6p")]
+tracker = NodePath("..")
+
+[node name="CursorSense" parent="MovementWander" instance=ExtResource("10_3wu3x")]
+
+[node name="Shape" type="CollisionShape2D" parent="MovementWander/CursorSense"]
 shape = SubResource("CircleShape2D_dcrcb")
 debug_color = Color(1, 1, 0, 0)
-
-[node name="CalmTimer" parent="MovementSkitter" instance=ExtResource("6_qsds3")]
-wait_time = 0.2
-one_shot = true
-mean_secs = 0.1
-deviation = 0.2
-min_secs = 0.1
-max_secs = 0.3
 
 [node name="MovementTrap" parent="." instance=ExtResource("13_vh42q")]
 speed = 600.0
@@ -484,24 +489,25 @@ stream = ExtResource("17_ccla5")
 bus = &"KillSounds"
 
 [connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
-[connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
+[connection signal="move" from="MovementIdle" to="." method="_on_move"]
+[connection signal="move_disabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="stop"]
+[connection signal="move_enabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="start"]
+[connection signal="move_enabled" from="MovementIdle" to="Animator" method="play" binds= [&"sit"]]
+[connection signal="timeout" from="MovementIdle/BoredTimer" to="MovementIdle/BoredTimer" method="randomize_wait_time"]
+[connection signal="timeout" from="MovementIdle/BoredTimer" to="MovementWander/WanderPriority" method="priority_alternative"]
 [connection signal="move" from="MovementWander" to="." method="_on_move"]
-[connection signal="move_disabled" from="MovementWander" to="MovementWander" method="clear_direction"]
-[connection signal="move_disabled" from="MovementWander" to="MovementWander/StartMovingTimer" method="stop"]
-[connection signal="move_disabled" from="MovementWander" to="MovementWander/StopMovingTimer" method="stop"]
-[connection signal="move_enabled" from="MovementWander" to="MovementWander/StartMovingTimer" method="start"]
-[connection signal="move_enabled" from="MovementWander" to="Animator" method="play" binds= [&"sit"]]
-[connection signal="timeout" from="MovementWander/StartMovingTimer" to="MovementWander" method="randomize_direction"]
-[connection signal="timeout" from="MovementWander/StartMovingTimer" to="MovementWander/StopMovingTimer" method="start"]
-[connection signal="timeout" from="MovementWander/StartMovingTimer" to="Animator" method="play" binds= [&"run"]]
-[connection signal="timeout" from="MovementWander/StopMovingTimer" to="MovementWander" method="clear_direction"]
-[connection signal="timeout" from="MovementWander/StopMovingTimer" to="MovementWander/StartMovingTimer" method="start"]
-[connection signal="timeout" from="MovementWander/StopMovingTimer" to="Animator" method="play" binds= [&"sit"]]
-[connection signal="changed_direction" from="MovementSkitter" to="MovementSkitter/SkitterPriority" method="priority_conditional"]
-[connection signal="changed_direction" from="MovementSkitter" to="MovementSkitter/CalmTimer" method="start" unbinds=1]
-[connection signal="move" from="MovementSkitter" to="." method="_on_move"]
-[connection signal="cursor_entered" from="MovementSkitter/CursorSense" to="." method="_on_cursor_detected"]
-[connection signal="timeout" from="MovementSkitter/CalmTimer" to="MovementSkitter" method="clear_direction"]
+[connection signal="move_disabled" from="MovementWander" to="MovementWander/TiredTimer" method="stop"]
+[connection signal="move_enabled" from="MovementWander" to="." method="_on_wander_enabled"]
+[connection signal="move_enabled" from="MovementWander" to="MovementWander/TiredTimer" method="start"]
+[connection signal="move_enabled" from="MovementWander" to="Animator" method="play" binds= [&"run"]]
+[connection signal="timeout" from="MovementWander/TiredTimer" to="MovementWander/WanderPriority" method="priority_default"]
+[connection signal="timeout" from="MovementWander/TiredTimer" to="MovementWander/TiredTimer" method="randomize_wait_time"]
+[connection signal="area_entered" from="MovementWander/TrackerMeat" to="MovementWander/TrackerMeat" method="check_diet_then_track"]
+[connection signal="area_exited" from="MovementWander/TrackerMeat" to="MovementWander/TrackerMeat" method="untrack"]
+[connection signal="tracked" from="MovementWander/TrackerMeat" to="MovementWander/TrackerMeat/TargetPicker" method="sample_target_if_null" unbinds=1]
+[connection signal="untracked" from="MovementWander/TrackerMeat" to="MovementWander/TrackerMeat/TargetPicker" method="clear_if_target"]
+[connection signal="target_changed" from="MovementWander/TrackerMeat/TargetPicker" to="MovementWander/TrackerMeat/TargetPicker" method="sample_target_if_null" unbinds=2]
+[connection signal="cursor_entered" from="MovementWander/CursorSense" to="MovementWander/WanderPriority" method="priority_alternative" unbinds=1]
 [connection signal="changed_target" from="MovementTrap" to="MovementTrap/TrapPriority" method="priority_conditional"]
 [connection signal="move" from="MovementTrap" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementTrap" to="." method="_on_freed"]

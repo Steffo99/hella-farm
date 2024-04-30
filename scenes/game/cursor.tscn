@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bc2bm8lbol18w" path="res://entities/sheep.tscn" id="4_7isfg"]
 [ext_resource type="PackedScene" uid="uid://8jkesanu4hrn" path="res://behaviours/tracker.tscn" id="5_ewy4o"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j2mj5"]
-radius = 48.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ky4x"]
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dc2ul"]
 radius = 8.0
@@ -19,7 +19,7 @@ collision_mask = 56
 script = ExtResource("1_1og6v")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_j2mj5")
+shape = SubResource("CircleShape2D_6ky4x")
 debug_color = Color(0, 0.411765, 0, 0)
 
 [node name="GoldDisplay" parent="." instance=ExtResource("2_5c4iq")]

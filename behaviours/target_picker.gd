@@ -45,4 +45,4 @@ func sample_target_if_null() -> void:
 
 
 func log_target() -> void:
-	pass # Replace with function body.
+	Log.p(self, "Target: %s" % target)
