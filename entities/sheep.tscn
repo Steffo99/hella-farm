@@ -1,11 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=34 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_xbkrm"]
 [ext_resource type="Texture2D" uid="uid://cxtmas4g0v6en" path="res://entities/sheep_right.png" id="4_5qoof"]
+[ext_resource type="Texture2D" uid="uid://deqvgvf66grr4" path="res://entities/top_hat.png" id="5_gfn7a"]
 [ext_resource type="Texture2D" uid="uid://cfduc7cdorasr" path="res://entities/sheep_drag_left.png" id="5_gh6h6"]
 [ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="6_3odsh"]
+[ext_resource type="Texture2D" uid="uid://d3tb6ypb36v8e" path="res://entities/monocle.png" id="6_q0o52"]
 [ext_resource type="Texture2D" uid="uid://m5bebwb06kqe" path="res://entities/sheep_drag_right.png" id="6_x4fsj"]
 [ext_resource type="PackedScene" uid="uid://ccul07w0h36nu" path="res://behaviours/sacrificable.tscn" id="8_43m1b"]
 [ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="9_s5lod"]
@@ -21,6 +23,10 @@
 [ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="16_6h84f"]
 [ext_resource type="AudioStream" uid="uid://bmfscpnugaejk" path="res://entities/sheep_drag.wav" id="16_nswfl"]
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="17_8kst2"]
+[ext_resource type="PackedScene" uid="uid://jg7qkbswgqjc" path="res://behaviours/eater.tscn" id="22_lilpq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kq6qs"]
+radius = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
 radius = 24.0
@@ -214,6 +220,42 @@ texture = ExtResource("2_t13f5")
 left_texture = ExtResource("2_t13f5")
 right_texture = ExtResource("4_5qoof")
 
+[node name="TopHatter" parent="Sprite" instance=ExtResource("22_lilpq")]
+unique_name_in_owner = true
+position = Vector2(0, 2)
+scale = Vector2(0.5, 0.5)
+acceptable_diets = Array[StringName]([&"TopHat"])
+target = 1
+
+[node name="Sprite" type="Sprite2D" parent="Sprite/TopHatter"]
+visible = false
+z_index = 1
+position = Vector2(-10, -28)
+scale = Vector2(2, 2)
+texture = ExtResource("5_gfn7a")
+
+[node name="Shape" type="CollisionShape2D" parent="Sprite/TopHatter"]
+shape = SubResource("CircleShape2D_kq6qs")
+debug_color = Color(1, 0, 0, 0)
+
+[node name="Monocler" parent="Sprite" instance=ExtResource("22_lilpq")]
+unique_name_in_owner = true
+position = Vector2(0, 2)
+scale = Vector2(0.5, 0.5)
+acceptable_diets = Array[StringName]([&"Monocle"])
+target = 1
+
+[node name="Sprite" type="Sprite2D" parent="Sprite/Monocler"]
+visible = false
+z_index = 1
+position = Vector2(-15, -5)
+scale = Vector2(2, 2)
+texture = ExtResource("6_q0o52")
+
+[node name="Shape" type="CollisionShape2D" parent="Sprite/Monocler"]
+shape = SubResource("CircleShape2D_kq6qs")
+debug_color = Color(1, 0, 0, 0)
+
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c5tcn")
 
@@ -329,6 +371,10 @@ bus = &"DragSounds"
 stream = ExtResource("17_8kst2")
 bus = &"FallSounds"
 
+[connection signal="eaten" from="Sprite/TopHatter" to="." method="_on_eater_eaten"]
+[connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sprite" method="show"]
+[connection signal="eaten" from="Sprite/Monocler" to="." method="_on_eater_eaten"]
+[connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sprite" method="show"]
 [connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
 [connection signal="move" from="MovementIdle" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="stop"]

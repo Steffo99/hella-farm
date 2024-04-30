@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://gl4umoff474y"]
+[gd_scene load_steps=23 format=3 uid="uid://gl4umoff474y"]
 
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_a8ato"]
 [ext_resource type="Script" path="res://entities/cthulhu.gd" id="1_b55wc"]
 [ext_resource type="Texture2D" uid="uid://17komk2y0f4e" path="res://entities/cthulhu_left.png" id="2_13vnj"]
 [ext_resource type="Texture2D" uid="uid://bs6es4d3fvunw" path="res://entities/cthulhu_right.png" id="4_1wxgg"]
 [ext_resource type="Texture2D" uid="uid://6revaeis55q1" path="res://entities/cthulhu_drag_left.png" id="5_6ho60"]
+[ext_resource type="Texture2D" uid="uid://deqvgvf66grr4" path="res://entities/top_hat.png" id="5_a1p2d"]
+[ext_resource type="Texture2D" uid="uid://d3tb6ypb36v8e" path="res://entities/monocle.png" id="6_04snb"]
 [ext_resource type="Texture2D" uid="uid://b0tlt1tgukajd" path="res://entities/cthulhu_drag_right.png" id="6_behik"]
 [ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="6_truco"]
 [ext_resource type="PackedScene" uid="uid://rx24bppccih7" path="res://behaviours/move_physics.tscn" id="8_mvkr6"]
@@ -12,6 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="10_c36ur"]
 [ext_resource type="AudioStream" uid="uid://d0feiq5s6fnux" path="res://entities/imp_drag.wav" id="11_jt7u1"]
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="12_v8da5"]
+[ext_resource type="PackedScene" uid="uid://jg7qkbswgqjc" path="res://behaviours/eater.tscn" id="15_vopba"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wjkbi"]
+radius = 56.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uw0y6"]
 radius = 50.0
@@ -200,6 +206,42 @@ texture = ExtResource("2_13vnj")
 left_texture = ExtResource("2_13vnj")
 right_texture = ExtResource("4_1wxgg")
 
+[node name="TopHatter" parent="SpriteFocus/Sprite" instance=ExtResource("15_vopba")]
+unique_name_in_owner = true
+position = Vector2(0, -6)
+scale = Vector2(0.5, 0.5)
+acceptable_diets = Array[StringName]([&"TopHat"])
+target = 1
+
+[node name="Sprite" type="Sprite2D" parent="SpriteFocus/Sprite/TopHatter"]
+visible = false
+z_index = 1
+position = Vector2(1, -54)
+scale = Vector2(2, 2)
+texture = ExtResource("5_a1p2d")
+
+[node name="Shape" type="CollisionShape2D" parent="SpriteFocus/Sprite/TopHatter"]
+shape = SubResource("CircleShape2D_wjkbi")
+debug_color = Color(1, 0, 0, 0)
+
+[node name="Monocler" parent="SpriteFocus/Sprite" instance=ExtResource("15_vopba")]
+unique_name_in_owner = true
+position = Vector2(0, -6)
+scale = Vector2(0.5, 0.5)
+acceptable_diets = Array[StringName]([&"Monocle"])
+target = 1
+
+[node name="Sprite" type="Sprite2D" parent="SpriteFocus/Sprite/Monocler"]
+visible = false
+z_index = 1
+position = Vector2(10, -19)
+scale = Vector2(2, 2)
+texture = ExtResource("6_04snb")
+
+[node name="Shape" type="CollisionShape2D" parent="SpriteFocus/Sprite/Monocler"]
+shape = SubResource("CircleShape2D_wjkbi")
+debug_color = Color(1, 0, 0, 0)
+
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 36)
 shape = SubResource("CircleShape2D_uw0y6")
@@ -237,6 +279,10 @@ bus = &"DragSounds"
 stream = ExtResource("12_v8da5")
 bus = &"FallSounds"
 
+[connection signal="eaten" from="SpriteFocus/Sprite/TopHatter" to="." method="_on_eater_eaten"]
+[connection signal="goal_reached" from="SpriteFocus/Sprite/TopHatter" to="SpriteFocus/Sprite/TopHatter/Sprite" method="show"]
+[connection signal="eaten" from="SpriteFocus/Sprite/Monocler" to="." method="_on_eater_eaten"]
+[connection signal="goal_reached" from="SpriteFocus/Sprite/Monocler" to="SpriteFocus/Sprite/Monocler/Sprite" method="show"]
 [connection signal="dragged" from="MovementDrag" to="." method="_on_dragged"]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_alternative" unbinds=1]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragSound" method="play" unbinds=1]

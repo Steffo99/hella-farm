@@ -26,3 +26,6 @@ func _on_fallen() -> void:
 	z_index =  Enums.ZIndex.EntityGround
 	y_sort_enabled = true
 	animator.play(&"RESET")
+
+func _on_eater_eaten(edible: Edible) -> void:
+	edible.get_parent().queue_free()

@@ -13,7 +13,11 @@ func handle_move(movement: Vector2):
 		discrim = last_discrim
 	if discrim > 0:
 		texture = right_texture
+		for child in get_children():
+			child.scale.x = -abs(child.scale.x)
 		last_discrim = discrim
 	elif discrim < 0:
 		texture = left_texture
+		for child in get_children():
+			child.scale.x = abs(child.scale.x)
 		last_discrim = discrim
