@@ -25,13 +25,15 @@ debug_color = Color(0, 0.411765, 0, 0)
 [node name="GoldDisplay" parent="." instance=ExtResource("2_5c4iq")]
 unique_name_in_owner = true
 
-[node name="SheepSpawner" type="Node2D" parent="." node_paths=PackedStringArray("blocking_tracker")]
+[node name="SheepSpawner" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_tutfd")
 scene = ExtResource("4_7isfg")
-blocking_tracker = NodePath("Tracker")
 
 [node name="Tracker" parent="SheepSpawner" instance=ExtResource("5_ewy4o")]
 
 [node name="Shape" type="CollisionShape2D" parent="SheepSpawner/Tracker"]
 shape = SubResource("CircleShape2D_dc2ul")
+
+[connection signal="empty" from="SheepSpawner/Tracker" to="SheepSpawner" method="enable"]
+[connection signal="tracked" from="SheepSpawner/Tracker" to="SheepSpawner" method="disable" unbinds=1]

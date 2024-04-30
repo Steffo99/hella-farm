@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cmemgijh6nfmk"]
+[gd_scene load_steps=40 format=3 uid="uid://cmemgijh6nfmk"]
 
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_11voy"]
 [ext_resource type="Script" path="res://entities/chupacabra.gd" id="1_s4qg1"]
@@ -9,15 +9,19 @@
 [ext_resource type="Texture2D" uid="uid://deqvgvf66grr4" path="res://entities/top_hat.png" id="5_qjgou"]
 [ext_resource type="Texture2D" uid="uid://do1nfcfcs6jgx" path="res://entities/chupacabra_drag_right.png" id="6_kmadh"]
 [ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="6_qsds3"]
+[ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="7_hdgjp"]
 [ext_resource type="PackedScene" uid="uid://ccul07w0h36nu" path="res://behaviours/sacrificable.tscn" id="7_igror"]
 [ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="7_nq78n"]
 [ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="8_7fxrt"]
+[ext_resource type="PackedScene" uid="uid://8ejgwtkpaa44" path="res://entities/top_hat.tscn" id="8_fa8aq"]
 [ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="9_7i81t"]
 [ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/cursor_detector.tscn" id="10_3wu3x"]
+[ext_resource type="PackedScene" uid="uid://b04xhv32ypi42" path="res://entities/monocle.tscn" id="10_k033w"]
 [ext_resource type="PackedScene" uid="uid://rx24bppccih7" path="res://behaviours/move_physics.tscn" id="12_oildi"]
 [ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="13_vh42q"]
 [ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="13_wcydr"]
 [ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="14_mk76g"]
+[ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="14_nw8pn"]
 [ext_resource type="AudioStream" uid="uid://d0feiq5s6fnux" path="res://entities/imp_drag.wav" id="14_u2uf4"]
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="15_q7bw3"]
 [ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="15_xay6p"]
@@ -392,6 +396,10 @@ texture = ExtResource("5_qjgou")
 shape = SubResource("CircleShape2D_binyt")
 debug_color = Color(1, 0, 0, 0)
 
+[node name="Spawner" parent="Sprite/TopHatter" instance=ExtResource("7_hdgjp")]
+scene = ExtResource("8_fa8aq")
+enabled = false
+
 [node name="Monocler" parent="Sprite" instance=ExtResource("16_ltvqn")]
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
@@ -409,6 +417,10 @@ texture = ExtResource("5_bcm2q")
 shape = SubResource("CircleShape2D_binyt")
 debug_color = Color(1, 0, 0, 0)
 
+[node name="Spawner" parent="Sprite/Monocler" instance=ExtResource("7_hdgjp")]
+scene = ExtResource("10_k033w")
+enabled = false
+
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_mnexs")
 
@@ -424,6 +436,15 @@ next/sit = &"sit"
 
 [node name="Sacrificable" parent="." instance=ExtResource("7_igror")]
 kind = &"Chupacabra"
+
+[node name="GoldSpawner" parent="." instance=ExtResource("7_hdgjp")]
+scene = ExtResource("14_nw8pn")
+
+[node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("6_qsds3")]
+autostart = true
+mean_secs = 3.0
+min_secs = 0.6
+max_secs = 6.0
 
 [node name="MovementSampler" parent="." instance=ExtResource("7_nq78n")]
 
@@ -525,10 +546,15 @@ stream = ExtResource("17_ccla5")
 bus = &"KillSounds"
 
 [connection signal="eaten" from="Sprite/TopHatter" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="Sprite/TopHatter" to="Sprite/TopHatter/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sprite" method="show"]
+[connection signal="tree_exiting" from="Sprite/TopHatter/Spawner" to="Sprite/TopHatter/Spawner" method="spawn"]
 [connection signal="eaten" from="Sprite/Monocler" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="Sprite/Monocler" to="Sprite/Monocler/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sprite" method="show"]
+[connection signal="tree_exiting" from="Sprite/Monocler/Spawner" to="Sprite/Monocler/Spawner" method="spawn"]
 [connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
+[connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]
 [connection signal="move" from="MovementIdle" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="stop"]
 [connection signal="move_enabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="start"]

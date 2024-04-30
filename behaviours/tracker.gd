@@ -7,6 +7,7 @@ class_name Tracker
 
 signal tracked(body: Node2D)
 signal untracked(body: Node2D)
+signal empty
 
 var tracking: Array = []
 
@@ -32,6 +33,8 @@ func untrack(body: Node2D) -> bool:
 	if act:
 		tracking.erase(body)
 		untracked.emit(body)
+		if tracking.is_empty():
+			empty.emit()
 		# Handle TrackerTracker
 		for tracker_tracker in body.find_children("*", "TrackerTracker", true, false):
 			tracker_tracker.untrack(self)

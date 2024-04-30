@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://4d3ksr3171x4"]
+[gd_scene load_steps=37 format=3 uid="uid://4d3ksr3171x4"]
 
 [ext_resource type="Script" path="res://entities/imp.gd" id="1_dixpc"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_eqcdi"]
@@ -13,7 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="7_ech8d"]
 [ext_resource type="PackedScene" uid="uid://ccul07w0h36nu" path="res://behaviours/sacrificable.tscn" id="7_gg20m"]
 [ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="8_ffcw0"]
+[ext_resource type="PackedScene" uid="uid://8ejgwtkpaa44" path="res://entities/top_hat.tscn" id="8_m3as1"]
 [ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="9_2wb1b"]
+[ext_resource type="PackedScene" uid="uid://b04xhv32ypi42" path="res://entities/monocle.tscn" id="10_gikey"]
 [ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="10_phvea"]
 [ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="11_4ra22"]
 [ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="12_dr2oe"]
@@ -261,6 +263,10 @@ texture = ExtResource("5_w4u6a")
 shape = SubResource("CircleShape2D_6l0s5")
 debug_color = Color(1, 0, 0, 0)
 
+[node name="Spawner" parent="Sprite/TopHatter" instance=ExtResource("4_d8lgm")]
+scene = ExtResource("8_m3as1")
+enabled = false
+
 [node name="Monocler" parent="Sprite" instance=ExtResource("14_w2h8x")]
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
@@ -277,6 +283,10 @@ texture = ExtResource("6_jebbv")
 [node name="Shape" type="CollisionShape2D" parent="Sprite/Monocler"]
 shape = SubResource("CircleShape2D_6l0s5")
 debug_color = Color(1, 0, 0, 0)
+
+[node name="Spawner" parent="Sprite/Monocler" instance=ExtResource("4_d8lgm")]
+scene = ExtResource("10_gikey")
+enabled = false
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ide4n")
@@ -298,7 +308,6 @@ scene = ExtResource("5_yrfoq")
 [node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("10_phvea")]
 autostart = true
 mean_secs = 5.0
-deviation = 4.0
 min_secs = 1.0
 max_secs = 9.0
 
@@ -388,9 +397,13 @@ stream = ExtResource("19_7la6c")
 bus = &"KillSounds"
 
 [connection signal="eaten" from="Sprite/TopHatter" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="Sprite/TopHatter" to="Sprite/TopHatter/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sprite" method="show"]
+[connection signal="tree_exiting" from="Sprite/TopHatter/Spawner" to="Sprite/TopHatter/Spawner" method="spawn"]
 [connection signal="eaten" from="Sprite/Monocler" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="Sprite/Monocler" to="Sprite/Monocler/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sprite" method="show"]
+[connection signal="tree_exiting" from="Sprite/Monocler/Spawner" to="Sprite/Monocler/Spawner" method="spawn"]
 [connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
 [connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]
 [connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]
