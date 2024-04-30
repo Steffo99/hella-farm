@@ -69,8 +69,8 @@ func _input(event: InputEvent) -> void:
 			if event.pressed:
 				var counter: Counter = game.inventory.get_counter(&"Gold")
 				if counter.value >= sheep_spawn_cost:
-					counter.decrease(sheep_spawn_cost)
-					sheep_spawner.spawn()
+					if sheep_spawner.spawn():
+						counter.decrease(sheep_spawn_cost)
 
 
 func _physics_process(_delta: float) -> void:

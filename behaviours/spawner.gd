@@ -30,14 +30,15 @@ func disable():
 func spawn():
 	if not enabled:
 		spawn_blocked.emit()
-		return
+		return null
 	if not target:
 		target = MainGame.get_via_group(self).default_spawn_parent
 	if not target:
 		target = self
 	if not scene:
 		Log.w(self, "Not spawning, no scene is set.")
-		return
+		return null
 	var entity = scene.instantiate()
 	entity.global_position = global_position
 	target.add_child.call_deferred(entity)  # Not sure why this is needed.
+	return entity

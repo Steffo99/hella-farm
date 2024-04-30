@@ -28,12 +28,14 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_tt3v6")
 
 [node name="MagnetizeArea" parent="." instance=ExtResource("3_ne3sj")]
+collision_mask = 128
 
 [node name="Shape" type="CollisionShape2D" parent="MagnetizeArea"]
 shape = SubResource("CircleShape2D_w1h35")
 debug_color = Color(0.337255, 0.611765, 1, 0)
 
 [node name="CollectArea" parent="." instance=ExtResource("3_ne3sj")]
+collision_mask = 128
 
 [node name="Shape" type="CollisionShape2D" parent="CollectArea"]
 shape = SubResource("CircleShape2D_jm7yp")
