@@ -28,3 +28,5 @@ This project uses the following external assets:
 | `./entities/barn_coin_enter.ogg` | https://freesound.org/people/Nawer/sounds/711784/ | Attribution 4 |
 | `./entities/barn_coin_drop.ogg` | https://freesound.org/people/Nawer/sounds/711784/ | Attribution 4 |
 | `./behaviours/*.svg` | https://fontawesome.com/ | CC-BY 4.0 |
+| `./scenes/menu/jacquard.ttf` | https://github.com/scfried/soft-type-jacquard | OFL-1.1 |
+| `./scenes/menu/jacquarda.ttf` | https://github.com/scfried/soft-type-jacquarda-bastarda | OFL-1.1 |

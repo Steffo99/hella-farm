@@ -6,16 +6,18 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_jyg3q")
-starting_stage = 3
-
-[node name="PostprocessingCanvas" type="CanvasLayer" parent="."]
-
-[node name="PostprocessingRect" parent="PostprocessingCanvas" instance=ExtResource("2_shp84")]
+starting_stage = 1
 
 [node name="InterfaceCanvas" type="CanvasLayer" parent="."]
 
 [node name="SafeMarginContainer" parent="InterfaceCanvas" instance=ExtResource("2_ah6n8")]
+unique_name_in_owner = true
 min_margin_left = 16
 min_margin_right = 16
 min_margin_top = 16
 min_margin_bottom = 16
+
+[node name="PostprocessingCanvas" type="CanvasLayer" parent="."]
+
+[node name="PostprocessingRect" parent="PostprocessingCanvas" instance=ExtResource("2_shp84")]
+mouse_filter = 2

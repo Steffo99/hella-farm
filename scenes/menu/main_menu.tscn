@@ -1,6 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://3yqvhxeq03rk"]
+[gd_scene load_steps=9 format=3 uid="uid://3yqvhxeq03rk"]
 
 [ext_resource type="Script" path="res://scenes/menu/main_menu.gd" id="1_jkswn"]
+[ext_resource type="FontFile" uid="uid://camets1b3cocg" path="res://scenes/menu/jacquard.ttf" id="1_o1msi"]
+[ext_resource type="FontFile" uid="uid://co1i46v73s8ex" path="res://scenes/menu/jacquarda.ttf" id="2_7jyq2"]
+[ext_resource type="PackedScene" uid="uid://bc2bm8lbol18w" path="res://entities/sheep.tscn" id="4_2rc5j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_be3vx"]
+bg_color = Color(1, 0.45, 0.45, 0.607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryadt"]
+bg_color = Color(0.3, 0, 0, 0.607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibsol"]
+bg_color = Color(0.0627451, 0, 0, 0.745098)
+
+[sub_resource type="Theme" id="Theme_almu1"]
+Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("1_o1msi")
+Button/styles/hover = SubResource("StyleBoxFlat_be3vx")
+Button/styles/normal = SubResource("StyleBoxFlat_ryadt")
+Button/styles/pressed = SubResource("StyleBoxFlat_be3vx")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ibsol")
+RichTextLabel/fonts/bold_font = ExtResource("1_o1msi")
+RichTextLabel/fonts/normal_font = ExtResource("2_7jyq2")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,9 +31,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_almu1")
 script = ExtResource("1_jkswn")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Sheep" parent="." instance=ExtResource("4_2rc5j")]
+position = Vector2(308, 426)
+
+[node name="Sheep2" parent="." instance=ExtResource("4_2rc5j")]
+position = Vector2(216, 215)
+
+[node name="Sheep3" parent="." instance=ExtResource("4_2rc5j")]
+position = Vector2(1053, 468)
+
+[node name="Sheep4" parent="." instance=ExtResource("4_2rc5j")]
+position = Vector2(819, 152)
+
+[node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,12 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Layout" type="VBoxContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 alignment = 1
 
 [node name="Title" type="MarginContainer" parent="Panel/Layout"]
@@ -39,10 +69,10 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_vertical = 6
 bbcode_enabled = true
-text = "[center][font_size=144px]Garasauto[/font_size]
-[font_size=64px]Il casello del destino[/font_size]
+text = "[center][b][font_size=144px]Hella Farm[/font_size]
+[font_size=72px]Ludum Dare Fiftyfive[/font_size]
 
-[font_size=32px]Un gioco del Garasautomobileclub Italia[/font_size][/center]"
+[font_size=32px]By @meowcat, @sensei, @snowycoder, @steffo[/font_size][/b][/center]"
 fit_content = true
 
 [node name="Buttons" type="MarginContainer" parent="Panel/Layout"]
@@ -59,13 +89,11 @@ alignment = 1
 [node name="Play" type="Button" parent="Panel/Layout/Buttons/Layout"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
 text = "Play"
 
 [node name="Options" type="Button" parent="Panel/Layout/Buttons/Layout"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
 text = "Options"
 
 [connection signal="pressed" from="Panel/Layout/Buttons/Layout/Play" to="." method="_on_play_pressed"]

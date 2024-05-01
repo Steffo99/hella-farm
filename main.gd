@@ -3,7 +3,7 @@ class_name Main
 
 
 @onready var tree: SceneTree = get_tree()
-@onready var ui_container: Control = $"InterfaceCanvas/SafeMarginContainer"
+@onready var ui_container: Control = %"SafeMarginContainer"
 
 
 ## The possible states the game can be in.
