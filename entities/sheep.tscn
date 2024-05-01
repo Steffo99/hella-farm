@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=38 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b04xhv32ypi42" path="res://entities/monocle.tscn" id="10_dmfsp"]
 [ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="11_0jlmk"]
 [ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="12_c45uk"]
+[ext_resource type="PackedScene" uid="uid://b3gydtrenbw3n" path="res://entities/skull.tscn" id="12_lutsy"]
 [ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="12_x2g3x"]
 [ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/cursor_detector.tscn" id="13_5fkdr"]
 [ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="13_jf6em"]
@@ -245,6 +246,8 @@ debug_color = Color(1, 0, 0, 0)
 scene = ExtResource("8_d32x5")
 enabled = false
 
+[node name="Sacrificable" parent="Sprite/TopHatter" instance=ExtResource("8_43m1b")]
+
 [node name="Monocler" parent="Sprite" instance=ExtResource("22_lilpq")]
 unique_name_in_owner = true
 position = Vector2(0, 2)
@@ -267,8 +270,13 @@ debug_color = Color(1, 0, 0, 0)
 scene = ExtResource("10_dmfsp")
 enabled = false
 
+[node name="Sacrificable" parent="Sprite/Monocler" instance=ExtResource("8_43m1b")]
+
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c5tcn")
+
+[node name="Spawner" parent="." instance=ExtResource("7_5is0u")]
+scene = ExtResource("12_lutsy")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -361,6 +369,18 @@ debug_color = Color(1, 0.498039, 0, 0)
 [node name="TargetPicker" parent="MovementTrap/TrackerTrap" node_paths=PackedStringArray("tracker") instance=ExtResource("13_jf6em")]
 tracker = NodePath("..")
 
+[node name="MovementBarn" parent="." instance=ExtResource("10_05kcd")]
+speed = 66.0
+direction = Vector2(-1, 0)
+enabled = false
+
+[node name="BarnPriority" parent="MovementBarn" instance=ExtResource("11_0jlmk")]
+alternative_priority = 47
+
+[node name="ExitedTimer" type="Timer" parent="MovementBarn"]
+wait_time = 2.0
+one_shot = true
+
 [node name="MovementDrag" parent="." instance=ExtResource("14_3wojv")]
 enabled = false
 
@@ -382,26 +402,18 @@ bus = &"DragSounds"
 stream = ExtResource("17_8kst2")
 bus = &"FallSounds"
 
-[node name="MovementBarn" parent="." instance=ExtResource("10_05kcd")]
-speed = 66.0
-direction = Vector2(-1, 0)
-enabled = false
-
-[node name="BarnPriority" parent="MovementBarn" instance=ExtResource("11_0jlmk")]
-alternative_priority = 60
-
-[node name="ExitedTimer" type="Timer" parent="MovementBarn"]
-wait_time = 2.0
-one_shot = true
-
 [connection signal="eaten" from="Sprite/TopHatter" to="." method="_on_eater_eaten"]
-[connection signal="eaten" from="Sprite/TopHatter" to="Sprite/TopHatter/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sprite" method="show"]
+[connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Spawner" method="enable"]
 [connection signal="tree_exiting" from="Sprite/TopHatter/Spawner" to="Sprite/TopHatter/Spawner" method="spawn"]
+[connection signal="sacrificed" from="Sprite/TopHatter/Sacrificable" to="." method="queue_free"]
 [connection signal="eaten" from="Sprite/Monocler" to="." method="_on_eater_eaten"]
-[connection signal="eaten" from="Sprite/Monocler" to="Sprite/Monocler/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sprite" method="show"]
+[connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Spawner" method="enable"]
+[connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sacrificable" method="set_kind" binds= [&"Monocle"]]
 [connection signal="tree_exiting" from="Sprite/Monocler/Spawner" to="Sprite/Monocler/Spawner" method="spawn"]
+[connection signal="sacrificed" from="Sprite/Monocler/Sacrificable" to="." method="queue_free"]
+[connection signal="eaten" from="Edible" to="Spawner" method="roll_spawn" binds= [11]]
 [connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
 [connection signal="move" from="MovementIdle" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementIdle" to="MovementIdle/BoredTimer" method="stop"]
@@ -433,6 +445,11 @@ one_shot = true
 [connection signal="untracked" from="MovementTrap/TrackerTrap" to="MovementTrap/TrackerTrap/TargetPicker" method="clear_if_target"]
 [connection signal="target_changed" from="MovementTrap/TrackerTrap/TargetPicker" to="MovementTrap" method="set_target" unbinds=1]
 [connection signal="target_changed" from="MovementTrap/TrackerTrap/TargetPicker" to="MovementTrap/TrackerTrap/TargetPicker" method="sample_target_if_null" unbinds=2]
+[connection signal="move" from="MovementBarn" to="." method="_on_move"]
+[connection signal="move_disabled" from="MovementBarn" to="MovementBarn/BarnPriority" method="priority_default"]
+[connection signal="move_disabled" from="MovementBarn" to="MovementBarn/ExitedTimer" method="stop"]
+[connection signal="move_enabled" from="MovementBarn" to="MovementBarn/ExitedTimer" method="start"]
+[connection signal="timeout" from="MovementBarn/ExitedTimer" to="MovementBarn/BarnPriority" method="priority_default"]
 [connection signal="dragged" from="MovementDrag" to="." method="_on_dragged"]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_alternative" unbinds=1]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragSound" method="play" unbinds=1]
@@ -443,7 +460,3 @@ one_shot = true
 [connection signal="move_enabled" from="MovementDrag" to="MovementWander" method="clear_direction"]
 [connection signal="dragged" from="MovementDrag/Draggable" to="MovementDrag" method="drag"]
 [connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="drop"]
-[connection signal="move" from="MovementBarn" to="." method="_on_move"]
-[connection signal="move_disabled" from="MovementBarn" to="MovementBarn/ExitedTimer" method="stop"]
-[connection signal="move_enabled" from="MovementBarn" to="MovementBarn/ExitedTimer" method="start"]
-[connection signal="timeout" from="MovementBarn/ExitedTimer" to="MovementBarn/BarnPriority" method="priority_default"]

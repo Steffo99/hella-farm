@@ -358,7 +358,7 @@ size = Vector2(11, 62)
 size = Vector2(140, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ike4"]
-size = Vector2(121, 62)
+size = Vector2(73, 62)
 
 [node name="Barn" type="StaticBody2D"]
 collision_layer = 88
@@ -366,6 +366,7 @@ collision_mask = 4
 script = ExtResource("1_ny8oq")
 
 [node name="BarnWallFront" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(8, -58)
 scale = Vector2(2, 2)
 texture = ExtResource("1_4a825")
@@ -377,6 +378,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_86ic0")
 
 [node name="BarnRoofFront" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(8, -58)
 scale = Vector2(2, 2)
 texture = ExtResource("3_l2mr8")
@@ -474,7 +476,7 @@ debug_color = Color(0.584314, 0.380392, 1, 0.243137)
 unique_name_in_owner = true
 
 [node name="Shape" type="CollisionShape2D" parent="BlockedTracker"]
-position = Vector2(26.5, -31)
+position = Vector2(50.5, -31)
 shape = SubResource("RectangleShape2D_0ike4")
 debug_color = Color(0.733333, 0.447059, 0.411765, 0.419608)
 

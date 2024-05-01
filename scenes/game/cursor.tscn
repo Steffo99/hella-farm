@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://col1q3elvkfwk"]
+[gd_scene load_steps=6 format=3 uid="uid://col1q3elvkfwk"]
 
 [ext_resource type="Script" path="res://scenes/game/cursor.gd" id="1_1og6v"]
 [ext_resource type="PackedScene" uid="uid://cu750c7yd57qa" path="res://scenes/game/gold_display.tscn" id="2_5c4iq"]
+[ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="3_k7vj5"]
+[ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="4_45u12"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ky4x"]
 radius = 8.0
@@ -18,3 +20,7 @@ debug_color = Color(0, 0.411765, 0, 0)
 
 [node name="GoldDisplay" parent="." instance=ExtResource("2_5c4iq")]
 unique_name_in_owner = true
+
+[node name="CheatGoldSpawner" parent="." instance=ExtResource("3_k7vj5")]
+unique_name_in_owner = true
+scene = ExtResource("4_45u12")

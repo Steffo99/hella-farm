@@ -43,3 +43,7 @@ func spawn():
 	target.add_child.call_deferred(entity)  # Not sure why this is needed.
 	spawned.emit(entity)
 	return entity
+
+func roll_spawn(odds: int):
+	if Random.rng.randi_range(0, odds - 1) == 0:
+		spawn()

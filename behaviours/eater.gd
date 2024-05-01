@@ -22,6 +22,12 @@ var count: int = 0
 func log_eaten(edible: Edible) -> void:
 	Log.p(self, "Eaten: %s" % edible)
 
+func plus_one():
+	count += 1
+	if count == target:
+		goal_reached.emit()
+
+
 
 func _on_body_entered(body: Node2D) -> void:
 	var edibles: Array = body.find_children("Edible", "Edible", false, false)
@@ -29,6 +35,4 @@ func _on_body_entered(body: Node2D) -> void:
 		if edible.diet in acceptable_diets:
 			eaten.emit(edible)
 			edible.eat()
-			count += 1
-			if count == target:
-				goal_reached.emit()
+			plus_one()

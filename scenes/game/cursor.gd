@@ -10,7 +10,7 @@ signal dropped(node: Draggable)
 
 @onready var game: MainGame = MainGame.get_via_group(self)
 @onready var gold_display: GoldDisplay = %"GoldDisplay"
-@onready var sheep_spawner: Spawner = %"SheepSpawner"
+@onready var cheat_gold_spawner: Spawner = %"CheatGoldSpawner"
 
 var dragging: Draggable = null
 
@@ -66,3 +66,5 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 	position += (game.camera.get_global_mouse_position() - global_position)
+	if Input.is_action_pressed(&"cheat_gold"):
+		cheat_gold_spawner.spawn()

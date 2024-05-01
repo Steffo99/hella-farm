@@ -2,8 +2,9 @@ extends Node2D
 class_name MainGame
 
 
+@export var default_spawn_parent: Node2D
+
 @onready var camera: GameCamera = $"GameCamera"
-@onready var default_spawn_parent: Node2D = %"DefaultSpawnParent"
 @onready var inventory: Inventory = %"Inventory"
 @onready var cursor: Cursor = %"Cursor"
 @onready var music: Music = %"Music"

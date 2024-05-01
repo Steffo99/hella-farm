@@ -40,6 +40,18 @@ position = Vector2(75, 62)
 
 [node name="Recipes" type="Node" parent="."]
 
+[node name="FiveTopHats" parent="Recipes" instance=ExtResource("5_jbk35")]
+mode = 2
+ingredients = Array[StringName]([&"TopHat", &"TopHat", &"TopHat", &"TopHat", &"TopHat"])
+
+[node name="FiveMonocles" parent="Recipes" instance=ExtResource("5_jbk35")]
+mode = 2
+ingredients = Array[StringName]([&"Monocle", &"Monocle", &"Monocle", &"Monocle", &"Monocle"])
+
+[node name="ASkull" parent="Recipes" instance=ExtResource("5_jbk35")]
+mode = 1
+ingredients = Array[StringName]([&"Skull"])
+
 [node name="FiveSheep" parent="Recipes" instance=ExtResource("5_jbk35")]
 mode = 2
 ingredients = Array[StringName]([&"Sheep", &"Sheep", &"Sheep", &"Sheep", &"Sheep"])
@@ -70,6 +82,9 @@ scene = ExtResource("8_jtxan")
 [node name="Cthulhu" parent="Spawners" instance=ExtResource("2_xq0wr")]
 scene = ExtResource("9_wli14")
 
+[connection signal="matched" from="Recipes/FiveTopHats" to="Spawners/Watcher" method="spawn" unbinds=1]
+[connection signal="matched" from="Recipes/FiveMonocles" to="Spawners/Watcher" method="spawn" unbinds=1]
+[connection signal="matched" from="Recipes/ASkull" to="Spawners/Chupacabra" method="spawn" unbinds=1]
 [connection signal="matched" from="Recipes/FiveSheep" to="Spawners/Imp" method="spawn" unbinds=1]
 [connection signal="matched" from="Recipes/FiveImps" to="Spawners/Chupacabra" method="spawn" unbinds=1]
 [connection signal="matched" from="Recipes/FiveChupacabras" to="Spawners/Watcher" method="spawn" unbinds=1]

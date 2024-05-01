@@ -13,5 +13,8 @@ signal sacrificed
 @export var kind: StringName = &""
 
 
+func set_kind(value: StringName) -> void:
+	kind = value
+
 func sacrifice():
 	sacrificed.emit()

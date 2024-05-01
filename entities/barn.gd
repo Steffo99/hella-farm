@@ -21,6 +21,8 @@ func _on_roof_input(_viewport: Node, event: InputEvent, _shape_idx: int) -> void
 		return
 	if not event.pressed:
 		return
+	if animator.is_playing():
+		return
 	gold_counter.decrease(5)
 	animator.play(&"coin")
 
@@ -31,3 +33,8 @@ func _on_animation_finished(anim_name:StringName) -> void:
 func _on_sheep_spawned(entity: Node2D) -> void:
 	Log.p(self, "%s" % entity)
 	entity.get_node("MovementBarn/BarnPriority").priority_alternative()
+	animator.speed_scale += 0.04
+	if Random.rng.randi_range(0, 20) == 0:
+		entity.get_node("Sprite/TopHatter").plus_one()
+	if Random.rng.randi_range(0, 20) == 0:
+		entity.get_node("Sprite/Monocler").plus_one()

@@ -62,11 +62,15 @@ func _on_sacrifice_changed(_entity: Node2D) -> void:
 	entities.assign(
 		stones.map(func(stone): return stone.entity)
 	)
+	for stone in stones:
+		if stone.entity == null:
+			return
 	for recipe in recipes:
 		if recipe.do_match(entities):
 			break
 
 func _on_recipe_matched(m: SummoningRecipe.Match, recipe: SummoningRecipe) -> void:
 	recipe_matched.emit(m, recipe)
-	for sacrificable in m.sacrificables:
-		sacrificable.sacrifice()
+	for stone in stones:
+		for sacrificable in stone.entity.find_children("*", "Sacrificable", true, false):
+			sacrificable.sacrifice()

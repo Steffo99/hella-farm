@@ -268,6 +268,8 @@ debug_color = Color(1, 0, 0, 0)
 scene = ExtResource("8_m3as1")
 enabled = false
 
+[node name="Sacrificable" parent="Sprite/TopHatter" instance=ExtResource("7_gg20m")]
+
 [node name="Monocler" parent="Sprite" instance=ExtResource("14_w2h8x")]
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
@@ -288,6 +290,8 @@ debug_color = Color(1, 0, 0, 0)
 [node name="Spawner" parent="Sprite/Monocler" instance=ExtResource("4_d8lgm")]
 scene = ExtResource("10_gikey")
 enabled = false
+
+[node name="Sacrificable" parent="Sprite/Monocler" instance=ExtResource("7_gg20m")]
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ide4n")
@@ -311,9 +315,9 @@ scene = ExtResource("5_yrfoq")
 
 [node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("10_phvea")]
 autostart = true
-mean_secs = 5.0
+mean_secs = 3.0
 min_secs = 1.0
-max_secs = 9.0
+max_secs = 5.0
 
 [node name="MovementSampler" parent="." instance=ExtResource("7_ech8d")]
 
@@ -403,11 +407,15 @@ bus = &"KillSounds"
 [connection signal="eaten" from="Sprite/TopHatter" to="." method="_on_eater_eaten"]
 [connection signal="eaten" from="Sprite/TopHatter" to="Sprite/TopHatter/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sprite" method="show"]
+[connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sacrificable" method="set_kind" binds= [&"Monocle"]]
 [connection signal="tree_exiting" from="Sprite/TopHatter/Spawner" to="Sprite/TopHatter/Spawner" method="spawn"]
+[connection signal="sacrificed" from="Sprite/TopHatter/Sacrificable" to="." method="queue_free"]
 [connection signal="eaten" from="Sprite/Monocler" to="." method="_on_eater_eaten"]
 [connection signal="eaten" from="Sprite/Monocler" to="Sprite/Monocler/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sprite" method="show"]
+[connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sacrificable" method="set_kind" binds= [&"Monocle"]]
 [connection signal="tree_exiting" from="Sprite/Monocler/Spawner" to="Sprite/Monocler/Spawner" method="spawn"]
+[connection signal="sacrificed" from="Sprite/Monocler/Sacrificable" to="." method="queue_free"]
 [connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
 [connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]
 [connection signal="changed_direction" from="MovementWander" to="MovementWander/WanderPriority" method="priority_conditional"]

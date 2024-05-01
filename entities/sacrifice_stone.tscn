@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddpo03rb6068c"]
+[gd_scene load_steps=6 format=3 uid="uid://ddpo03rb6068c"]
 
 [ext_resource type="Script" path="res://entities/sacrifice_stone.gd" id="1_sgl1t"]
 [ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="1_y58y4"]
@@ -7,9 +7,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yv6hf"]
 radius = 8.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_55alx"]
-size = Vector2(150, 150)
 
 [node name="SacrificeStone" type="Node2D"]
 y_sort_enabled = true
@@ -43,16 +40,6 @@ z_index = 1
 shape = SubResource("CircleShape2D_yv6hf")
 one_way_collision_margin = 27.5
 debug_color = Color(1, 0, 0, 0)
-
-[node name="ForbidSpawn" type="Area2D" parent="."]
-position = Vector2(0, -29)
-collision_layer = 64
-collision_mask = 0
-monitoring = false
-
-[node name="Shape" type="CollisionShape2D" parent="ForbidSpawn"]
-shape = SubResource("RectangleShape2D_55alx")
-debug_color = Color(0.733333, 0.447059, 0.411765, 0.419608)
 
 [connection signal="tracked" from="StoneArea/SacrificeTracker" to="." method="_on_tracked"]
 [connection signal="untracked" from="StoneArea/SacrificeTracker" to="." method="_on_untracked"]
