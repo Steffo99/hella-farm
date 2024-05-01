@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dnjtduk0hla3f"]
+[gd_scene load_steps=39 format=3 uid="uid://dnjtduk0hla3f"]
 
 [ext_resource type="Script" path="res://entities/watcher.gd" id="1_brahc"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_thu73"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="11_20lvf"]
 [ext_resource type="AudioStream" uid="uid://d0feiq5s6fnux" path="res://entities/imp_drag.wav" id="11_rydo5"]
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="12_0h21e"]
+[ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="13_lowgs"]
 [ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="14_cfqh8"]
 [ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="14_qtr50"]
 [ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="15_ihnef"]
@@ -305,6 +306,9 @@ libraries = {
 }
 next/drag_loop = &"drag_loop"
 next/drag_start = &"drag_loop"
+
+[node name="Edible" parent="." instance=ExtResource("13_lowgs")]
+diet = &"Demon"
 
 [node name="Sacrificable" parent="." instance=ExtResource("7_lxtqq")]
 kind = &"Watcher"

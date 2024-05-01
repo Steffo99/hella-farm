@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://4d3ksr3171x4"]
+[gd_scene load_steps=38 format=3 uid="uid://4d3ksr3171x4"]
 
 [ext_resource type="Script" path="res://entities/imp.gd" id="1_dixpc"]
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="2_eqcdi"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="10_phvea"]
 [ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="11_4ra22"]
 [ext_resource type="PackedScene" uid="uid://ctpn4hvkhxoi3" path="res://behaviours/tracker_edible.tscn" id="12_dr2oe"]
+[ext_resource type="PackedScene" uid="uid://dfdr3e32lohq" path="res://behaviours/edible.tscn" id="13_43t3r"]
 [ext_resource type="PackedScene" uid="uid://dti7l0d40hhgt" path="res://behaviours/target_picker.tscn" id="13_mwxuf"]
 [ext_resource type="PackedScene" uid="uid://rx24bppccih7" path="res://behaviours/move_physics.tscn" id="14_p3w0g"]
 [ext_resource type="PackedScene" uid="uid://jg7qkbswgqjc" path="res://behaviours/eater.tscn" id="14_w2h8x"]
@@ -298,6 +299,9 @@ libraries = {
 }
 next/drag_loop = &"drag_loop"
 next/drag_start = &"drag_loop"
+
+[node name="Edible" parent="." instance=ExtResource("13_43t3r")]
+diet = &"Demon"
 
 [node name="Sacrificable" parent="." instance=ExtResource("7_gg20m")]
 kind = &"Imp"
