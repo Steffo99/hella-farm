@@ -924,9 +924,6 @@ y_sort_enabled = true
 [node name="Barn" parent="Entities" instance=ExtResource("20_tek4w")]
 position = Vector2(530, -217)
 
-[node name="Animator" parent="Entities/Barn" index="5"]
-speed_scale = 8.0
-
 [node name="Tree" parent="Entities" instance=ExtResource("18_r8twr")]
 position = Vector2(-198, -21)
 
@@ -1084,5 +1081,3 @@ position = Vector2(-160, 420)
 position = Vector2(120, 480)
 
 [connection signal="recipe_matched" from="Entities/SummoningCirclePentagram" to="." method="_on_recipe_matched"]
-
-[editable path="Entities/Barn"]
