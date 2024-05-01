@@ -382,6 +382,18 @@ bus = &"DragSounds"
 stream = ExtResource("17_8kst2")
 bus = &"FallSounds"
 
+[node name="MovementBarn" parent="." instance=ExtResource("10_05kcd")]
+speed = 66.0
+direction = Vector2(-1, 0)
+enabled = false
+
+[node name="BarnPriority" parent="MovementBarn" instance=ExtResource("11_0jlmk")]
+alternative_priority = 60
+
+[node name="ExitedTimer" type="Timer" parent="MovementBarn"]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="eaten" from="Sprite/TopHatter" to="." method="_on_eater_eaten"]
 [connection signal="eaten" from="Sprite/TopHatter" to="Sprite/TopHatter/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sprite" method="show"]
@@ -431,3 +443,7 @@ bus = &"FallSounds"
 [connection signal="move_enabled" from="MovementDrag" to="MovementWander" method="clear_direction"]
 [connection signal="dragged" from="MovementDrag/Draggable" to="MovementDrag" method="drag"]
 [connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="drop"]
+[connection signal="move" from="MovementBarn" to="." method="_on_move"]
+[connection signal="move_disabled" from="MovementBarn" to="MovementBarn/ExitedTimer" method="stop"]
+[connection signal="move_enabled" from="MovementBarn" to="MovementBarn/ExitedTimer" method="start"]
+[connection signal="timeout" from="MovementBarn/ExitedTimer" to="MovementBarn/BarnPriority" method="priority_default"]

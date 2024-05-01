@@ -1,0 +1,489 @@
+[gd_scene load_steps=20 format=3 uid="uid://cn0p5s44h86px"]
+
+[ext_resource type="Texture2D" uid="uid://bihburr5m7inq" path="res://entities/barn_wall_front.png" id="1_4a825"]
+[ext_resource type="Script" path="res://entities/barn.gd" id="1_ny8oq"]
+[ext_resource type="Texture2D" uid="uid://p6vg6dgj4ypb" path="res://entities/barn_wall_back.png" id="2_86ic0"]
+[ext_resource type="Texture2D" uid="uid://bjg4c6uxwasiw" path="res://entities/barn_roof_front.png" id="3_l2mr8"]
+[ext_resource type="Texture2D" uid="uid://ch44qud0c5alj" path="res://entities/barn_roof_back.png" id="4_2rw2x"]
+[ext_resource type="PackedScene" uid="uid://8jkesanu4hrn" path="res://behaviours/tracker.tscn" id="6_x01u8"]
+[ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="7_07yq6"]
+[ext_resource type="AudioStream" uid="uid://yxokdio25nm8" path="res://entities/barn_coin_enter.ogg" id="7_ecg3r"]
+[ext_resource type="PackedScene" uid="uid://bc2bm8lbol18w" path="res://entities/sheep.tscn" id="8_kgtsi"]
+[ext_resource type="AudioStream" uid="uid://dbj3ctst1tbuo" path="res://entities/barn_coin_drop.ogg" id="8_smljs"]
+[ext_resource type="Texture2D" uid="uid://bfl0tkg85cvb8" path="res://entities/gold.png" id="9_4flhr"]
+
+[sub_resource type="Animation" id="Animation_p5d5r"]
+resource_name = "coin"
+length = 2.0
+step = 0.13
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coins/Coin1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coins/Coin1:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.52),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 56)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coins/Coin2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Coins/Coin2:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.26, 0.78),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 56)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Coins/Coin3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.52),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Coins/Coin3:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.52, 1.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 56)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Coins/Coin4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.78),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Coins/Coin4:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.78, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 56)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Coins/Coin5:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Coins/Coin5:position")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.04, 1.56),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 56)]
+}
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Coins/Coin1/Sound1")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_ecg3r")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_smljs")
+}],
+"times": PackedFloat32Array(0, 0.52)
+}
+tracks/10/use_blend = true
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Coins/Coin2/Sound2")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_smljs")
+}],
+"times": PackedFloat32Array(0.78)
+}
+tracks/11/use_blend = true
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Coins/Coin3/Sound3")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_smljs")
+}],
+"times": PackedFloat32Array(1.04)
+}
+tracks/12/use_blend = true
+tracks/13/type = "audio"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Coins/Coin4/Sound4")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_smljs")
+}],
+"times": PackedFloat32Array(1.3)
+}
+tracks/13/use_blend = true
+tracks/14/type = "audio"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Coins/Coin5/Sound5")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_smljs")
+}],
+"times": PackedFloat32Array(1.56)
+}
+tracks/14/use_blend = true
+
+[sub_resource type="Animation" id="Animation_ofgwt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coins/Coin1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coins/Coin1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coins/Coin2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Coins/Coin2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Coins/Coin3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Coins/Coin3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Coins/Coin4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Coins/Coin4:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Coins/Coin5:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Coins/Coin5:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vvq7g"]
+_data = {
+"RESET": SubResource("Animation_ofgwt"),
+"coin": SubResource("Animation_p5d5r")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lwl1"]
+size = Vector2(132, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8xvy"]
+size = Vector2(132, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpwqc"]
+size = Vector2(11, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bxxn"]
+size = Vector2(140, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ike4"]
+size = Vector2(121, 62)
+
+[node name="Barn" type="StaticBody2D"]
+collision_layer = 88
+collision_mask = 4
+script = ExtResource("1_ny8oq")
+
+[node name="BarnWallFront" type="Sprite2D" parent="."]
+position = Vector2(8, -58)
+scale = Vector2(2, 2)
+texture = ExtResource("1_4a825")
+
+[node name="BarnWallBack" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(8, -58)
+scale = Vector2(2, 2)
+texture = ExtResource("2_86ic0")
+
+[node name="BarnRoofFront" type="Sprite2D" parent="."]
+position = Vector2(8, -58)
+scale = Vector2(2, 2)
+texture = ExtResource("3_l2mr8")
+
+[node name="BarnRoofBack" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(8, -58)
+scale = Vector2(2, 2)
+texture = ExtResource("4_2rw2x")
+
+[node name="Coins" type="Node2D" parent="."]
+clip_children = 1
+position = Vector2(58, -128)
+scale = Vector2(2, 2)
+
+[node name="Coin1" type="Sprite2D" parent="Coins"]
+visible = false
+z_index = -5
+texture = ExtResource("9_4flhr")
+
+[node name="Sound1" type="AudioStreamPlayer2D" parent="Coins/Coin1"]
+position = Vector2(-29, 8)
+scale = Vector2(0.5, 0.5)
+bus = &"CollectSounds"
+
+[node name="Coin2" type="Sprite2D" parent="Coins"]
+visible = false
+z_index = -5
+texture = ExtResource("9_4flhr")
+
+[node name="Sound2" type="AudioStreamPlayer2D" parent="Coins/Coin2"]
+position = Vector2(-29, 8)
+scale = Vector2(0.5, 0.5)
+bus = &"CollectSounds"
+
+[node name="Coin3" type="Sprite2D" parent="Coins"]
+visible = false
+z_index = -5
+texture = ExtResource("9_4flhr")
+
+[node name="Sound3" type="AudioStreamPlayer2D" parent="Coins/Coin3"]
+position = Vector2(-29, 8)
+scale = Vector2(0.5, 0.5)
+bus = &"CollectSounds"
+
+[node name="Coin4" type="Sprite2D" parent="Coins"]
+visible = false
+z_index = -5
+texture = ExtResource("9_4flhr")
+
+[node name="Sound4" type="AudioStreamPlayer2D" parent="Coins/Coin4"]
+position = Vector2(-29, 8)
+scale = Vector2(0.5, 0.5)
+bus = &"CollectSounds"
+
+[node name="Coin5" type="Sprite2D" parent="Coins"]
+visible = false
+z_index = -5
+texture = ExtResource("9_4flhr")
+
+[node name="Sound5" type="AudioStreamPlayer2D" parent="Coins/Coin5"]
+position = Vector2(-29, 8)
+scale = Vector2(0.5, 0.5)
+bus = &"CollectSounds"
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_vvq7g")
+}
+
+[node name="Top" type="CollisionShape2D" parent="."]
+position = Vector2(32, -63)
+shape = SubResource("RectangleShape2D_7lwl1")
+
+[node name="Bottom" type="CollisionShape2D" parent="."]
+position = Vector2(32, 1)
+shape = SubResource("RectangleShape2D_l8xvy")
+
+[node name="Back" type="CollisionShape2D" parent="."]
+position = Vector2(92.5, -31)
+shape = SubResource("RectangleShape2D_cpwqc")
+
+[node name="ClickableArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(32, -83)
+shape = SubResource("RectangleShape2D_1bxxn")
+debug_color = Color(0.584314, 0.380392, 1, 0.243137)
+
+[node name="BlockedTracker" parent="." instance=ExtResource("6_x01u8")]
+unique_name_in_owner = true
+
+[node name="Shape" type="CollisionShape2D" parent="BlockedTracker"]
+position = Vector2(26.5, -31)
+shape = SubResource("RectangleShape2D_0ike4")
+debug_color = Color(0.733333, 0.447059, 0.411765, 0.419608)
+
+[node name="SheepSpawner" parent="." instance=ExtResource("7_07yq6")]
+unique_name_in_owner = true
+position = Vector2(50, -26)
+scene = ExtResource("8_kgtsi")
+
+[connection signal="coin_inserted" from="." to="SheepSpawner" method="spawn"]
+[connection signal="animation_finished" from="Animator" to="." method="_on_animation_finished"]
+[connection signal="input_event" from="ClickableArea" to="." method="_on_roof_input"]
+[connection signal="spawned" from="SheepSpawner" to="." method="_on_sheep_spawned" flags=3]

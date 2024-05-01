@@ -71,6 +71,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ExtResource("3_k8fgk")]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_5yt72"]
 resource_name = "drag_loop"
@@ -169,6 +181,42 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, 6), Vector2(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:left_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_32yw7")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:right_texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_k8fgk")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yam4u"]
 _data = {
@@ -198,7 +246,6 @@ script = ExtResource("1_brahc")
 
 [node name="Sprite" parent="." instance=ExtResource("1_thu73")]
 unique_name_in_owner = true
-position = Vector2(0, -3.044)
 scale = Vector2(2, 2)
 texture = ExtResource("2_32yw7")
 left_texture = ExtResource("2_32yw7")
@@ -399,6 +446,7 @@ bus = &"KillSounds"
 [connection signal="fallen" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_default"]
 [connection signal="fallen" from="MovementDrag" to="MovementDrag/FallSound" method="play"]
 [connection signal="move" from="MovementDrag" to="." method="_on_move"]
+[connection signal="move_enabled" from="MovementDrag" to="Animator" method="play" binds= [&"drag_start"]]
 [connection signal="dragged" from="MovementDrag/Draggable" to="MovementDrag" method="drag"]
 [connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="drop"]
 [connection signal="eaten" from="Eater" to="." method="_on_eater_eaten"]

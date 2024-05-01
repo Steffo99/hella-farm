@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=27 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/main_game.gd" id="1_wiglu"]
 [ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://gl4umoff474y" path="res://entities/cthulhu.tscn" id="15_k41qf"]
 [ext_resource type="PackedScene" uid="uid://cgpwig0rd08vh" path="res://entities/summoning_circle_pentagram.tscn" id="16_nhsrb"]
 [ext_resource type="PackedScene" uid="uid://db246fkcf452d" path="res://entities/tree.tscn" id="18_r8twr"]
+[ext_resource type="PackedScene" uid="uid://cn0p5s44h86px" path="res://entities/barn.tscn" id="20_tek4w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_058kb"]
 texture = ExtResource("2_o7bg5")
@@ -987,5 +988,8 @@ position = Vector2(341, 247)
 
 [node name="Tree5" parent="." instance=ExtResource("18_r8twr")]
 position = Vector2(379, 292)
+
+[node name="Barn" parent="." instance=ExtResource("20_tek4w")]
+position = Vector2(472, -245)
 
 [connection signal="recipe_matched" from="SummoningCirclePentagram" to="." method="_on_recipe_matched"]

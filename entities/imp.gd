@@ -5,6 +5,8 @@ class_name Imp
 @onready var sprite: SpriteLeftRight = %"Sprite"
 @onready var eater: Eater = %"Eater"
 @onready var animator: AnimationPlayer = %"Animator"
+@onready var tophatter: Eater = %"TopHatter"
+@onready var monocler: Eater = %"Monocler"
 
 
 func _ready():
@@ -21,6 +23,8 @@ func _on_eater_eaten(edible: Edible) -> void:
 func _on_dragged(_cursor: Cursor) -> void:
 	collision_layer = 16
 	collision_mask = 18
+	tophatter.collision_mask = 16
+	monocler.collision_mask = 16
 	z_index = Enums.ZIndex.EntityAir
 	y_sort_enabled = false
 	eater.collision_mask = 16
@@ -29,6 +33,8 @@ func _on_dragged(_cursor: Cursor) -> void:
 func _on_fallen() -> void:
 	collision_layer = 8
 	collision_mask = 14
+	tophatter.collision_mask = 8
+	monocler.collision_mask = 8
 	z_index = Enums.ZIndex.EntityGround
 	y_sort_enabled = true
 	eater.collision_mask = 8
