@@ -388,6 +388,7 @@ acceptable_diets = Array[StringName]([&"TopHat"])
 target = 1
 
 [node name="Sprite" type="Sprite2D" parent="Sprite/TopHatter"]
+visible = false
 z_index = 1
 position = Vector2(-3.5, -20)
 texture = ExtResource("5_qjgou")
@@ -409,6 +410,7 @@ acceptable_diets = Array[StringName]([&"Monocle"])
 target = 1
 
 [node name="Sprite" type="Sprite2D" parent="Sprite/Monocler"]
+visible = false
 z_index = 1
 position = Vector2(-4, -8)
 texture = ExtResource("5_bcm2q")
