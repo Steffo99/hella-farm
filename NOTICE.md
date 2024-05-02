@@ -5,7 +5,7 @@ This project uses the following external assets:
 | File | URL | License |
 |------|-------|-----|
 | `./icon.svg` | Godot icon | MIT license |
-| `./temp/tollbell.mp3` | https://freesound.org/people/sdroliasnick/sounds/731270/ | CC0 |
+| `./entities/summoning_circle_pentagram.mp3` | https://freesound.org/people/sdroliasnick/sounds/731270/ | CC0 |
 | `./entities/sheep_drag.wav` | https://freesound.org/people/michaelperfect/sounds/710298/ | CC0 |
 | `./temp/click&pop.wav` | https://freesound.org/people/GammaGool/sounds/730488/ | CC0 |
 | `./entities/monocle_drag.wav` | https://freesound.org/people/NovaSoundTechnology/sounds/727104/ | CC0 |

@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgpwig0rd08vh"]
+[gd_scene load_steps=12 format=3 uid="uid://cgpwig0rd08vh"]
 
 [ext_resource type="Script" path="res://behaviours/summoning_circle.gd" id="1_l5mec"]
 [ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="2_xq0wr"]
+[ext_resource type="AudioStream" uid="uid://bwfscrmf25vkv" path="res://entities/summoning_circle_pentagram.mp3" id="3_5v22t"]
 [ext_resource type="Texture2D" uid="uid://n0wj20mduwy8" path="res://entities/summoning_circle_pentagram.png" id="3_stpdd"]
+[ext_resource type="PackedScene" uid="uid://baqbdtmtugh3d" path="res://entities/summoning_circle_pentagram_particles.tscn" id="4_oygmc"]
 [ext_resource type="PackedScene" uid="uid://ddpo03rb6068c" path="res://entities/sacrifice_stone.tscn" id="4_qyef2"]
 [ext_resource type="PackedScene" uid="uid://ufjnfj3itypj" path="res://behaviours/summoning_recipe.tscn" id="5_jbk35"]
 [ext_resource type="PackedScene" uid="uid://4d3ksr3171x4" path="res://entities/imp.tscn" id="6_utwxo"]
@@ -20,23 +22,29 @@ position = Vector2(2, 4)
 scale = Vector2(2, 2)
 texture = ExtResource("3_stpdd")
 
+[node name="SacrificeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5v22t")
+bus = &"SacrificeSounds"
+
+[node name="SacrificeParticles" parent="." instance=ExtResource("4_oygmc")]
+
 [node name="Stones" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="StoneUp" parent="Stones" instance=ExtResource("4_qyef2")]
-position = Vector2(0, -76)
+position = Vector2(0, -60)
 
 [node name="StoneTopLeft" parent="Stones" instance=ExtResource("4_qyef2")]
-position = Vector2(-92, -32)
+position = Vector2(-92, -16)
 
 [node name="StoneTopRight" parent="Stones" instance=ExtResource("4_qyef2")]
-position = Vector2(92, -32)
+position = Vector2(92, -16)
 
 [node name="StoneBottomLeft" parent="Stones" instance=ExtResource("4_qyef2")]
-position = Vector2(-75, 62)
+position = Vector2(-75, 78)
 
 [node name="StoneBottomRight" parent="Stones" instance=ExtResource("4_qyef2")]
-position = Vector2(75, 62)
+position = Vector2(75, 78)
 
 [node name="Recipes" type="Node" parent="."]
 
@@ -82,6 +90,8 @@ scene = ExtResource("8_jtxan")
 [node name="Cthulhu" parent="Spawners" instance=ExtResource("2_xq0wr")]
 scene = ExtResource("9_wli14")
 
+[connection signal="recipe_matched" from="." to="SacrificeSound" method="play" unbinds=2]
+[connection signal="recipe_matched" from="." to="SacrificeParticles" method="emit" unbinds=2]
 [connection signal="matched" from="Recipes/FiveTopHats" to="Spawners/Watcher" method="spawn" unbinds=1]
 [connection signal="matched" from="Recipes/FiveMonocles" to="Spawners/Watcher" method="spawn" unbinds=1]
 [connection signal="matched" from="Recipes/ASkull" to="Spawners/Chupacabra" method="spawn" unbinds=1]
