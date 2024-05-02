@@ -12,6 +12,7 @@ gradient = SubResource("Gradient_7fg1u")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0ctbi"]
 lifetime_randomness = 0.2
 particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -36, 0)
 emission_shape = 1
 emission_sphere_radius = 72.0
 direction = Vector3(0, -1, 0)
