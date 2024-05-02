@@ -18,7 +18,7 @@ offset = Vector2(0, -8)
 
 [node name="StoneArea" type="Area2D" parent="."]
 position = Vector2(0, -45)
-collision_layer = 8
+collision_layer = 24
 collision_mask = 0
 monitoring = false
 
@@ -32,7 +32,6 @@ debug_color = Color(1, 1, 1, 0.294118)
 diet = &"Trap"
 
 [node name="SacrificeTracker" parent="StoneArea" instance=ExtResource("2_6m7pn")]
-collision_mask = 8
 
 [node name="Shape" type="CollisionShape2D" parent="StoneArea/SacrificeTracker"]
 z_index = 1

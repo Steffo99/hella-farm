@@ -322,9 +322,10 @@ scene = ExtResource("14_cfqh8")
 
 [node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("11_20lvf")]
 autostart = true
-mean_secs = 0.15
-min_secs = 0.05
-max_secs = 0.3
+mean_secs = 0.08
+deviation = 0.5
+min_secs = 0.02
+max_secs = 0.14
 
 [node name="MovementSampler" parent="." instance=ExtResource("4_i1htf")]
 
@@ -424,6 +425,7 @@ bus = &"KillSounds"
 [connection signal="ready" from="MovementTilt" to="MovementTilt" method="randomize_rotation_speed"]
 [connection signal="ready" from="MovementTilt" to="MovementTilt" method="randomize_direction"]
 [connection signal="timeout" from="MovementTilt/TimerStddev" to="MovementTilt" method="randomize_rotation_speed"]
+[connection signal="timeout" from="MovementTilt/TimerStddev" to="MovementTilt/TimerStddev" method="randomize_wait_time"]
 [connection signal="changed_target" from="MovementTrap" to="MovementTrap/TrapPriority" method="priority_conditional"]
 [connection signal="move" from="MovementTrap" to="." method="_on_move"]
 [connection signal="move_disabled" from="MovementTrap" to="." method="_on_freed"]

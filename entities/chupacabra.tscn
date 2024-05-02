@@ -451,9 +451,9 @@ scene = ExtResource("14_nw8pn")
 
 [node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("6_qsds3")]
 autostart = true
-mean_secs = 0.7
+mean_secs = 0.3
 min_secs = 0.1
-max_secs = 1.3
+max_secs = 0.5
 
 [node name="MovementSampler" parent="." instance=ExtResource("7_nq78n")]
 
@@ -484,10 +484,10 @@ alternative_priority = 20
 
 [node name="TiredTimer" parent="MovementWander" instance=ExtResource("6_qsds3")]
 one_shot = true
-mean_secs = 0.6
+mean_secs = 0.4
 deviation = 0.5
-min_secs = 0.3
-max_secs = 1.2
+min_secs = 0.1
+max_secs = 0.9
 
 [node name="TrackerMeat" parent="MovementWander" instance=ExtResource("14_mk76g")]
 collision_mask = 8

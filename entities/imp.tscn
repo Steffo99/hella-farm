@@ -321,9 +321,8 @@ scene = ExtResource("5_yrfoq")
 
 [node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("10_phvea")]
 autostart = true
-mean_secs = 3.4
 min_secs = 1.0
-max_secs = 5.0
+max_secs = 3.0
 
 [node name="MovementSampler" parent="." instance=ExtResource("7_ech8d")]
 
