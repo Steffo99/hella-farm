@@ -116,9 +116,12 @@ script = ExtResource("1_ehpfj")
 y_sort_enabled = true
 scale = Vector2(2, 2)
 texture = ExtResource("1_omrit")
+offset = Vector2(0, -2)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_o7chm")
+debug_color = Color(0, 0.6, 1, 0.294118)
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -132,12 +135,13 @@ next/drag_start = &"drag_loop"
 diet = &"Monocle"
 
 [node name="MovementDrag" parent="." instance=ExtResource("2_jgnsw")]
+position = Vector2(0, -4)
 
 [node name="Draggable" parent="MovementDrag" instance=ExtResource("3_e0ni5")]
 
 [node name="Shape" type="CollisionShape2D" parent="MovementDrag/Draggable"]
 shape = SubResource("CircleShape2D_juisb")
-debug_color = Color(1, 1, 1, 0)
+debug_color = Color(0, 1, 0.701961, 0.294118)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("5_bs8m7")

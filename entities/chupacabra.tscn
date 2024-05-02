@@ -358,8 +358,8 @@ radius = 320.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_dcrcb"]
 radius = 48.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kjhx2"]
-radius = 25.19
+[sub_resource type="CircleShape2D" id="CircleShape2D_7g5uo"]
+radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vm5g3"]
 radius = 32.0
@@ -377,25 +377,24 @@ unique_name_in_owner = true
 y_sort_enabled = true
 scale = Vector2(2, 2)
 texture = ExtResource("2_3kvme")
+offset = Vector2(0, -15.5)
 left_texture = ExtResource("2_3kvme")
 right_texture = ExtResource("3_rolht")
 
 [node name="TopHatter" parent="Sprite" instance=ExtResource("16_ltvqn")]
 unique_name_in_owner = true
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -15.5)
 acceptable_diets = Array[StringName]([&"TopHat"])
 target = 1
 
 [node name="Sprite" type="Sprite2D" parent="Sprite/TopHatter"]
-visible = false
 z_index = 1
-position = Vector2(-1, -39)
-scale = Vector2(2, 2)
+position = Vector2(-3.5, -20)
 texture = ExtResource("5_qjgou")
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/TopHatter"]
 shape = SubResource("CircleShape2D_binyt")
-debug_color = Color(1, 0, 0, 0)
+debug_color = Color(1, 0, 0, 0.294118)
 
 [node name="Spawner" parent="Sprite/TopHatter" instance=ExtResource("7_hdgjp")]
 scene = ExtResource("8_fa8aq")
@@ -405,20 +404,18 @@ enabled = false
 
 [node name="Monocler" parent="Sprite" instance=ExtResource("16_ltvqn")]
 unique_name_in_owner = true
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -15.5)
 acceptable_diets = Array[StringName]([&"Monocle"])
 target = 1
 
 [node name="Sprite" type="Sprite2D" parent="Sprite/Monocler"]
-visible = false
 z_index = 1
-position = Vector2(-9, -17)
-scale = Vector2(2, 2)
+position = Vector2(-4, -8)
 texture = ExtResource("5_bcm2q")
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/Monocler"]
 shape = SubResource("CircleShape2D_binyt")
-debug_color = Color(1, 0, 0, 0)
+debug_color = Color(1, 0, 0, 0.294118)
 
 [node name="Spawner" parent="Sprite/Monocler" instance=ExtResource("7_hdgjp")]
 scene = ExtResource("10_k033w")
@@ -427,6 +424,7 @@ enabled = false
 [node name="Sacrificable" parent="Sprite/Monocler" instance=ExtResource("7_igror")]
 
 [node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -31)
 shape = SubResource("CircleShape2D_mnexs")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
@@ -446,6 +444,7 @@ diet = &"Demon"
 kind = &"Chupacabra"
 
 [node name="GoldSpawner" parent="." instance=ExtResource("7_hdgjp")]
+position = Vector2(0, -31)
 scene = ExtResource("14_nw8pn")
 
 [node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("6_qsds3")]
@@ -456,6 +455,7 @@ max_secs = 1.8
 [node name="MovementSampler" parent="." instance=ExtResource("7_nq78n")]
 
 [node name="MovementIdle" parent="." instance=ExtResource("8_7fxrt")]
+position = Vector2(0, -31)
 speed = 0.0
 enabled = false
 
@@ -472,6 +472,7 @@ max_secs = 9.0
 
 [node name="MovementWander" parent="." instance=ExtResource("8_7fxrt")]
 unique_name_in_owner = true
+position = Vector2(0, -31)
 speed = 333.0
 enabled = false
 
@@ -491,7 +492,7 @@ acceptable_diets = Array[StringName]([&"Meat"])
 
 [node name="Shape" type="CollisionShape2D" parent="MovementWander/TrackerMeat"]
 shape = SubResource("CircleShape2D_wya3j")
-debug_color = Color(1, 0.498039, 0, 0)
+debug_color = Color(1, 1, 0, 0.294118)
 
 [node name="TargetPicker" parent="MovementWander/TrackerMeat" node_paths=PackedStringArray("tracker") instance=ExtResource("15_xay6p")]
 tracker = NodePath("..")
@@ -500,9 +501,10 @@ tracker = NodePath("..")
 
 [node name="Shape" type="CollisionShape2D" parent="MovementWander/CursorSense"]
 shape = SubResource("CircleShape2D_dcrcb")
-debug_color = Color(1, 1, 0, 0)
+debug_color = Color(0, 1, 0.701961, 0.294118)
 
 [node name="MovementTrap" parent="." instance=ExtResource("13_vh42q")]
+position = Vector2(0, -31)
 speed = 600.0
 enabled = false
 
@@ -514,13 +516,14 @@ collision_mask = 8
 acceptable_diets = Array[StringName]([&"Trap"])
 
 [node name="Shape" type="CollisionShape2D" parent="MovementTrap/TrackerTrap"]
-shape = SubResource("CircleShape2D_kjhx2")
-debug_color = Color(1, 0.498039, 0, 0)
+shape = SubResource("CircleShape2D_7g5uo")
+debug_color = Color(1, 1, 0, 0.294118)
 
 [node name="TargetPicker" parent="MovementTrap/TrackerTrap" node_paths=PackedStringArray("tracker") instance=ExtResource("15_xay6p")]
 tracker = NodePath("..")
 
 [node name="MovementDrag" parent="." instance=ExtResource("12_oildi")]
+position = Vector2(0, -31)
 enabled = false
 
 [node name="DragPriority" parent="MovementDrag" instance=ExtResource("9_7i81t")]
@@ -530,7 +533,7 @@ alternative_priority = 50
 
 [node name="Shape" type="CollisionShape2D" parent="MovementDrag/Draggable"]
 shape = SubResource("CircleShape2D_vm5g3")
-debug_color = Color(1, 1, 1, 0)
+debug_color = Color(0, 1, 0.701961, 0.294118)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("14_u2uf4")
@@ -542,11 +545,12 @@ bus = &"FallSounds"
 
 [node name="Eater" parent="." instance=ExtResource("16_ltvqn")]
 unique_name_in_owner = true
+position = Vector2(0, -31)
 acceptable_diets = Array[StringName]([&"Meat"])
 
 [node name="Shape" type="CollisionShape2D" parent="Eater"]
 shape = SubResource("CircleShape2D_binyt")
-debug_color = Color(1, 0, 0, 0)
+debug_color = Color(1, 0, 0, 0.294118)
 
 [node name="EatSound" type="AudioStreamPlayer2D" parent="Eater"]
 stream = ExtResource("17_ccla5")

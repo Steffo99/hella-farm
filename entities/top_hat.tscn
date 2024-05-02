@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dijcjahkddudv" path="res://behaviours/draggable.tscn" id="4_fcvjo"]
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="6_6tpnh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o7chm"]
-radius = 12.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsfem"]
+radius = 16.0
 
 [sub_resource type="Animation" id="Animation_gokbg"]
 length = 0.001
@@ -101,8 +101,8 @@ _data = {
 "drag_start": SubResource("Animation_2igbw")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_juisb"]
-radius = 12.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_pcfsk"]
+radius = 16.0
 
 [node name="TopHat" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -115,9 +115,12 @@ script = ExtResource("1_0eh11")
 y_sort_enabled = true
 scale = Vector2(2, 2)
 texture = ExtResource("1_gbqic")
+offset = Vector2(0, -8)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_o7chm")
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_fsfem")
+debug_color = Color(0, 0.6, 1, 0.294118)
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -131,12 +134,13 @@ next/drag_start = &"drag_loop"
 diet = &"TopHat"
 
 [node name="MovementDrag" parent="." instance=ExtResource("3_gy414")]
+position = Vector2(0, -16)
 
 [node name="Draggable" parent="MovementDrag" instance=ExtResource("4_fcvjo")]
 
 [node name="Shape" type="CollisionShape2D" parent="MovementDrag/Draggable"]
-shape = SubResource("CircleShape2D_juisb")
-debug_color = Color(1, 1, 1, 0)
+shape = SubResource("CircleShape2D_pcfsk")
+debug_color = Color(0, 1, 0.701961, 0.294118)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 bus = &"DragSounds"

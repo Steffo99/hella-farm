@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://gl4umoff474y"]
+[gd_scene load_steps=28 format=3 uid="uid://gl4umoff474y"]
 
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_a8ato"]
 [ext_resource type="Script" path="res://entities/cthulhu.gd" id="1_b55wc"]
@@ -21,7 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://c1yuksnjdd6g2" path="res://entities/imp_eat.ogg" id="19_3hopf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjkbi"]
-radius = 56.0
+radius = 28.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uw0y6"]
 radius = 50.0
@@ -193,6 +193,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_ptf8q"]
 radius = 50.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4bt8o"]
+radius = 56.0
+
 [node name="Cthulhu" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 8
@@ -200,6 +203,7 @@ collision_mask = 8
 script = ExtResource("1_b55wc")
 
 [node name="SpriteFocus" type="Node2D" parent="."]
+position = Vector2(0, -84)
 
 [node name="Sprite" parent="SpriteFocus" instance=ExtResource("1_a8ato")]
 unique_name_in_owner = true
@@ -213,20 +217,18 @@ right_texture = ExtResource("4_1wxgg")
 [node name="TopHatter" parent="SpriteFocus/Sprite" instance=ExtResource("15_vopba")]
 unique_name_in_owner = true
 position = Vector2(0, -6)
-scale = Vector2(0.5, 0.5)
 acceptable_diets = Array[StringName]([&"TopHat"])
 target = 1
 
 [node name="Sprite" type="Sprite2D" parent="SpriteFocus/Sprite/TopHatter"]
 visible = false
 z_index = 1
-position = Vector2(1, -54)
-scale = Vector2(2, 2)
+position = Vector2(0, -28)
 texture = ExtResource("5_a1p2d")
 
 [node name="Shape" type="CollisionShape2D" parent="SpriteFocus/Sprite/TopHatter"]
 shape = SubResource("CircleShape2D_wjkbi")
-debug_color = Color(1, 0, 0, 0)
+debug_color = Color(1, 0, 0, 0.294118)
 
 [node name="Spawner" parent="SpriteFocus/Sprite/TopHatter" instance=ExtResource("7_op2gq")]
 scene = ExtResource("8_essd3")
@@ -235,28 +237,27 @@ enabled = false
 [node name="Monocler" parent="SpriteFocus/Sprite" instance=ExtResource("15_vopba")]
 unique_name_in_owner = true
 position = Vector2(0, -6)
-scale = Vector2(0.5, 0.5)
 acceptable_diets = Array[StringName]([&"Monocle"])
 target = 1
 
 [node name="Sprite" type="Sprite2D" parent="SpriteFocus/Sprite/Monocler"]
 visible = false
 z_index = 1
-position = Vector2(10, -19)
-scale = Vector2(2, 2)
+position = Vector2(5, -9.5)
 texture = ExtResource("6_04snb")
 
 [node name="Shape" type="CollisionShape2D" parent="SpriteFocus/Sprite/Monocler"]
 shape = SubResource("CircleShape2D_wjkbi")
-debug_color = Color(1, 0, 0, 0)
+debug_color = Color(1, 0, 0, 0.294118)
 
 [node name="Spawner" parent="SpriteFocus/Sprite/Monocler" instance=ExtResource("7_op2gq")]
 scene = ExtResource("10_dmlhw")
 enabled = false
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 36)
+position = Vector2(0, -48)
 shape = SubResource("CircleShape2D_uw0y6")
+debug_color = Color(0, 0.6, 1, 0.294118)
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -270,7 +271,7 @@ blend_times = [&"drag_start", &"drag_loop", 0.5]
 [node name="MovementSampler" parent="." instance=ExtResource("6_truco")]
 
 [node name="MovementDrag" parent="." instance=ExtResource("8_mvkr6")]
-position = Vector2(1, 0)
+position = Vector2(0, -84)
 enabled = false
 
 [node name="DragPriority" parent="MovementDrag" instance=ExtResource("9_7b55p")]
@@ -293,7 +294,7 @@ bus = &"FallSounds"
 
 [node name="Eater" parent="." instance=ExtResource("15_vopba")]
 unique_name_in_owner = true
-position = Vector2(0, 36)
+position = Vector2(0, -48)
 collision_mask = 24
 acceptable_diets = Array[StringName]([&"Demon"])
 
@@ -302,7 +303,7 @@ stream = ExtResource("19_3hopf")
 bus = &"KillSounds"
 
 [node name="Shape" type="CollisionShape2D" parent="Eater"]
-shape = SubResource("CircleShape2D_wjkbi")
+shape = SubResource("CircleShape2D_4bt8o")
 debug_color = Color(1, 0, 0, 0)
 
 [connection signal="eaten" from="SpriteFocus/Sprite/TopHatter" to="." method="_on_eater_eaten"]

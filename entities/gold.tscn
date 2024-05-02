@@ -30,14 +30,16 @@ texture = ExtResource("2_tt3v6")
 [node name="MagnetizeArea" parent="." instance=ExtResource("3_ne3sj")]
 
 [node name="Shape" type="CollisionShape2D" parent="MagnetizeArea"]
+z_index = -1
 shape = SubResource("CircleShape2D_w1h35")
-debug_color = Color(0.337255, 0.611765, 1, 0)
+debug_color = Color(0, 1, 0.701961, 0.294118)
 
 [node name="CollectArea" parent="." instance=ExtResource("3_ne3sj")]
 
 [node name="Shape" type="CollisionShape2D" parent="CollectArea"]
+z_index = -1
 shape = SubResource("CircleShape2D_jm7yp")
-debug_color = Color(0, 0.388235, 0.815686, 0.219608)
+debug_color = Color(0, 1, 0.701961, 0.294118)
 
 [node name="MoveTowards" parent="." instance=ExtResource("5_bcbgf")]
 unique_name_in_owner = true

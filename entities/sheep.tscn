@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bc2bm8lbol18w"]
+[gd_scene load_steps=39 format=3 uid="uid://bc2bm8lbol18w"]
 
 [ext_resource type="Script" path="res://entities/sheep.gd" id="1_4dmll"]
 [ext_resource type="Texture2D" uid="uid://iljp5yn3ehfk" path="res://entities/sheep_left.png" id="2_t13f5"]
@@ -29,8 +29,11 @@
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="17_8kst2"]
 [ext_resource type="PackedScene" uid="uid://jg7qkbswgqjc" path="res://behaviours/eater.tscn" id="22_lilpq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kq6qs"]
-radius = 40.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_c2ya8"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ijhp"]
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5tcn"]
 radius = 24.0
@@ -203,14 +206,13 @@ _data = {
 radius = 144.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nn3xr"]
-radius = 25.19
+radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bct1e"]
-radius = 8.65
+radius = 24.0
 
 [node name="Sheep" type="CharacterBody2D"]
 z_index = 1
-y_sort_enabled = true
 collision_layer = 8
 collision_mask = 8
 motion_mode = 1
@@ -218,29 +220,27 @@ script = ExtResource("1_4dmll")
 
 [node name="Sprite" parent="." instance=ExtResource("2_xbkrm")]
 unique_name_in_owner = true
-position = Vector2(0, -4)
 scale = Vector2(2, 2)
 texture = ExtResource("2_t13f5")
+offset = Vector2(0, -15)
 left_texture = ExtResource("2_t13f5")
 right_texture = ExtResource("4_5qoof")
 
 [node name="TopHatter" parent="Sprite" instance=ExtResource("22_lilpq")]
 unique_name_in_owner = true
-position = Vector2(0, 2)
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -13)
 acceptable_diets = Array[StringName]([&"TopHat"])
 target = 1
 
 [node name="Sprite" type="Sprite2D" parent="Sprite/TopHatter"]
 visible = false
 z_index = 1
-position = Vector2(-10, -28)
-scale = Vector2(2, 2)
+position = Vector2(-9, -14)
 texture = ExtResource("5_gfn7a")
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/TopHatter"]
-shape = SubResource("CircleShape2D_kq6qs")
-debug_color = Color(1, 0, 0, 0)
+shape = SubResource("CircleShape2D_c2ya8")
+debug_color = Color(1, 0, 0, 0.294118)
 
 [node name="Spawner" parent="Sprite/TopHatter" instance=ExtResource("7_5is0u")]
 scene = ExtResource("8_d32x5")
@@ -250,21 +250,19 @@ enabled = false
 
 [node name="Monocler" parent="Sprite" instance=ExtResource("22_lilpq")]
 unique_name_in_owner = true
-position = Vector2(0, 2)
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -13)
 acceptable_diets = Array[StringName]([&"Monocle"])
 target = 1
 
 [node name="Sprite" type="Sprite2D" parent="Sprite/Monocler"]
 visible = false
 z_index = 1
-position = Vector2(-15, -5)
-scale = Vector2(2, 2)
+position = Vector2(-8, -2.5)
 texture = ExtResource("6_q0o52")
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/Monocler"]
-shape = SubResource("CircleShape2D_kq6qs")
-debug_color = Color(1, 0, 0, 0)
+shape = SubResource("CircleShape2D_0ijhp")
+debug_color = Color(1, 0, 0, 0.294118)
 
 [node name="Spawner" parent="Sprite/Monocler" instance=ExtResource("7_5is0u")]
 scene = ExtResource("10_dmfsp")
@@ -273,9 +271,12 @@ enabled = false
 [node name="Sacrificable" parent="Sprite/Monocler" instance=ExtResource("8_43m1b")]
 
 [node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -26)
 shape = SubResource("CircleShape2D_c5tcn")
+debug_color = Color(0, 0.6, 1, 0.294118)
 
 [node name="Spawner" parent="." instance=ExtResource("7_5is0u")]
+position = Vector2(0, -26)
 scene = ExtResource("12_lutsy")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
@@ -296,6 +297,7 @@ kind = &"Sheep"
 [node name="MovementSampler" parent="." instance=ExtResource("9_s5lod")]
 
 [node name="MovementIdle" parent="." instance=ExtResource("10_05kcd")]
+position = Vector2(0, -26)
 speed = 0.0
 enabled = false
 
@@ -311,6 +313,7 @@ min_secs = 1.0
 max_secs = 5.0
 
 [node name="MovementWander" parent="." instance=ExtResource("10_05kcd")]
+position = Vector2(0, -26)
 speed = 33.0
 enabled = false
 
@@ -323,6 +326,7 @@ min_secs = 0.3
 max_secs = 1.5
 
 [node name="MovementRunFromMouse" parent="." instance=ExtResource("12_x2g3x")]
+position = Vector2(0, -26)
 speed = -66.0
 enabled = false
 
@@ -333,9 +337,10 @@ alternative_priority = 30
 
 [node name="Shape" type="CollisionShape2D" parent="MovementRunFromMouse/CursorSense"]
 shape = SubResource("CircleShape2D_etpf6")
-debug_color = Color(1, 1, 0, 0)
+debug_color = Color(0, 1, 0, 0.294118)
 
 [node name="MovementRunFromHunter" parent="." instance=ExtResource("12_x2g3x")]
+position = Vector2(0, -26)
 speed = -66.0
 enabled = false
 
@@ -346,12 +351,13 @@ alternative_priority = 40
 
 [node name="Shape" type="CollisionShape2D" parent="MovementRunFromHunter/HunterSense"]
 shape = SubResource("CircleShape2D_etpf6")
-debug_color = Color(1, 1, 0, 0)
+debug_color = Color(1, 1, 0, 0.294118)
 
 [node name="TargetPicker" parent="MovementRunFromHunter/HunterSense" node_paths=PackedStringArray("tracker") instance=ExtResource("13_jf6em")]
 tracker = NodePath("..")
 
 [node name="MovementTrap" parent="." instance=ExtResource("12_x2g3x")]
+position = Vector2(0, -26)
 speed = 600.0
 enabled = false
 
@@ -364,12 +370,13 @@ acceptable_diets = Array[StringName]([&"Trap"])
 
 [node name="Shape" type="CollisionShape2D" parent="MovementTrap/TrackerTrap"]
 shape = SubResource("CircleShape2D_nn3xr")
-debug_color = Color(1, 0.498039, 0, 0)
+debug_color = Color(1, 1, 0, 0.294118)
 
 [node name="TargetPicker" parent="MovementTrap/TrackerTrap" node_paths=PackedStringArray("tracker") instance=ExtResource("13_jf6em")]
 tracker = NodePath("..")
 
 [node name="MovementBarn" parent="." instance=ExtResource("10_05kcd")]
+position = Vector2(0, -26)
 speed = 66.0
 direction = Vector2(-1, 0)
 enabled = false
@@ -382,18 +389,17 @@ wait_time = 2.0
 one_shot = true
 
 [node name="MovementDrag" parent="." instance=ExtResource("14_3wojv")]
+position = Vector2(0, -26)
 enabled = false
 
 [node name="DragPriority" parent="MovementDrag" instance=ExtResource("11_0jlmk")]
 alternative_priority = 50
 
 [node name="Draggable" parent="MovementDrag" instance=ExtResource("14_0b1hs")]
-collision_layer = 128
 
 [node name="Shape" type="CollisionShape2D" parent="MovementDrag/Draggable"]
-scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_bct1e")
-debug_color = Color(1, 1, 1, 0)
+debug_color = Color(0, 1, 0.701961, 0.294118)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("16_nswfl")

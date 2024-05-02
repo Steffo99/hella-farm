@@ -16,7 +16,7 @@ script = ExtResource("1_1og6v")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6ky4x")
-debug_color = Color(0, 0.411765, 0, 0)
+debug_color = Color(0, 1, 0.701961, 0.588235)
 
 [node name="GoldDisplay" parent="." instance=ExtResource("2_5c4iq")]
 unique_name_in_owner = true

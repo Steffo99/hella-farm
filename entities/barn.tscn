@@ -451,16 +451,22 @@ libraries = {
 }
 
 [node name="Top" type="CollisionShape2D" parent="."]
+z_index = 10
 position = Vector2(32, -63)
 shape = SubResource("RectangleShape2D_7lwl1")
+debug_color = Color(0, 0.6, 1, 0.294118)
 
 [node name="Bottom" type="CollisionShape2D" parent="."]
+z_index = 10
 position = Vector2(32, 1)
 shape = SubResource("RectangleShape2D_l8xvy")
+debug_color = Color(0, 0.6, 1, 0.294118)
 
 [node name="Back" type="CollisionShape2D" parent="."]
+z_index = 10
 position = Vector2(92.5, -31)
 shape = SubResource("RectangleShape2D_cpwqc")
+debug_color = Color(0, 0.6, 1, 0.294118)
 
 [node name="ClickableArea" type="Area2D" parent="."]
 collision_layer = 128
@@ -468,21 +474,23 @@ collision_mask = 128
 monitoring = false
 
 [node name="Shape" type="CollisionShape2D" parent="ClickableArea"]
+z_index = 10
 position = Vector2(32, -83)
 shape = SubResource("RectangleShape2D_1bxxn")
-debug_color = Color(0.584314, 0.380392, 1, 0.243137)
+debug_color = Color(0, 1, 0.701961, 0.294118)
 
 [node name="BlockedTracker" parent="." instance=ExtResource("6_x01u8")]
 unique_name_in_owner = true
 
 [node name="Shape" type="CollisionShape2D" parent="BlockedTracker"]
+z_index = 10
 position = Vector2(50.5, -31)
 shape = SubResource("RectangleShape2D_0ike4")
-debug_color = Color(0.733333, 0.447059, 0.411765, 0.419608)
+debug_color = Color(1, 1, 0, 0.294118)
 
 [node name="SheepSpawner" parent="." instance=ExtResource("7_07yq6")]
 unique_name_in_owner = true
-position = Vector2(50, -26)
+position = Vector2(50, -1)
 scene = ExtResource("8_kgtsi")
 
 [connection signal="coin_inserted" from="." to="SheepSpawner" method="spawn"]

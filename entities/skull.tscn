@@ -107,11 +107,11 @@ _data = {
 "drag_start": SubResource("Animation_2igbw")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dsv26"]
-radius = 32.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_hg0y7"]
+radius = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d45uh"]
-radius = 32.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_pt4sw"]
+radius = 12.0
 
 [node name="Skull" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -125,9 +125,12 @@ y_sort_enabled = true
 position = Vector2(2, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("1_v6qk3")
+offset = Vector2(0, -6)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_ypibs")
+debug_color = Color(0, 0.6, 1, 0.294118)
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -143,6 +146,7 @@ kind = &"Skull"
 [node name="MovementSampler" parent="." instance=ExtResource("4_xvv7l")]
 
 [node name="MovementTrap" parent="." instance=ExtResource("5_lnjls")]
+position = Vector2(0, -12)
 speed = 600.0
 enabled = false
 
@@ -154,13 +158,14 @@ collision_mask = 8
 acceptable_diets = Array[StringName]([&"Trap"])
 
 [node name="Shape" type="CollisionShape2D" parent="MovementTrap/TrackerTrap"]
-shape = SubResource("CircleShape2D_dsv26")
-debug_color = Color(1, 0.498039, 0, 0)
+shape = SubResource("CircleShape2D_hg0y7")
+debug_color = Color(1, 1, 0, 0.294118)
 
 [node name="TargetPicker" parent="MovementTrap/TrackerTrap" node_paths=PackedStringArray("tracker") instance=ExtResource("8_0o770")]
 tracker = NodePath("..")
 
 [node name="MovementDrag" parent="." instance=ExtResource("3_83m1a")]
+position = Vector2(0, -12)
 enabled = false
 
 [node name="DragPriority" parent="MovementDrag" instance=ExtResource("6_8jeho")]
@@ -169,8 +174,8 @@ alternative_priority = 50
 [node name="Draggable" parent="MovementDrag" instance=ExtResource("2_h0icd")]
 
 [node name="Shape" type="CollisionShape2D" parent="MovementDrag/Draggable"]
-shape = SubResource("CircleShape2D_d45uh")
-debug_color = Color(1, 1, 1, 0)
+shape = SubResource("CircleShape2D_pt4sw")
+debug_color = Color(0, 1, 0.701961, 0.294118)
 
 [node name="DragSound" type="AudioStreamPlayer2D" parent="MovementDrag"]
 stream = ExtResource("5_duqrf")

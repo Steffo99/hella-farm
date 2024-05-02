@@ -936,9 +936,6 @@ position = Vector2(480, 241)
 [node name="Tree4" parent="Entities" instance=ExtResource("18_r8twr")]
 position = Vector2(171, 118)
 
-[node name="Tree5" parent="Entities" instance=ExtResource("18_r8twr")]
-position = Vector2(374, -132)
-
 [node name="Tree6" parent="Entities" instance=ExtResource("18_r8twr")]
 position = Vector2(439, 88)
 
