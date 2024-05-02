@@ -47,3 +47,6 @@ func spawn():
 func roll_spawn(odds: int):
 	if Random.rng.randi_range(0, odds - 1) == 0:
 		spawn()
+
+func log_spawned(entity: Node2D) -> void:
+	Log.p(self, "Spawned: %s" % entity)
