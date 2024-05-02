@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=21 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/main_game.gd" id="1_wiglu"]
 [ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://col1q3elvkfwk" path="res://scenes/game/cursor.tscn" id="5_g504x"]
 [ext_resource type="Texture2D" uid="uid://bxm3edor0akqj" path="res://scenes/game/tileset_flowers_shaded.png" id="5_yqthh"]
 [ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="13_56o7t"]
+[ext_resource type="PackedScene" uid="uid://gl4umoff474y" path="res://entities/cthulhu.tscn" id="14_gmddv"]
 [ext_resource type="PackedScene" uid="uid://cgpwig0rd08vh" path="res://entities/summoning_circle_pentagram.tscn" id="16_nhsrb"]
 [ext_resource type="PackedScene" uid="uid://db246fkcf452d" path="res://entities/tree.tscn" id="18_r8twr"]
 [ext_resource type="PackedScene" uid="uid://cn0p5s44h86px" path="res://entities/barn.tscn" id="20_tek4w"]
@@ -1053,6 +1054,36 @@ position = Vector2(-520, -140)
 [node name="Gold25" parent="Entities" instance=ExtResource("13_56o7t")]
 position = Vector2(-540, -160)
 
+[node name="Gold26" parent="Entities" instance=ExtResource("13_56o7t")]
+position = Vector2(460, -240)
+
+[node name="Gold27" parent="Entities" instance=ExtResource("13_56o7t")]
+position = Vector2(420, -280)
+
+[node name="Gold31" parent="Entities" instance=ExtResource("13_56o7t")]
+position = Vector2(440, -240)
+
+[node name="Gold32" parent="Entities" instance=ExtResource("13_56o7t")]
+position = Vector2(420, -240)
+
+[node name="Gold33" parent="Entities" instance=ExtResource("13_56o7t")]
+position = Vector2(400, -240)
+
+[node name="Gold34" parent="Entities" instance=ExtResource("13_56o7t")]
+position = Vector2(380, -240)
+
+[node name="Gold35" parent="Entities" instance=ExtResource("13_56o7t")]
+position = Vector2(360, -240)
+
+[node name="Gold28" parent="Entities" instance=ExtResource("13_56o7t")]
+position = Vector2(420, -200)
+
+[node name="Gold29" parent="Entities" instance=ExtResource("13_56o7t")]
+position = Vector2(440, -220)
+
+[node name="Gold30" parent="Entities" instance=ExtResource("13_56o7t")]
+position = Vector2(440, -260)
+
 [node name="Tree20" parent="Entities" instance=ExtResource("18_r8twr")]
 position = Vector2(-520, 200)
 
@@ -1076,5 +1107,8 @@ position = Vector2(-160, 420)
 
 [node name="Tree27" parent="Entities" instance=ExtResource("18_r8twr")]
 position = Vector2(120, 480)
+
+[node name="Cthulhu" parent="." instance=ExtResource("14_gmddv")]
+position = Vector2(-20, 200)
 
 [connection signal="recipe_matched" from="Entities/SummoningCirclePentagram" to="." method="_on_recipe_matched"]

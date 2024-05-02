@@ -1,12 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://uoxwjpmgg27a"]
+[gd_scene load_steps=13 format=3 uid="uid://uoxwjpmgg27a"]
 
 [ext_resource type="Script" path="res://entities/gold.gd" id="1_lbls1"]
 [ext_resource type="PackedScene" uid="uid://dj72yshd25ucx" path="res://behaviours/collectible.tscn" id="2_j75yq"]
 [ext_resource type="Texture2D" uid="uid://bfl0tkg85cvb8" path="res://entities/gold.png" id="2_tt3v6"]
 [ext_resource type="PackedScene" uid="uid://cbg5kgwxusvxf" path="res://behaviours/cursor_detector.tscn" id="3_ne3sj"]
 [ext_resource type="PackedScene" uid="uid://cml7rqvyfuagx" path="res://behaviours/move_towards.tscn" id="5_bcbgf"]
+[ext_resource type="PackedScene" uid="uid://djcwis8ycrq85" path="res://behaviours/sampler_priority.tscn" id="5_h84r5"]
 [ext_resource type="PackedScene" uid="uid://tx1qi6ahlxjp" path="res://behaviours/spawner.tscn" id="5_t7ey8"]
 [ext_resource type="PackedScene" uid="uid://eqg6snsgn1kh" path="res://players/gold_pickup_player.tscn" id="6_eoeje"]
+[ext_resource type="PackedScene" uid="uid://cm67ko1k6kn4u" path="res://behaviours/priority.tscn" id="7_5jbm6"]
+[ext_resource type="PackedScene" uid="uid://dk1ipq7dhkhf3" path="res://behaviours/move_straight.tscn" id="8_a0co5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w1h35"]
 radius = 96.0
@@ -41,14 +44,30 @@ z_index = -1
 shape = SubResource("CircleShape2D_jm7yp")
 debug_color = Color(0, 1, 0.701961, 0.294118)
 
+[node name="SamplerPriority" parent="." instance=ExtResource("5_h84r5")]
+
+[node name="MoveStraight" parent="." instance=ExtResource("8_a0co5")]
+speed = 133.0
+
+[node name="Priority" parent="MoveStraight" instance=ExtResource("7_5jbm6")]
+alternative_priority = 5
+
 [node name="MoveTowards" parent="." instance=ExtResource("5_bcbgf")]
 unique_name_in_owner = true
+
+[node name="Priority" parent="MoveTowards" instance=ExtResource("7_5jbm6")]
+alternative_priority = 10
 
 [node name="CollectSoundSpawner" parent="." instance=ExtResource("5_t7ey8")]
 unique_name_in_owner = true
 scale = Vector2(1.66667, 1.66667)
 scene = ExtResource("6_eoeje")
 
+[node name="DeleteIfNotOnScreen" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="cursor_entered" from="MagnetizeArea" to="." method="magnetize"]
 [connection signal="cursor_entered" from="CollectArea" to="." method="collect" unbinds=1]
+[connection signal="move" from="MoveStraight" to="." method="_on_move"]
+[connection signal="changed_target" from="MoveTowards" to="MoveTowards/Priority" method="priority_conditional"]
 [connection signal="move" from="MoveTowards" to="." method="_on_move"]
+[connection signal="screen_exited" from="DeleteIfNotOnScreen" to="." method="queue_free"]

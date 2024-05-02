@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://gl4umoff474y"]
+[gd_scene load_steps=30 format=3 uid="uid://gl4umoff474y"]
 
 [ext_resource type="PackedScene" uid="uid://bxbjfev0lhwws" path="res://behaviours/sprite_left_right.tscn" id="1_a8ato"]
 [ext_resource type="Script" path="res://entities/cthulhu.gd" id="1_b55wc"]
@@ -19,6 +19,8 @@
 [ext_resource type="AudioStream" uid="uid://cwsg776c11xfc" path="res://entities/fall.ogg" id="12_v8da5"]
 [ext_resource type="PackedScene" uid="uid://jg7qkbswgqjc" path="res://behaviours/eater.tscn" id="15_vopba"]
 [ext_resource type="AudioStream" uid="uid://c1yuksnjdd6g2" path="res://entities/imp_eat.ogg" id="19_3hopf"]
+[ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="20_nykad"]
+[ext_resource type="PackedScene" uid="uid://g8t6dt0ye6n3" path="res://behaviours/timer_stddev.tscn" id="21_js0id"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjkbi"]
 radius = 28.0
@@ -306,11 +308,22 @@ bus = &"KillSounds"
 shape = SubResource("CircleShape2D_4bt8o")
 debug_color = Color(1, 0, 0, 0)
 
+[node name="GoldSpawner" parent="." instance=ExtResource("7_op2gq")]
+scene = ExtResource("20_nykad")
+
+[node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("21_js0id")]
+autostart = true
+mean_secs = 0.15
+min_secs = 0.05
+max_secs = 0.3
+
 [connection signal="eaten" from="SpriteFocus/Sprite/TopHatter" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="SpriteFocus/Sprite/TopHatter" to="SpriteFocus/Sprite/TopHatter" method="clear_diets" unbinds=1]
 [connection signal="eaten" from="SpriteFocus/Sprite/TopHatter" to="SpriteFocus/Sprite/TopHatter/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="SpriteFocus/Sprite/TopHatter" to="SpriteFocus/Sprite/TopHatter/Sprite" method="show"]
 [connection signal="tree_exiting" from="SpriteFocus/Sprite/TopHatter/Spawner" to="SpriteFocus/Sprite/TopHatter/Spawner" method="spawn"]
 [connection signal="eaten" from="SpriteFocus/Sprite/Monocler" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="SpriteFocus/Sprite/Monocler" to="SpriteFocus/Sprite/Monocler" method="clear_diets" unbinds=1]
 [connection signal="eaten" from="SpriteFocus/Sprite/Monocler" to="SpriteFocus/Sprite/Monocler/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="SpriteFocus/Sprite/Monocler" to="SpriteFocus/Sprite/Monocler/Sprite" method="show"]
 [connection signal="tree_exiting" from="SpriteFocus/Sprite/Monocler/Spawner" to="SpriteFocus/Sprite/Monocler/Spawner" method="spawn"]
@@ -325,3 +338,5 @@ debug_color = Color(1, 0, 0, 0)
 [connection signal="dropped" from="MovementDrag/Draggable" to="MovementDrag" method="drop"]
 [connection signal="eaten" from="Eater" to="." method="_on_eater_eaten"]
 [connection signal="eaten" from="Eater" to="Eater/EatSound" method="play" unbinds=1]
+[connection signal="spawned" from="GoldSpawner" to="." method="_on_gold_spawner_spawned"]
+[connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]

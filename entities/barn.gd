@@ -33,6 +33,7 @@ func _on_animation_finished(anim_name:StringName) -> void:
 
 func _on_sheep_spawned(entity: Node2D) -> void:
 	entity.get_node("MovementBarn/BarnPriority").priority_alternative()
+	entity.get_node("MovementBarn").speed *= animator.speed_scale
 	animator.speed_scale += 0.04
 	if Random.rng.randi_range(0, 20) == 0:
 		entity.get_node("Sprite/TopHatter").plus_one()

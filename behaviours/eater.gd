@@ -27,6 +27,8 @@ func plus_one():
 	if count == target:
 		goal_reached.emit()
 
+func clear_diets() -> void:
+	acceptable_diets = []
 
 
 func _on_body_entered(body: Node2D) -> void:

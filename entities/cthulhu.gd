@@ -35,3 +35,11 @@ func _on_fallen() -> void:
 
 func _on_eater_eaten(edible: Edible) -> void:
 	edible.get_parent().queue_free()
+
+func _on_gold_spawner_spawned(entity:Node2D) -> void:
+	entity.scale *= 2
+	entity.get_node("Collectible").quantity = 25
+	entity.get_node("MoveStraight").randomize_direction()
+	entity.get_node("MoveStraight/Priority").priority_alternative()
+	
+

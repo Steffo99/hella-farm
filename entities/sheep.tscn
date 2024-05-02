@@ -410,11 +410,14 @@ stream = ExtResource("17_8kst2")
 bus = &"FallSounds"
 
 [connection signal="eaten" from="Sprite/TopHatter" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="Sprite/TopHatter" to="Sprite/TopHatter" method="clear_diets" unbinds=1]
 [connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sprite" method="show"]
 [connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Spawner" method="enable"]
+[connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sacrificable" method="set_kind" binds= [&"TopHat"]]
 [connection signal="tree_exiting" from="Sprite/TopHatter/Spawner" to="Sprite/TopHatter/Spawner" method="spawn"]
 [connection signal="sacrificed" from="Sprite/TopHatter/Sacrificable" to="." method="queue_free"]
 [connection signal="eaten" from="Sprite/Monocler" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="Sprite/Monocler" to="Sprite/Monocler" method="clear_diets" unbinds=1]
 [connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sprite" method="show"]
 [connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Spawner" method="enable"]
 [connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sacrificable" method="set_kind" binds= [&"Monocle"]]

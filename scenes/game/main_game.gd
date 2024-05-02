@@ -23,7 +23,7 @@ func _ready():
 	gold_counter.changed.connect(cursor.gold_display.change)
 	cursor.gold_display.set_text(gold_counter.value)
 
-func _on_recipe_matched(m: SummoningRecipe.Match, recipe: SummoningRecipe) -> void:
+func _on_recipe_matched(_m: SummoningRecipe.Match, recipe: SummoningRecipe) -> void:
 	# Quick hack for now
 	match recipe.name:
 		"FiveSheep":
@@ -31,5 +31,11 @@ func _on_recipe_matched(m: SummoningRecipe.Match, recipe: SummoningRecipe) -> vo
 			music.do_sync()
 		"FiveImps":
 			music.enable_layer_2()
+		"ASkull":
+			music.enable_layer_2()
 		"FiveChupacabra":
+			music.enable_layer_3()
+		"FiveTopHats":
+			music.enable_layer_3()
+		"FiveMonocles":
 			music.enable_layer_3()

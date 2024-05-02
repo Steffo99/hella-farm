@@ -321,7 +321,7 @@ scene = ExtResource("5_yrfoq")
 
 [node name="SpawnTimer" parent="GoldSpawner" instance=ExtResource("10_phvea")]
 autostart = true
-mean_secs = 3.0
+mean_secs = 3.4
 min_secs = 1.0
 max_secs = 5.0
 
@@ -416,12 +416,14 @@ stream = ExtResource("19_7la6c")
 bus = &"KillSounds"
 
 [connection signal="eaten" from="Sprite/TopHatter" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="Sprite/TopHatter" to="Sprite/TopHatter" method="clear_diets" unbinds=1]
 [connection signal="eaten" from="Sprite/TopHatter" to="Sprite/TopHatter/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sprite" method="show"]
 [connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sacrificable" method="set_kind" binds= [&"Monocle"]]
 [connection signal="tree_exiting" from="Sprite/TopHatter/Spawner" to="Sprite/TopHatter/Spawner" method="spawn"]
 [connection signal="sacrificed" from="Sprite/TopHatter/Sacrificable" to="." method="queue_free"]
 [connection signal="eaten" from="Sprite/Monocler" to="." method="_on_eater_eaten"]
+[connection signal="eaten" from="Sprite/Monocler" to="Sprite/Monocler" method="clear_diets" unbinds=1]
 [connection signal="eaten" from="Sprite/Monocler" to="Sprite/Monocler/Spawner" method="enable" unbinds=1]
 [connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sprite" method="show"]
 [connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sacrificable" method="set_kind" binds= [&"Monocle"]]
