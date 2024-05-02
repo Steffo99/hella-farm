@@ -1,31 +1,17 @@
-extends BetterCharacterBody2D
+extends Entity
 class_name Monocle
 
 
-@onready var animator: AnimationPlayer = %"Animator"
-
-
-func _on_move(movement: Vector2) -> void:
-	better_move_and_collide(movement)
-
 func _on_dragged(_cursor: Cursor) -> void:
-	collision_layer = 16
-	collision_mask = 16
-	z_index = Enums.ZIndex.EntityAir
-	y_sort_enabled = false
+	set_flying()
 	animator.play(&"drag_start")
 
 func _on_fallen() -> void:
-	collision_layer = 8
-	collision_mask = 8
-	z_index = Enums.ZIndex.EntityGround
-	y_sort_enabled = true
+	set_grounded()
 	animator.play(&"RESET")
 
 func _on_trapped() -> void:
-	z_index = Enums.ZIndex.EntitySacrifice
-	y_sort_enabled = false
+	set_trapped()
 
 func _on_freed() -> void:
-	z_index = Enums.ZIndex.EntityGround
-	y_sort_enabled = true
+	set_grounded()

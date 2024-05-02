@@ -317,16 +317,6 @@ mean_secs = 0.15
 min_secs = 0.05
 max_secs = 0.3
 
-[connection signal="eaten" from="SpriteFocus/Sprite/TopHatter" to="." method="_on_eater_eaten"]
-[connection signal="eaten" from="SpriteFocus/Sprite/TopHatter" to="SpriteFocus/Sprite/TopHatter" method="clear_diets" unbinds=1]
-[connection signal="eaten" from="SpriteFocus/Sprite/TopHatter" to="SpriteFocus/Sprite/TopHatter/Spawner" method="enable" unbinds=1]
-[connection signal="goal_reached" from="SpriteFocus/Sprite/TopHatter" to="SpriteFocus/Sprite/TopHatter/Sprite" method="show"]
-[connection signal="tree_exiting" from="SpriteFocus/Sprite/TopHatter/Spawner" to="SpriteFocus/Sprite/TopHatter/Spawner" method="spawn"]
-[connection signal="eaten" from="SpriteFocus/Sprite/Monocler" to="." method="_on_eater_eaten"]
-[connection signal="eaten" from="SpriteFocus/Sprite/Monocler" to="SpriteFocus/Sprite/Monocler" method="clear_diets" unbinds=1]
-[connection signal="eaten" from="SpriteFocus/Sprite/Monocler" to="SpriteFocus/Sprite/Monocler/Spawner" method="enable" unbinds=1]
-[connection signal="goal_reached" from="SpriteFocus/Sprite/Monocler" to="SpriteFocus/Sprite/Monocler/Sprite" method="show"]
-[connection signal="tree_exiting" from="SpriteFocus/Sprite/Monocler/Spawner" to="SpriteFocus/Sprite/Monocler/Spawner" method="spawn"]
 [connection signal="dragged" from="MovementDrag" to="." method="_on_dragged"]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragPriority" method="priority_alternative" unbinds=1]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragSound" method="play" unbinds=1]
@@ -340,3 +330,4 @@ max_secs = 0.3
 [connection signal="eaten" from="Eater" to="Eater/EatSound" method="play" unbinds=1]
 [connection signal="spawned" from="GoldSpawner" to="." method="_on_gold_spawner_spawned"]
 [connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]
+[connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner/SpawnTimer" method="randomize_wait_time"]

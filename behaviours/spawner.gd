@@ -40,7 +40,7 @@ func spawn():
 		return null
 	var entity = scene.instantiate()
 	entity.global_position = global_position
-	target.add_child.call_deferred(entity)  # Not sure why this is needed.
+	target.add_child(entity)
 	spawned.emit(entity)
 	return entity
 

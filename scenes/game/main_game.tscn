@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cxj5aud02f40j"]
+[gd_scene load_steps=21 format=3 uid="uid://cxj5aud02f40j"]
 
 [ext_resource type="Script" path="res://scenes/game/main_game.gd" id="1_wiglu"]
 [ext_resource type="PackedScene" uid="uid://dm068vaseh45n" path="res://scenes/game/game_camera.tscn" id="2_db5xs"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://col1q3elvkfwk" path="res://scenes/game/cursor.tscn" id="5_g504x"]
 [ext_resource type="Texture2D" uid="uid://bxm3edor0akqj" path="res://scenes/game/tileset_flowers_shaded.png" id="5_yqthh"]
 [ext_resource type="PackedScene" uid="uid://uoxwjpmgg27a" path="res://entities/gold.tscn" id="13_56o7t"]
+[ext_resource type="PackedScene" uid="uid://dnjtduk0hla3f" path="res://entities/watcher.tscn" id="14_pu3su"]
 [ext_resource type="PackedScene" uid="uid://cgpwig0rd08vh" path="res://entities/summoning_circle_pentagram.tscn" id="16_nhsrb"]
 [ext_resource type="PackedScene" uid="uid://db246fkcf452d" path="res://entities/tree.tscn" id="18_r8twr"]
 [ext_resource type="PackedScene" uid="uid://cn0p5s44h86px" path="res://entities/barn.tscn" id="20_tek4w"]
@@ -1107,5 +1108,20 @@ position = Vector2(-160, 420)
 
 [node name="Tree27" parent="Entities" instance=ExtResource("18_r8twr")]
 position = Vector2(120, 480)
+
+[node name="Watcher" parent="." instance=ExtResource("14_pu3su")]
+position = Vector2(-360, 0)
+
+[node name="Watcher2" parent="." instance=ExtResource("14_pu3su")]
+position = Vector2(-120, -200)
+
+[node name="Watcher3" parent="." instance=ExtResource("14_pu3su")]
+position = Vector2(180, -40)
+
+[node name="Watcher4" parent="." instance=ExtResource("14_pu3su")]
+position = Vector2(-60, 180)
+
+[node name="Watcher5" parent="." instance=ExtResource("14_pu3su")]
+position = Vector2(280, 160)
 
 [connection signal="recipe_matched" from="Entities/SummoningCirclePentagram" to="." method="_on_recipe_matched"]

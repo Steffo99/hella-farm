@@ -151,6 +151,7 @@ bus = &"DragSounds"
 stream = ExtResource("5_grwug")
 bus = &"FallSounds"
 
+[connection signal="eaten" from="Edible" to="." method="queue_free"]
 [connection signal="dragged" from="MovementDrag" to="." method="_on_dragged"]
 [connection signal="dragged" from="MovementDrag" to="MovementDrag/DragSound" method="play" unbinds=1]
 [connection signal="fallen" from="MovementDrag" to="." method="_on_fallen"]

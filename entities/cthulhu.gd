@@ -1,45 +1,17 @@
-extends BetterCharacterBody2D
+extends Entity
 class_name Cthulhu
 
 
-@onready var sprite: SpriteLeftRight = %"Sprite"
-@onready var animator: AnimationPlayer = %"Animator"
-@onready var tophatter: Eater = %"TopHatter"
-@onready var monocler: Eater = %"Monocler"
-
-func _ready():
-	# Setup index and layers
-	_on_fallen()
-
-func _on_move(movement: Vector2):
-	better_move_and_collide(movement)
-	sprite.handle_move(movement)
-
 func _on_dragged(_cursor: Cursor) -> void:
-	collision_layer = 16
-	collision_mask = 16
-	tophatter.collision_mask = 16
-	monocler.collision_mask = 16
-	z_index = Enums.ZIndex.EntityAir
-	y_sort_enabled = false
+	set_flying()
 	animator.play(&"drag_start")
 
 func _on_fallen() -> void:
-	collision_layer = 8
-	collision_mask = 8
-	tophatter.collision_mask = 8
-	monocler.collision_mask = 8
-	z_index =  Enums.ZIndex.EntityGround
-	y_sort_enabled = true
+	set_grounded()
 	animator.play(&"RESET")
-
-func _on_eater_eaten(edible: Edible) -> void:
-	edible.get_parent().queue_free()
 
 func _on_gold_spawner_spawned(entity:Node2D) -> void:
 	entity.scale *= 2
 	entity.get_node("Collectible").quantity = 25
 	entity.get_node("MoveStraight").randomize_direction()
 	entity.get_node("MoveStraight/Priority").priority_alternative()
-	
-

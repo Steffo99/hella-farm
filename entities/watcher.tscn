@@ -233,8 +233,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_dpwsl"]
 radius = 32.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_w03iw"]
-radius = 256.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_f4w15"]
+radius = 512.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ywwo3"]
 radius = 32.0
@@ -375,7 +375,7 @@ acceptable_diets = Array[StringName]([&"Meat"])
 
 [node name="Shape" type="CollisionShape2D" parent="MovementHunt/TrackerMeat"]
 position = Vector2(4, 29)
-shape = SubResource("CircleShape2D_w03iw")
+shape = SubResource("CircleShape2D_f4w15")
 debug_color = Color(1, 1, 0, 0.294118)
 
 [node name="TargetPicker" parent="MovementHunt/TrackerMeat" node_paths=PackedStringArray("tracker") instance=ExtResource("16_ch04y")]
@@ -414,22 +414,11 @@ debug_color = Color(1, 0, 0, 0.294118)
 stream = ExtResource("20_bdcer")
 bus = &"KillSounds"
 
-[connection signal="eaten" from="Sprite/TopHatter" to="." method="_on_eater_eaten"]
-[connection signal="eaten" from="Sprite/TopHatter" to="Sprite/TopHatter" method="clear_diets" unbinds=1]
-[connection signal="eaten" from="Sprite/TopHatter" to="Sprite/TopHatter/Spawner" method="enable" unbinds=1]
-[connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sprite" method="show"]
-[connection signal="goal_reached" from="Sprite/TopHatter" to="Sprite/TopHatter/Sacrificable" method="set_kind" binds= [&"TopHat"]]
-[connection signal="tree_exiting" from="Sprite/TopHatter/Spawner" to="Sprite/TopHatter/Spawner" method="spawn"]
-[connection signal="sacrificed" from="Sprite/TopHatter/Sacrificable" to="." method="queue_free"]
-[connection signal="eaten" from="Sprite/Monocler" to="." method="_on_eater_eaten"]
-[connection signal="eaten" from="Sprite/Monocler" to="Sprite/Monocler" method="clear_diets" unbinds=1]
-[connection signal="eaten" from="Sprite/Monocler" to="Sprite/Monocler/Spawner" method="enable" unbinds=1]
-[connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sprite" method="show"]
-[connection signal="goal_reached" from="Sprite/Monocler" to="Sprite/Monocler/Sacrificable" method="set_kind" binds= [&"Monocle"]]
-[connection signal="tree_exiting" from="Sprite/Monocler/Spawner" to="Sprite/Monocler/Spawner" method="spawn"]
-[connection signal="sacrificed" from="Sprite/Monocler/Sacrificable" to="." method="queue_free"]
+[connection signal="eaten" from="Edible" to="." method="queue_free"]
 [connection signal="sacrificed" from="Sacrificable" to="." method="queue_free"]
+[connection signal="spawned" from="GoldSpawner" to="." method="_on_gold_spawner_spawned"]
 [connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]
+[connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner/SpawnTimer" method="randomize_wait_time"]
 [connection signal="move" from="MovementTilt" to="." method="_on_move"]
 [connection signal="move_enabled" from="MovementTilt" to="Animator" method="play" binds= [&"fly"]]
 [connection signal="ready" from="MovementTilt" to="MovementTilt" method="randomize_rotation_speed"]

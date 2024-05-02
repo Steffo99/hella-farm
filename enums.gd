@@ -10,3 +10,8 @@ enum ZIndex {
     Flowers = -20,
     Terrain = -30,
 }
+
+enum PhysLayers {
+    EntityGround = 8,
+    EntityAir = 16,
+}

@@ -14,8 +14,8 @@ class_name TimerStddev
 
 func randomize_wait_time() -> void:
 	wait_time = clampf(
-		min_secs,
 		Random.rng.randfn(mean_secs, deviation),
+		min_secs,
 		max_secs
 	)
 
