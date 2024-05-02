@@ -24,3 +24,14 @@ func enable_layer_2():
 
 func enable_layer_3():
 	layer_3.volume_db = 0
+
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("music_toggle"):
+		var bus = AudioServer.get_bus_index(&"Music")
+		var status = AudioServer.is_bus_mute(bus)
+		AudioServer.set_bus_mute(bus, !status)
+	if Input.is_action_just_pressed("sound_toggle"):
+		var bus = AudioServer.get_bus_index(&"Sounds")
+		var status = AudioServer.is_bus_mute(bus)
+		AudioServer.set_bus_mute(bus, !status)
