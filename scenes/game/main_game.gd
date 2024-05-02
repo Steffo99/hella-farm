@@ -9,6 +9,9 @@ class_name MainGame
 @onready var cursor: Cursor = %"Cursor"
 @onready var music: Music = %"Music"
 
+var time_elapsed: float = 0.0
+var recipe_timings := {}
+
 
 static func get_via_group(node: Node) -> MainGame:
 	var result = node.get_tree().get_nodes_in_group("game")
@@ -23,7 +26,14 @@ func _ready():
 	gold_counter.changed.connect(cursor.gold_display.change)
 	cursor.gold_display.set_text(gold_counter.value)
 
+func _physics_process(delta: float) -> void:
+	time_elapsed += delta
+
 func _on_recipe_matched(_m: SummoningRecipe.Match, recipe: SummoningRecipe) -> void:
+	var timing = recipe_timings.get(recipe.name)
+	if timing == null:
+		recipe_timings[recipe.name] = time_elapsed
+		Log.p(self, "Recipe %s first completed in: %f s" % [recipe.name, time_elapsed])
 	# Quick hack for now
 	match recipe.name:
 		"FiveSheep":
