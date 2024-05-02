@@ -23,15 +23,16 @@ static func get_via_group(node: Node) -> Cursor:
 
 
 func find_closest_target() -> Draggable:
-	var bodies = get_overlapping_bodies()
+	var areas = get_overlapping_areas()
 	var min_distance: float = INF
 	var to_drag: Node = null
-	for body in bodies:
-		for target in body.find_children("*", "Draggable", true, false):
-			var distance = position.distance_to(target.position)
-			if distance < min_distance:
-				min_distance = distance
-				to_drag = target
+	for area in areas:
+		if not area is Draggable:
+			continue
+		var distance = position.distance_to(area.position)
+		if distance < min_distance:
+			min_distance = distance
+			to_drag = area
 	return to_drag
 
 func drag():
@@ -63,6 +64,14 @@ func _input(event: InputEvent) -> void:
 			else:
 				drop()
 
+func _process(_delta: float) -> void:
+	# Determine mouse cursor shape
+	if dragging:
+		Input.set_default_cursor_shape(Input.CURSOR_DRAG)
+	elif has_overlapping_areas():
+		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	else:
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func _physics_process(_delta: float) -> void:
 	position += (game.camera.get_global_mouse_position() - global_position)

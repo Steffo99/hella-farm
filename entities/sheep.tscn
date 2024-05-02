@@ -211,8 +211,8 @@ radius = 8.65
 [node name="Sheep" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 72
-collision_mask = 14
+collision_layer = 8
+collision_mask = 8
 motion_mode = 1
 script = ExtResource("1_4dmll")
 
@@ -388,6 +388,7 @@ enabled = false
 alternative_priority = 50
 
 [node name="Draggable" parent="MovementDrag" instance=ExtResource("14_0b1hs")]
+collision_layer = 128
 
 [node name="Shape" type="CollisionShape2D" parent="MovementDrag/Draggable"]
 scale = Vector2(3, 3)

@@ -9,6 +9,7 @@ signal coin_inserted
 @onready var blocked_tracker: Tracker = %"BlockedTracker"
 @onready var animator: AnimationPlayer = %"Animator"
 @onready var game := MainGame.get_via_group(self)
+@onready var viewport := get_viewport()
 
 
 func _on_roof_input(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

@@ -12,6 +12,7 @@ starting_stage = 1
 
 [node name="SafeMarginContainer" parent="InterfaceCanvas" instance=ExtResource("2_ah6n8")]
 unique_name_in_owner = true
+mouse_filter = 2
 min_margin_left = 16
 min_margin_right = 16
 min_margin_top = 16

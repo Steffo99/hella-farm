@@ -16,7 +16,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_yk0t0")
 
 [node name="Upper" type="StaticBody2D" parent="."]
-collision_layer = 80
+collision_layer = 16
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Upper"]

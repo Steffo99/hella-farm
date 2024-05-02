@@ -366,8 +366,8 @@ radius = 32.0
 
 [node name="Chupacabra" type="CharacterBody2D"]
 y_sort_enabled = true
-collision_layer = 72
-collision_mask = 14
+collision_layer = 8
+collision_mask = 8
 motion_mode = 1
 script = ExtResource("1_s4qg1")
 skitter_directions = Array[Vector2]([Vector2(-1, 0), Vector2(1, 0)])

@@ -23,7 +23,7 @@ func _on_eater_eaten(edible:Edible) -> void:
 
 func _on_dragged(_cursor: Cursor) -> void:
 	collision_layer = 16
-	collision_mask = 18
+	collision_mask = 16
 	tophatter.collision_mask = 16
 	monocler.collision_mask = 16
 	z_index = Enums.ZIndex.EntityAir
@@ -33,7 +33,7 @@ func _on_dragged(_cursor: Cursor) -> void:
 
 func _on_fallen() -> void:
 	collision_layer = 8
-	collision_mask = 14
+	collision_mask = 8
 	tophatter.collision_mask = 8
 	monocler.collision_mask = 8
 	z_index = Enums.ZIndex.EntityGround

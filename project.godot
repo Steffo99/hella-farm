@@ -51,12 +51,9 @@ cheat_gold={
 [layer_names]
 
 2d_physics/layer_1="Unset"
-2d_physics/layer_2="Tiles"
-2d_physics/layer_3="Trees"
-2d_physics/layer_4="Entities (grounded)"
-2d_physics/layer_5="Entities (air)"
-2d_physics/layer_6="Pickups"
-2d_physics/layer_7="System"
+2d_physics/layer_4="Ground"
+2d_physics/layer_5="Air"
+2d_physics/layer_8="Draggables"
 
 [physics]
 

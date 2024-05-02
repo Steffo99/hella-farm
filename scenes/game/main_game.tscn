@@ -882,7 +882,7 @@ unique_name_in_owner = true
 
 [node name="BottomBoundary" type="StaticBody2D" parent="Walls"]
 position = Vector2(0, 360)
-collision_layer = 2
+collision_layer = 24
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Walls/BottomBoundary"]
@@ -891,7 +891,7 @@ shape = SubResource("WorldBoundaryShape2D_htttx")
 [node name="TopBoundary" type="StaticBody2D" parent="Walls"]
 position = Vector2(0, -360)
 rotation = 3.14159
-collision_layer = 2
+collision_layer = 24
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Walls/TopBoundary"]
@@ -900,7 +900,7 @@ shape = SubResource("WorldBoundaryShape2D_htttx")
 [node name="RightBoundary" type="StaticBody2D" parent="Walls"]
 position = Vector2(640, 0)
 rotation = 4.71239
-collision_layer = 2
+collision_layer = 24
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Walls/RightBoundary"]
@@ -909,7 +909,7 @@ shape = SubResource("WorldBoundaryShape2D_htttx")
 [node name="LeftBoundary" type="StaticBody2D" parent="Walls"]
 position = Vector2(-640, 0)
 rotation = 1.5708
-collision_layer = 2
+collision_layer = 24
 collision_mask = 0
 
 [node name="Shape" type="CollisionShape2D" parent="Walls/LeftBoundary"]

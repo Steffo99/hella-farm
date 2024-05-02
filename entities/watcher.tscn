@@ -241,8 +241,8 @@ radius = 40.0
 
 [node name="Watcher" type="CharacterBody2D"]
 z_index = 10
-collision_layer = 80
-collision_mask = 18
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("1_brahc")
 
 [node name="Sprite" parent="." instance=ExtResource("1_thu73")]
@@ -430,8 +430,8 @@ bus = &"KillSounds"
 [connection signal="timeout" from="GoldSpawner/SpawnTimer" to="GoldSpawner" method="spawn"]
 [connection signal="move" from="MovementTilt" to="." method="_on_move"]
 [connection signal="move_enabled" from="MovementTilt" to="Animator" method="play" binds= [&"fly"]]
-[connection signal="ready" from="MovementTilt" to="MovementTilt" method="randomize_direction"]
 [connection signal="ready" from="MovementTilt" to="MovementTilt" method="randomize_rotation_speed"]
+[connection signal="ready" from="MovementTilt" to="MovementTilt" method="randomize_direction"]
 [connection signal="timeout" from="MovementTilt/TimerStddev" to="MovementTilt" method="randomize_rotation_speed"]
 [connection signal="changed_target" from="MovementTrap" to="MovementTrap/TrapPriority" method="priority_conditional"]
 [connection signal="move" from="MovementTrap" to="." method="_on_move"]
