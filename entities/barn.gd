@@ -32,7 +32,6 @@ func _on_animation_finished(anim_name:StringName) -> void:
 		coin_inserted.emit()
 
 func _on_sheep_spawned(entity: Node2D) -> void:
-	Log.p(self, "%s" % entity)
 	entity.get_node("MovementBarn/BarnPriority").priority_alternative()
 	animator.speed_scale += 0.04
 	if Random.rng.randi_range(0, 20) == 0:
