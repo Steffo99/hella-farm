@@ -17,12 +17,13 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://media/screenshot-1-1280x720.png"
 boot_splash/use_filter=false
-config/icon="res://entities/sheep_left.png"
+config/icon="res://media/icon-round-512x512.png"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/initial_position_type=3
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
@@ -83,4 +84,5 @@ common/max_physics_steps_per_frame=15
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.0235294, 0.0235294, 0.0235294, 1)
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
