@@ -11,6 +11,16 @@ config_version=5
 [application]
 
 config/name="Hella Farm"
+config/description="Do sacrificed lambs go to heaven?
+
+Another short incremental game about dragging and flinging sheeps and demons around a farm!
+
+Buy a sheep or two, sacrifice them to summon an entity from beyond, and deal with it while trying to get the most gold coins possible!
+Then... perhaps sacrifice the entity itself to summon a stronger one, or...
+Make your sheep wear a top hat?
+Sacrifice fancy sheep?
+Where does that skull come from?
+"
 config/version="1.0.0"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
