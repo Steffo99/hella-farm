@@ -32,7 +32,7 @@ The results depend on what's on the pedestals:
 
 Skulls are rarely produced when sheep are eaten by a demon.
 
-Sheep have a rare chance to spawn with either a top hat or a monocle, and they will drop it on death. Any entity can wear them on contact.
+Sheep have a rare chance to spawn with either a top hat or a monocle, and they will drop it on death. Any entity will wear them on contact.
 
 ## 🎮 Controls
 
