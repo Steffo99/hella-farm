@@ -29,3 +29,8 @@ func _on_move(movement: Vector2) -> void:
 func _physics_process(delta: float) -> void:
 	if move_towards.target != null:
 		move_towards.speed *= pow(speed_up_factor, delta)
+
+
+func _on_delete_if_not_on_screen_screen_exited() -> void:
+	if move_towards.target == null:
+		queue_free()
