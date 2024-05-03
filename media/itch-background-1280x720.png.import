@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1rdivhio7x2e"
-path="res://.godot/imported/itch-background-1881x788.png-97a4dc6aef21e24a486adcf1e764a7ca.ctex"
+uid="uid://bpbqmhvdjf03a"
+path="res://.godot/imported/itch-background-1280x720.png-524b67dbffb3331aba3cf72035d544fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/itch-background-1881x788.png"
-dest_files=["res://.godot/imported/itch-background-1881x788.png-97a4dc6aef21e24a486adcf1e764a7ca.ctex"]
+source_file="res://media/itch-background-1280x720.png"
+dest_files=["res://.godot/imported/itch-background-1280x720.png-524b67dbffb3331aba3cf72035d544fd.ctex"]
 
 [params]
 
