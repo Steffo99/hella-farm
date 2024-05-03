@@ -30,6 +30,10 @@ The results depend on what's on the pedestals:
 - 5 *Entities with a monocle* → 1 Watcher + 5 Monocles
 - 5 Watchers → 1 Cthulhu
 
+Skulls are rarely produced when sheep are eaten by a demon.
+
+Sheep have a rare chance to spawn with either a top hat or a monocle, and they will drop it on death. Any entity can wear them on contact.
+
 ## 🎮 Controls
 
 ### Mouse
