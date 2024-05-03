@@ -70,4 +70,4 @@ scene = ExtResource("6_eoeje")
 [connection signal="move" from="MoveStraight" to="." method="_on_move"]
 [connection signal="changed_target" from="MoveTowards" to="MoveTowards/Priority" method="priority_conditional"]
 [connection signal="move" from="MoveTowards" to="." method="_on_move"]
-[connection signal="screen_exited" from="DeleteIfNotOnScreen" to="." method="queue_free"]
+[connection signal="screen_exited" from="DeleteIfNotOnScreen" to="." method="_on_delete_if_not_on_screen_screen_exited"]
